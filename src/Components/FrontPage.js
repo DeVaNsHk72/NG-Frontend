@@ -1,20 +1,18 @@
-
-
 import React, { useEffect, useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import Logo from '../logo.svg';
-import Teamwork from '../Union.svg'
+import Teamwork from '../Union.svg';
 
-function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECECluster,setMECluster}) {
+function FrontPage({ NotesLink, setNotesLink, setBackToHome, setCSECluster, setECECluster, setMECluster }) {
   const [HomeLink, setHomeLink] = useState(0);
   const [AboutLink, setAboutLink] = useState(0);
- 
-  
+
   const GotoHome = () => {
     setHomeLink(1);
     setAboutLink(0);
     setNotesLink(0);
   };
+
   const GotoAbout = () => {
     setHomeLink(0);
     setAboutLink(1);
@@ -24,8 +22,8 @@ function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECEClu
   const GotoNotes = () => {
     setHomeLink(0);
     setAboutLink(0);
-    setNotesLink(true)
-    setBackToHome(false)
+    setNotesLink(true);
+    setBackToHome(false);
   };
 
   const images = [
@@ -34,6 +32,7 @@ function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECEClu
     '/images/thirdhome.svg',
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) =>
@@ -42,31 +41,18 @@ function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECEClu
     }, 3000);
     return () => clearInterval(interval);
   }, [images.length]);
+
   const fullText = [
-    { 
-      text: 'Everything you need ', 
-      color: 'text-white', 
-      fontStyle: 'font-normal' 
-    },
-    { 
-      text: 'at one place ', 
-      color: 'text-white', 
-      fontStyle: 'font-normal' 
-    },
-    { 
-      text: 'to ace college ', 
-      color: 'text-[#20C030]', 
-      fontStyle: 'font-semibold italic' // Italic and semibold
-    },
-    { 
-      text: 'academics.', 
-      color: 'text-[#20C030]', 
-      fontStyle: 'font-semibold italic' // Italic and semibold
-    },
+    { text: 'Everything you need ', color: 'text-white', fontStyle: 'font-normal' },
+    { text: 'at one place ', color: 'text-white', fontStyle: 'font-normal' },
+    { text: 'to ace college ', color: 'text-[#20C030]', fontStyle: 'font-semibold italic' },
+    { text: 'academics.', color: 'text-[#20C030]', fontStyle: 'font-semibold italic' },
   ];
+
   const [displayedText, setDisplayedText] = useState('');
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
+
   useEffect(() => {
     if (index < fullText.length && subIndex < fullText[index].text.length) {
       const timeout = setTimeout(() => {
@@ -91,53 +77,40 @@ function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECEClu
     }
   }, [index, subIndex, fullText]);
 
+  const GoToCSCluster = () => {
+    setNotesLink(true);
+    setBackToHome(false);
+    setCSECluster(true);
+    setECECluster(false);
+    setMECluster(false);
+  };
 
+  const GoToECCluster = () => {
+    setNotesLink(true);
+    setBackToHome(false);
+    setCSECluster(false);
+    setECECluster(true);
+    setMECluster(false);
+  };
 
-  const GoToCSCluster = () =>{
+  const GoToMECluster = () => {
+    setNotesLink(true);
+    setBackToHome(false);
+    setCSECluster(false);
+    setECECluster(false);
+    setMECluster(true);
+  };
 
-    setNotesLink(true)
-    setBackToHome(false)
-    setCSECluster(true)
-    setECECluster(false)
-    setMECluster(false)
+  const GoToNotes = () => {
+    setNotesLink(true);
+    setCSECluster(false);
+    setECECluster(false);
+    setMECluster(false);
+  };
 
-  }
-
-  
-  const GoToECCluster = () =>{
-
-    setNotesLink(true)
-    setBackToHome(false)
-    setCSECluster(false)
-    setECECluster(true)
-    setMECluster(false)
-    
-  }
-
-  
-  const GoToMECluster = () =>{
-
-    setNotesLink(true)
-    setBackToHome(false)
-    setCSECluster(false)
-    setECECluster(false)
-    setMECluster(true)
-    
-  }
-
-  const GoToNotes = () =>{
-
-    setNotesLink(true)
-    setCSECluster(false)
-    setECECluster(false)
-    setMECluster(false)
-
-  }
-
-  const GotoPYQ = () =>{
-
-    alert("Coming Soon")
-  }
+  const GotoPYQ = () => {
+    alert('Coming Soon');
+  };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -145,20 +118,18 @@ function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECEClu
     setIsMenuOpen(!isMenuOpen);
   };
 
-
   return (
-   
-    <div className='bg-zinc-950 min-h-screen flex flex-col items-center'>
-  {/* Navbar */}
-  <div className='w-full flex justify-between items-center px-4 md:px-20 py-6 mt-4'>
-        <div className='flex items-center'>
-          <img src={Logo} alt="Logo" className='h-[30px] md:h-[40px]' />
+    <div className="bg-zinc-950 min-h-screen flex flex-col items-center">
+      {/* Navbar */}
+      <div className="w-full flex justify-between items-center px-4 md:px-20 py-6 mt-4">
+        <div className="flex items-center">
+          <img src={Logo} alt="Logo" className="h-[30px] md:h-[40px]" />
         </div>
 
         {/* Hamburger Icon for mobile and iPads */}
-        <div className='lg:hidden flex'>
-          <button onClick={toggleMenu} className='text-white text-3xl focus:outline-none'>
-            <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'}`}></i> {/* Toggling icon from "hamburger" to "close" */}
+        <div className="lg:hidden flex">
+          <button onClick={toggleMenu} className="text-white text-3xl focus:outline-none">
+            <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'}`}></i>
           </button>
         </div>
 
@@ -184,6 +155,7 @@ function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECEClu
           </div>
         </div>
       </div>
+
 
       {/* Main Content */}
       <div className='flex flex-col items-center mt-[20px] md:mt-[50px] px-4'>
