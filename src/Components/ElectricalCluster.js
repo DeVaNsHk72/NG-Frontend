@@ -18,6 +18,8 @@ function ElectricalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
 
     setPhysicsCycle(true)
     setChemistryCycle(false)
+
+    setECERelatedPdf([])
     
   }
 
@@ -27,6 +29,7 @@ function ElectricalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
     setPhysicsCycle(false)
     setChemistryCycle(true)
     
+    setECERelatedPdf([])
   }
 
 
@@ -108,6 +111,8 @@ function ElectricalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
       setSem1(0)
       setSem2(1)
     }
+
+    setECERelatedPdf([])
   }
 
   var SearchedSubject = useRef("")
@@ -119,6 +124,12 @@ function ElectricalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
     setPhysicsCycle(false)
     setChemistryCycle(false)
     const sanitizedInput = e.target.value.replace(/[^A-Za-z0-9]/g, '');
+
+     
+
+    if(SearchedSubject.current.value === 0)
+      setECERelatedPdf([])
+  
 
     if(sanitizedInput.length){
 

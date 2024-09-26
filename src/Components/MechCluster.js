@@ -18,6 +18,8 @@ function MechanicalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
 
     setPhysicsCycle(true)
     setChemistryCycle(false)
+
+    setMERelatedPdf([])
     
   }
 
@@ -26,6 +28,8 @@ function MechanicalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
 
     setPhysicsCycle(false)
     setChemistryCycle(true)
+
+    setMERelatedPdf([])
     
   }
 
@@ -107,6 +111,8 @@ function MechanicalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
       setSem1(0)
       setSem2(1)
     }
+
+    setMERelatedPdf([])
   }
 
   var SearchedSubject = useRef("")
@@ -118,6 +124,9 @@ function MechanicalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
     setPhysicsCycle(false)
     setChemistryCycle(false)
     const sanitizedInput = e.target.value.replace(/[^A-Za-z0-9]/g, '');
+
+    if(SearchedSubject.current.value === 0)
+      setMERelatedPdf([])
 
     if(sanitizedInput.length){
 

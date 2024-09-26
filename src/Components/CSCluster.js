@@ -18,6 +18,8 @@ function CSCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECECluster,
 
     setPhysicsCycle(true)
     setChemistryCycle(false)
+
+    setCSRelatedPdf([])
     
   }
 
@@ -26,6 +28,8 @@ function CSCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECECluster,
 
     setPhysicsCycle(false)
     setChemistryCycle(true)
+
+    setCSRelatedPdf([])
     
   }
 
@@ -103,6 +107,8 @@ function CSCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECECluster,
       setSem1(0)
       setSem2(1)
     }
+
+    setCSRelatedPdf([])
   }
 
   var SearchedSubject = useRef("")
@@ -114,6 +120,13 @@ function CSCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECECluster,
     setPhysicsCycle(false)
     setChemistryCycle(false)
     const sanitizedInput = e.target.value.replace(/[^A-Za-z0-9]/g, '');
+
+    
+
+      if(SearchedSubject.current.value === 0)
+        setCSRelatedPdf([])
+    
+     
 
     if(sanitizedInput.length){
 
