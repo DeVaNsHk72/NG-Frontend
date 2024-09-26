@@ -220,7 +220,7 @@ const BackToNotes = () =>{
         className='h-12 cursor-pointer relative w-full max-w-xs bg-[#20C030] rounded-full flex   mx-1 my-4'
     >
         <div className="text-white text-xl font-medium mx-9 my-2 ">BackToNotes</div>
-        <div className="bg-[#20C030] w-16 h-12 rounded-3xl absolute right-0  flex items-center justify-center">
+        <div className="bg-[#20C030] w-12 h-12 rounded-3xl absolute right-0  flex items-center justify-center">
             <i className="bi bi-caret-left-fill text-white text-lg mx-2"></i>
         </div>
     </div>
@@ -248,6 +248,9 @@ const BackToNotes = () =>{
             <div className={`text-xl w-full font-medium mx-2 my-1 ${ChemistryCycle ? 'text-black' : 'text-white'}`}>C-Cycle</div>
         </div>
 
+    
+
+
         <div
             onClick={() => SelectSem(1)}
             className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full ${Sem1 ? 'bg-white text-black' : 'bg-[#20C030] text-white'}`}
@@ -273,7 +276,7 @@ const BackToNotes = () =>{
         />
     </div>
 
-    <div className='flex justify-center gap-8 mt-10'>
+    <div className='flex justify-center gap-8 mt-5'>
     <div
         onClick={ShowSelectedCycleRelatedPdf}
         className='h-10 rounded-2xl hover:shadow-custom cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
@@ -284,7 +287,7 @@ const BackToNotes = () =>{
 
     
 {CSRelatedPdf.map((pdf) => (
-  <div key={pdf.SubjectNumber} className="transition-all duration-500 ease-in-out opacity-100 translate-y-0 animate-fade-in-slide-up mt-2">
+  <div key={pdf.SubjectNumber} className="transition-all duration-500 ease-in-out opacity-100 translate-y-0 animate-fade-in-slide-up mt-8">
     <div className="flex flex-col gap-2 bg-slate-900 border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
     <div className="flex flex-row justify-between items-center w-full">
   <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>

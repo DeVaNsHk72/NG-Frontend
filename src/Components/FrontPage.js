@@ -134,6 +134,11 @@ function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECEClu
 
   }
 
+  const GotoPYQ = () =>{
+
+    alert("Coming Soon")
+  }
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -197,16 +202,16 @@ function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECEClu
 
         {/* Buttons */}
         <div className='flex flex-row gap-5 md:gap-10 lg:gap-20 mt-8'>
-          <div className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
+          <div onClick={GotoNotes} className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
             <div className='text-black font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[30px]'>Notes</div>
           </div>
-          <div className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-white hover:text-black transition duration-300'>
+          <div onClick={GotoPYQ} className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
             <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[35px]'>PYQ's</div>
           </div>
         </div>
       </div>
 
-      {/* Info About Note */}
+      {/* Info About Note
       <div className='bg-white flex flex-col lg:flex-row min-w-full mt-[50px] gap-[20px] lg:gap-[300px] px-4'>
         <div className='flex flex-col mt-[20px] lg:mt-[50px] w-full lg:w-[500px]'>
           <div className='flex flex-col text-lg md:text-2xl font-medium text-justify'>
@@ -222,7 +227,22 @@ function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECEClu
           </div>
         </div>
         <img src={Teamwork} className='w-[250px] md:w-[350px] lg:w-[400px] mt-[20px] lg:mt-[50px] h-[250px] md:h-[350px] lg:h-[400px]' />
-      </div>
+      </div> */}
+      {/* Info About Note */}
+<div className='bg-white flex flex-col lg:flex-row items-center justify-center w-full mt-[50px] gap-[20px] lg:gap-[100px] px-4 py-10'>
+  <div className='flex flex-col justify-center w-full lg:w-[50%]'>
+    <div className='text-lg md:text-2xl font-medium text-justify'>
+      A learning hub where you access the best, high-quality notes crafted by professors through their students. We've collected these valuable resources and paired them with relevant YouTube tutorials to streamline your learning.
+    </div>
+    <div className='text-lg md:text-2xl italic text-[#20C030] font-medium text-justify mt-4'>
+      Whether you're preparing for CIE's or SEE's, NoteGo brings together expert knowledge and visual guides to help you learn faster and smarter. Dive in and elevate your study experience.
+    </div>
+  </div>
+  <div className='flex justify-center lg:justify-end w-full lg:w-[50%] mt-[20px] lg:mt-0'>
+    <img src={Teamwork} className='w-[250px] md:w-[350px] lg:w-[400px] h-[250px] md:h-[350px] lg:h-[400px]' />
+  </div>
+</div>
+
 
       {/* Footer */}
       <div className='bg-black min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
@@ -255,7 +275,7 @@ function FrontPage({NotesLink,setNotesLink,setBackToHome,setCSECluster,setECEClu
           </div>
         </div>
 
-        <div className='flex flex-row gap-[5px]'>
+        <div className='flex flex-row gap-[5px] mt-[60px]'>
           <i className="bi bi-c-circle text-white" style={{ fontSize: '20px' }}></i>
           <h1 className='text-white text-sm md:text-lg'>2024 by NoteGo</h1>
         </div>

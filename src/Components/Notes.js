@@ -156,7 +156,7 @@ const toggleMenu = () => {
 
        {/* Navbar */}
        <div className='bg-black w-full flex justify-between items-center px-4 md:px-20 py-6 '>
-        <div className='flex items-center'>
+        <div onClick={GotoHome} className='flex items-center'>
           <img src={Logo} alt="Logo" className='h-[30px] md:h-[40px]' />
         </div>
 
@@ -257,13 +257,13 @@ const toggleMenu = () => {
   </div>
   
   {/* Container for Expand and Reduce Icons */}
-  <div className="flex flex-col items-center flex-none">
+  <div className="flex flex-col items-center gap-1 flex-none">
     {/* Down Arrow (Expand) */}
     <i
       onClick={() => ShowPdfDetails(pdf)}
       className="bi bi-arrow-down-circle-fill text-3xl text-white cursor-pointer"
     ></i>
-    <span className="text-white text-sm mt-1">Expand</span> {/* Added Expand label */}
+    <span className="text-white text-xs mt-1">Expand</span> {/* Added Expand label */}
   </div>
 
   <div className="flex flex-col items-center flex-none">
@@ -272,7 +272,7 @@ const toggleMenu = () => {
       onClick={() => DontShowPdfDetails(pdf)}
       className="bi bi-arrow-up-circle-fill text-3xl text-white cursor-pointer"
     ></i>
-    <span className="text-white text-sm mt-1">Reduce</span> {/* Added Reduce label */}
+    <span className="text-white text-xs mt-1">Reduce</span> {/* Added Reduce label */}
   </div>
 </div>
 
