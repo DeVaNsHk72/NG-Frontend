@@ -222,8 +222,8 @@ const BackToNotes = () =>{
         onClick={BackToNotes}
         className='h-12 cursor-pointer relative w-full max-w-xs bg-[#20C030] rounded-full flex   mx-1 my-4'
     >
-        <div className="text-white text-xl font-medium mx-9 my-2 ">BackToNotes</div>
-        <div className="bg-[#20C030] w-16 h-12 rounded-3xl absolute right-0  flex items-center justify-center">
+        <div className="text-white text-xl font-medium mx-12 my-2 ">BackToNotes</div>
+        <div className="bg-[#20C030] w-12 h-12 rounded-3xl absolute right-0  flex items-center justify-center">
             <i className="bi bi-caret-left-fill text-white text-lg mx-2"></i>
         </div>
     </div>
@@ -233,37 +233,46 @@ const BackToNotes = () =>{
     <div className='text-white text-3xl mt-6 flex justify-center'>
       <span className='text-center'>ME Cluster</span>
     </div>
-    <h1 className='text-white text-2xl font-instrument mx-auto mt-4'>Select Options</h1>
 
     {/* Flex container for all option buttons in a single line */}
-    <div className='flex justify-center gap-2 flex-nowrap mx-auto'>
+    <div className='flex justify-center gap-2 flex-col mx-auto'>
+
+      <h1 className='text-white text-2xl font-instrument mx-auto mt-4'>Select Cycle</h1>
+      <div className='flex flex-row gap-4' >
+
         <div
             onClick={SelectPhysicsCycle}
-            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${PhysicsCycle ? 'bg-white' : 'bg-[#20C030]'}`}
+            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${PhysicsCycle ?  'bg-[#20C030]' : 'bg-white' }`}
         >
-            <div className={`text-xl w-full font-medium mx-2 my-1 ${PhysicsCycle ? 'text-black' : 'text-white'}`}>P-Cycle</div>
+            <div className={`text-xl w-full font-medium mx-2 my-1 ${PhysicsCycle ? 'text-white':'text-black'}`}>P-Cycle</div>
         </div>
 
         <div
             onClick={SelectChemistryCycle}
-            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${ChemistryCycle ? 'bg-white text-black' : 'bg-[#20C030] text-white'}`}
+            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${ChemistryCycle ? 'bg-[#20C030]' : 'bg-white' }`}
         >
-            <div className={`text-xl w-full font-medium mx-2 my-1 ${ChemistryCycle ? 'text-black' : 'text-white'}`}>C-Cycle</div>
+            <div className={`text-xl w-full font-medium mx-2 my-1 ${ChemistryCycle ? 'text-white':'text-black'}`}>C-Cycle</div>
         </div>
+      </div>
 
+
+
+      <h1 className='text-white text-2xl font-instrument mx-auto mt-4'>Select Semester</h1>
+      <div className='flex flex-row gap-4' >
         <div
             onClick={() => SelectSem(1)}
-            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${Sem1 ? 'bg-white text-black' : 'bg-[#20C030] text-white'}`}
+            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${Sem1 ? 'bg-[#20C030]' : 'bg-white'}`}
         >
-            <div className={`text-xl font-medium mx-4 my-1 ${Sem1 ? 'text-black' : 'text-white'}`}>Sem1</div>
+            <div className={`text-xl font-medium mx-4 my-1 ${Sem1 ? 'text-white':'text-black'}`}>Sem1</div>
         </div>
 
         <div
             onClick={() => SelectSem(2)}
-            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${Sem2 ? 'bg-white text-black' : 'bg-[#20C030] text-white'}`}
+            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${Sem2 ? 'bg-[#20C030]' : 'bg-white'}`}
         >
-            <div className={`text-xl font-medium mx-4 my-1 ${Sem2 ? 'text-black' : 'text-white'}`}>Sem2</div>
+            <div className={`text-xl font-medium mx-4 my-1 ${Sem2 ? 'text-white':'text-black'}`}>Sem2</div>
         </div>
+      </div>
     </div>
 
     <div className="flex justify-center mt-10">
