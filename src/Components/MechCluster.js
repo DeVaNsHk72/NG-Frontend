@@ -109,7 +109,7 @@ function MechanicalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
     }
   }
 
-  var SearchedSubject = useRef(null)
+  var SearchedSubject = useRef("")
   
   const getSearchedSubject = (e) =>{
 
@@ -185,12 +185,14 @@ const RotateOnClick = () =>{
 }
 
 
-
 useEffect(()=>{
 
-
+   
+  if(SearchedSubject.current.value.length === 0 && ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))))
+    setMERelatedPdf([])
 
 },[MERelatedPdf])
+
 
 const BackHome = () =>{
 

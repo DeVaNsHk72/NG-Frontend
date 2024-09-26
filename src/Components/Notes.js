@@ -1,7 +1,7 @@
 import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import _ from 'lodash';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Logo from '../logo.svg';
 
 function Notes({setCSECluster,setECECluster,setMECluster,setNotesLink,setBackToHome,NotesLink}) {
@@ -30,7 +30,7 @@ function Notes({setCSECluster,setECECluster,setMECluster,setNotesLink,setBackToH
     }
 
 
-    var SearchedSubject = useRef(null)
+    var SearchedSubject = useRef("")
 
     const [SearchedRelatedPdf,setSearchedRelatedPdf] = useState([])
   
@@ -148,6 +148,14 @@ const [isMenuOpen, setIsMenuOpen] = useState(false);
 const toggleMenu = () => {
   setIsMenuOpen(!isMenuOpen);
 };
+
+useEffect(()=>{
+
+   
+    if(SearchedSubject.current.value.length === 0)
+      setSearchedRelatedPdf([])
+
+},[SearchedRelatedPdf])
 
 
   return (

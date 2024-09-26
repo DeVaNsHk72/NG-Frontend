@@ -110,7 +110,7 @@ function ElectricalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
     }
   }
 
-  var SearchedSubject = useRef(null)
+  var SearchedSubject = useRef("")
   
   const getSearchedSubject = (e) =>{
 
@@ -168,6 +168,17 @@ function ElectricalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
         else
             setECERelatedPdf([])
 }
+
+
+
+useEffect(()=>{
+
+   
+  if(SearchedSubject.current.value.length === 0 && ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))))
+    setECERelatedPdf([])
+
+},[ECERelatedPdf])
+
 
 const [isRotated,setisRotated] = useState(0)
 const RotateOnClick = () =>{
