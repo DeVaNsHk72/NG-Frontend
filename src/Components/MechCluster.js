@@ -296,7 +296,7 @@ const BackToNotes = () =>{
             ref={SearchedSubject}
             onKeyUp={getSearchedSubject}
             className="h-12  w-80 max-w-md border placeholder:text-black border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
-            placeholder="Search Your Subject"
+            placeholder="Search Your Subject" defaultValue=" "
         />
     </div>
 

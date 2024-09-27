@@ -195,7 +195,7 @@ useEffect(() => {
         onKeyUp={getSearchedSubject}
        
         className="h-[40px] w-80 max-w-[500px] placeholder:text-[#20C030] border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
-        placeholder="Search Your Subject"
+        placeholder="Search Your Subject" defaultValue=" "
       />
       
     </div>
