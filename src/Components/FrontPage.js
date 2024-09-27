@@ -3,24 +3,23 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import Logo from '../logo.svg';
 import Teamwork from '../Union.svg';
 
-function FrontPage({ NotesLink, setNotesLink, setBackToHome, setCSECluster, setECECluster, setMECluster }) {
-  const [HomeLink, setHomeLink] = useState(0);
-  const [AboutLink, setAboutLink] = useState(0);
+function FrontPage({setAboutLink, setNotesLink, setBackToHome, setCSECluster, setECECluster, setMECluster,BackToHome ,AboutLink,NotesLink}) {
+  
 
   const GotoHome = () => {
-    setHomeLink(1);
+    setBackToHome(1);
     setAboutLink(0);
     setNotesLink(0);
   };
 
   const GotoAbout = () => {
-    setHomeLink(0);
+    setBackToHome(0);
     setAboutLink(1);
     setNotesLink(0);
   };
 
   const GotoNotes = () => {
-    setHomeLink(0);
+    setBackToHome(0);
     setAboutLink(0);
     setNotesLink(true);
     setBackToHome(false);
@@ -137,7 +136,7 @@ function FrontPage({ NotesLink, setNotesLink, setBackToHome, setCSECluster, setE
         <div className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
           <div
             onClick={GotoHome}
-            className={`cursor-pointer ${HomeLink ? 'text-[#20C030]' : 'text-white'} text-lg md:text-2xl hover:text-green-400`}
+            className={`cursor-pointer ${BackToHome ? 'text-[#20C030]' : 'text-white'} text-lg md:text-2xl hover:text-green-400`}
           >
             Home
           </div>

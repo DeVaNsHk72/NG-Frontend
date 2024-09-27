@@ -127,8 +127,8 @@ function ElectricalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
 
      
 
-    if(SearchedSubject.current.value === 0)
-      setECERelatedPdf([])
+    
+    setECERelatedPdf([])
   
 
     if(sanitizedInput.length){
@@ -182,13 +182,6 @@ function ElectricalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
 
 
 
-useEffect(()=>{
-
-   
-  if(SearchedSubject.current.value.length === 0 && ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))))
-    setECERelatedPdf([])
-
-},[ECERelatedPdf])
 
 
 const [isRotated,setisRotated] = useState(0)
@@ -211,7 +204,12 @@ const RotateOnClick = () =>{
 
 useEffect(()=>{
 
+  setTimeout(()=>{
 
+    if(SearchedSubject.current.value === '' && ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))))
+      setECERelatedPdf([])
+  },100)
+    
 
 },[ECERelatedPdf])
 
@@ -316,8 +314,20 @@ const BackToNotes = () =>{
 </div>
 
 
+
+{ECERelatedPdf.length ? 
+  <div className="flex flex-col gap-4 border-2 bg-amber-100 rounded-md shadow-lg p-4 justify-between w-full  md:w-3/5 lg:w-3/4  max-w-3xl mx-auto mt-5">
+    <div className="flex flex-row justify-between text-black font-semibold">
+      <div className="flex-1 text-center">Contents</div>
+
+    </div>
+  </div>
+
+  :null
+}
+
 {ECERelatedPdf.map((pdf) => (
-  <div key={pdf.SubjectNumber} className="transition-all duration-500 ease-in-out opacity-100 translate-y-0 animate-fade-in-slide-up mt-2">
+  <div key={pdf.SubjectNumber} className="transition-all duration-500 ease-in-out opacity-100 translate-y-0 animate-fade-in-slide-up mt-8">
     <div className="flex flex-col gap-2 bg-slate-900 border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
     <div className="flex flex-row justify-between items-center w-full">
   <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
