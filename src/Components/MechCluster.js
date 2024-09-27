@@ -195,16 +195,16 @@ const RotateOnClick = () =>{
 
 
 
-useEffect(()=>{
+useEffect(() => {
+  
+  if (
+    SearchedSubject.current.value === "" && // When the search box is empty
+    ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))) // Related cycles are not present
+  ) {
+    setMERelatedPdf([]); // Clear the CSRelatedPdf list
+  }
 
-  setTimeout(()=>{
-
-    if(SearchedSubject.current.value === '' && ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))))
-      setMERelatedPdf([])
-  },100)
-    
-
-},[MERelatedPdf])
+}, [MERelatedPdf, PhysicsCycle, ChemistryCycle, Sem1, Sem2]); // Add all dependencies
 
 
 const BackHome = () =>{

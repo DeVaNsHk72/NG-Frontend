@@ -36,9 +36,7 @@ function Notes({setCSECluster,setECECluster,setMECluster,setNotesLink,setBackToH
   
     const getSearchedSubject = (e) =>{
 
-      setTimeout(()=>{
-
-      },500)
+      setSearchedRelatedPdf([])
 
       const sanitizedInput = e.target.value.replace(/[^A-Za-z0-9]/g, '');
   
@@ -149,13 +147,14 @@ const toggleMenu = () => {
   setIsMenuOpen(!isMenuOpen);
 };
 
-useEffect(()=>{
 
-   
-    if(SearchedSubject.current.value.length === 0)
-      setSearchedRelatedPdf([])
+useEffect(() => {
+  
+  if (SearchedSubject.current.value === "" )
+    setSearchedRelatedPdf([]); // Clear the CSRelatedPdf list
+  
 
-},[SearchedRelatedPdf])
+}, [SearchedRelatedPdf]); // Add all dependencies
 
 
   return (

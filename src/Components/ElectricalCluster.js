@@ -126,8 +126,6 @@ function ElectricalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECE
     const sanitizedInput = e.target.value.replace(/[^A-Za-z0-9]/g, '');
 
      
-
-    
     setECERelatedPdf([])
   
 
@@ -202,16 +200,16 @@ const RotateOnClick = () =>{
 
 
 
-useEffect(()=>{
+useEffect(() => {
+  
+  if (
+    SearchedSubject.current.value === "" && // When the search box is empty
+    ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))) // Related cycles are not present
+  ) {
+    setECERelatedPdf([]); // Clear the CSRelatedPdf list
+  }
 
-  setTimeout(()=>{
-
-    if(SearchedSubject.current.value === '' && ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))))
-      setECERelatedPdf([])
-  },100)
-    
-
-},[ECERelatedPdf])
+}, [ECERelatedPdf, PhysicsCycle, ChemistryCycle, Sem1, Sem2]); // Add all dependencies
 
 const BackHome = () =>{
 

@@ -122,9 +122,7 @@ function CSCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECECluster,
     const sanitizedInput = e.target.value.replace(/[^A-Za-z0-9]/g, '');
 
     
-
     setCSRelatedPdf([])
-    
      
 
     if(sanitizedInput.length){
@@ -194,18 +192,16 @@ const RotateOnClick = () =>{
 }
 
 
-
-useEffect(()=>{
-
-  setTimeout(()=>{
-
-    if(SearchedSubject.current.value === '' && ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))))
-      setCSRelatedPdf([])
-  },100)
-    
-
-},[CSRelatedPdf])
-
+useEffect(() => {
+  
+    if (
+      SearchedSubject.current.value === "" && // When the search box is empty
+      ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))) // Related cycles are not present
+    ) {
+      setCSRelatedPdf([]); // Clear the CSRelatedPdf list
+    }
+  
+}, [CSRelatedPdf, PhysicsCycle, ChemistryCycle, Sem1, Sem2]); // Add all dependencies
 
 const BackHome = () =>{
 
