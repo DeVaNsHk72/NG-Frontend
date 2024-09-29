@@ -4,8 +4,9 @@ import axios from 'axios'
 import 'bootstrap-icons/font/bootstrap-icons.min.css'
 import _ from 'lodash';
 import Logo from '../logo.svg';
+import { Link } from 'react-router-dom';
 
-function ElectricalCluster({CSECluster,ECECluster,MECluster,setCSECluster,setECECluster,setMECluster,setNotesLink,setBackToHome}) {
+function ElectricalCluster() {
   const [PhysicsCycle,setPhysicsCycle] = useState(false)
   const [ChemistryCycle,setChemistryCycle] = useState(false)
   const [ECERelatedPdf,setECERelatedPdf] = useState([])
@@ -203,49 +204,77 @@ const RotateOnClick = () =>{
 useEffect(() => {
   
   if (
-    SearchedSubject.current.value === "" && // When the search box is empty
-    ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))) // Related cycles are not present
+    (SearchedSubject.current.value === "" && // When the search box is empty
+    ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))))
+    
+    || SearchedSubject.current.value === " "// Related cycles are not present
   ) {
     setECERelatedPdf([]); // Clear the CSRelatedPdf list
   }
 
+  const delayDebounceFn = setTimeout(() => {
+    // Simulate search query here (e.g., fetch results)
+   
+
+    // Example: simulate setting the search results
+    // Replace this with your actual search logic
+  }, 500); // 500ms delay for debouncing
+
+  // Cleanup function: clear the timeout to avoid memory leaks
+  return () => clearTimeout(delayDebounceFn);
+
 }, [ECERelatedPdf, PhysicsCycle, ChemistryCycle, Sem1, Sem2]); // Add all dependencies
 
-const BackHome = () =>{
+// const BackHome = () =>{
 
 
-    setNotesLink(false)
-    setBackToHome(true)
-    setCSECluster(false)
-}
+//     setNotesLink(false)
+//     setBackToHome(true)
+//     setCSECluster(false)
+// }
 
-const BackToNotes = () =>{
+// const BackToNotes = () =>{
 
-  setNotesLink(true)
-  setCSECluster(false)
-  setMECluster(false)
-  setECECluster(false)
-}
+//   setNotesLink(true)
+//   setCSECluster(false)
+//   setMECluster(false)
+//   setECECluster(false)
+// }
+
+
+
+const [inputValue, setInputValue] = useState(" "); // Initialize with one space
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+
+    // Ensure at least one space remains in the input
+    if (value === "") {
+      setInputValue(" "); // Reset to a single space if input is cleared
+    } else {
+      setInputValue(value); // Otherwise, update normally
+    }
+  };
 
   return (
     <div className='bg-black min-h-screen gap-[20px] flex flex-col  '>
 <div className='flex flex-col lg:flex-row gap-8 mx-auto max-w-screen-lg'>
-    <img
+    <Link><img
         src={Logo}
         alt="Logo"
-        onClick={BackHome}
+        to = '/'
         className='h-10 mx-4 my-4 cursor-pointer'
-    />
+    /></Link>
 
-<div
-        onClick={BackToNotes}
+<Link
+        to = '/notes'
         className='h-12 cursor-pointer relative w-full max-w-xs bg-[#20C030] rounded-full flex   mx-1 my-4'
     >
         <div className="text-white text-xl font-medium mx-12 my-2 ">BackToNotes</div>
         <div className="bg-[#20C030] w-12 h-12 rounded-3xl absolute right-0  flex items-center justify-center">
             <i className="bi bi-caret-left-fill text-white text-lg mx-2"></i>
         </div>
-    </div>
+    </Link>
 </div>
 
 <div className='flex flex-col'>
@@ -298,7 +327,8 @@ const BackToNotes = () =>{
             ref={SearchedSubject}
             onKeyUp={getSearchedSubject}
             className="h-12  w-80 max-w-md border placeholder:text-black border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
-            placeholder="Search Your Subject" defaultValue=" "
+            placeholder="Search Your Subject" value={inputValue} defaultValue="  "
+            onChange={handleInputChange}
         />
     </div>
 

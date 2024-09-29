@@ -1,33 +1,34 @@
 import React, { useState } from 'react';
 import Logo from '../logo.svg';
-function About({ setNotesLink,setAboutLink, setBackToHome, setCSECluster, setECECluster, setMECluster,BackToHome,AboutLink,NotesLink }) {
+import { Link } from 'react-router-dom';
+function About() {
 
-  const GotoHome = () => {
-    setNotesLink(false);
-    setBackToHome(true);
-    setCSECluster(false);
-    setECECluster(false);
-    setMECluster(false);
-    setAboutLink(false)
-  };
+//   const GotoHome = () => {
+//     setNotesLink(false);
+//     setBackToHome(true);
+//     setCSECluster(false);
+//     setECECluster(false);
+//     setMECluster(false);
+//     setAboutLink(false)
+//   };
 
-  const GotoAbout = ()=>{
-    setNotesLink(false);
-    setBackToHome(false);
-    setCSECluster(false);
-    setECECluster(false);
-    setMECluster(false);
-    setAboutLink(true)
-  }
+//   const GotoAbout = ()=>{
+//     setNotesLink(false);
+//     setBackToHome(false);
+//     setCSECluster(false);
+//     setECECluster(false);
+//     setMECluster(false);
+//     setAboutLink(true)
+//   }
 
-  const GotoNotes = ()=>{
-    setNotesLink(true);
-    setBackToHome(false);
-    setCSECluster(false);
-    setECECluster(false);
-    setMECluster(false);
-    setAboutLink(false)
-  }
+//   const GotoNotes = ()=>{
+//     setNotesLink(true);
+//     setBackToHome(false);
+//     setCSECluster(false);
+//     setECECluster(false);
+//     setMECluster(false);
+//     setAboutLink(false)
+//   }
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -55,26 +56,21 @@ function About({ setNotesLink,setAboutLink, setBackToHome, setCSECluster, setECE
         </div>
 
         {/* Links for larger screens & dropdown for smaller screens and iPads */}
-        <div className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
-          <div
-            onClick={GotoHome}
-            className={`cursor-pointer ${BackToHome ? 'text-[#20C030]' : 'text-white'} text-lg md:text-2xl hover:text-green-400`}
+        <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
+          <Link
+            to = '/'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
           >
             Home
-          </div>
-          <div
-            onClick={GotoAbout}
-            className={`cursor-pointer ${AboutLink ? 'text-[#20C030]' : 'text-white'} text-lg md:text-2xl hover:text-green-400`}
-          >
-            About
-          </div>
-          <div
-            onClick={GotoNotes}
-            className={`cursor-pointer ${NotesLink ? 'text-[#20C030]' : 'text-white'} text-lg md:text-2xl hover:text-green-400`}
+          </Link>
+
+          <Link
+            to = '/notes'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
           >
             Notes
-          </div>
-        </div>
+          </Link>
+        </nav>
       
       {/* About Section */}
       {/* About Section */}

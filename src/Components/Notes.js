@@ -1,33 +1,34 @@
 import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
-import _ from 'lodash';
+import _, { curry } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import Logo from '../logo.svg';
+import { Link } from 'react-router-dom';
 
-function Notes({setCSECluster,setECECluster,setMECluster,setNotesLink,setBackToHome,NotesLink}) {
+function Notes() {
 
-    const BackHome = () =>{
-        setBackToHome(true)
-        setNotesLink(false)
-    }
+    // const BackHome = () =>{
+    //     setBackToHome(true)
+    //     setNotesLink(false)
+    // }
 
-    const GotoCSCluster=()=>{
-        setCSECluster(true)
-        setMECluster(false)
-        setECECluster(false)
-    }
+    // const GotoCSCluster=()=>{
+    //     setCSECluster(true)
+    //     setMECluster(false)
+    //     setECECluster(false)
+    // }
 
-    const GotoECECluster=()=>{
-        setCSECluster(false)
-        setMECluster(false)
-        setECECluster(true)
-    }
+    // const GotoECECluster=()=>{
+    //     setCSECluster(false)
+    //     setMECluster(false)
+    //     setECECluster(true)
+    // }
 
-    const GotoMECluster=()=>{
-        setCSECluster(false)
-        setMECluster(true)
-        setECECluster(false)
-    }
+    // const GotoMECluster=()=>{
+    //     setCSECluster(false)
+    //     setMECluster(true)
+    //     setECECluster(false)
+    // }
 
 
     var SearchedSubject = useRef("")
@@ -131,15 +132,15 @@ const handleRotatePdf = (subjectNumber) => {
 
 
 
-const GotoHome = () =>{
+// const GotoHome = () =>{
 
-  setNotesLink(false)
-  setCSECluster(false)
-  setECECluster(false)
-  setMECluster(false)
-  setBackToHome(true)
+//   setNotesLink(false)
+//   setCSECluster(false)
+//   setECECluster(false)
+//   setMECluster(false)
+//   setBackToHome(true)
 
-}
+// }
 
 const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -150,11 +151,36 @@ const toggleMenu = () => {
 
 useEffect(() => {
   
-  if (SearchedSubject.current.value === "" )
+  if (SearchedSubject.current.value === "" || SearchedSubject.current.value === " " )
     setSearchedRelatedPdf([]); // Clear the CSRelatedPdf list
+
+  const delayDebounceFn = setTimeout(() => {
+    // Simulate search query here (e.g., fetch results)
+   
+
+    // Example: simulate setting the search results
+    // Replace this with your actual search logic
+  }, 500); // 500ms delay for debouncing
+
+  // Cleanup function: clear the timeout to avoid memory leaks
+  return () => clearTimeout(delayDebounceFn);
   
 
 }, [SearchedRelatedPdf]); // Add all dependencies
+
+const [inputValue, setInputValue] = useState(" "); // Initialize with one space
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+
+    // Ensure at least one space remains in the input
+    if (value === "") {
+      setInputValue(" "); // Reset to a single space if input is cleared
+    } else {
+      setInputValue(value); // Otherwise, update normally
+    }
+  };
+
 
 
   return (
@@ -163,9 +189,9 @@ useEffect(() => {
 
        {/* Navbar */}
        <div className='bg-black w-full flex justify-between items-center px-4 md:px-20 py-6 '>
-        <div onClick={GotoHome} className='flex items-center'>
+        <Link to = '/' className='flex items-center'>
           <img src={Logo} alt="Logo" className='h-[30px] md:h-[40px]' />
-        </div>
+        </Link>
 
         {/* Hamburger Icon for mobile and iPads */}
         <div className='lg:hidden flex'>
@@ -175,16 +201,22 @@ useEffect(() => {
         </div>
 
         {/* Links for larger screens & dropdown for smaller screens and iPads */}
-        <div className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
-          <div
-            onClick={GotoHome}
+        <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
+          <Link
+            to = '/'
             className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
           >
             Home
-          </div>
-         
-         
-        </div>
+          </Link>
+
+          <Link
+            to = '/about'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            About
+          </Link>
+       
+        </nav>
       </div>
 
 
@@ -195,7 +227,8 @@ useEffect(() => {
         onKeyUp={getSearchedSubject}
        
         className="h-[40px] w-80 max-w-[500px] placeholder:text-[#20C030] border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
-        placeholder="Search Your Subject" defaultValue=" "
+        placeholder="Search Your Subject"  value={inputValue} defaultValue="  "
+        onChange={handleInputChange}
       />
       
     </div>
@@ -210,8 +243,8 @@ useEffect(() => {
       {SearchedRelatedPdf.length === 0 ? (
   <div className="flex flex-wrap justify-center gap-10 mt-10">
     {/* CS Cluster Card */}
-    <div
-      onClick={GotoCSCluster}
+    <Link
+      to = '/CSCluster'
       className="flex flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">CS Cluster</h1>
@@ -221,21 +254,21 @@ useEffect(() => {
       <div className="text-center text-lg text-white">CSE (BS)</div>
       <div className="text-center text-lg text-white">AI/ML</div>
       <div className="text-center text-lg text-white">AI/DS</div>
-    </div>
+    </Link>
 
     {/* ECE Cluster Card */}
-    <div
-      onClick={GotoECECluster}
+    <Link
+      to = '/ECCluster'
       className="flex flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">EE Cluster</h1>
       <div className="text-center text-lg text-white">ECE</div>
       <div className="text-center text-lg text-white">EEE</div>
-    </div>
+    </Link>
 
     {/* ME Cluster Card */}
-    <div
-      onClick={GotoMECluster}
+    <Link
+      to = '/MECluster'
       className="flex flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">Mech. Cluster</h1>
@@ -243,7 +276,7 @@ useEffect(() => {
       <div className="text-center text-lg text-white">ASE</div>
       <div className="text-center text-lg text-white">CHEM</div>
       <div className="text-center text-lg text-white">IME</div>
-    </div>
+    </Link>
   </div>
 ) : (
   <div className="mt-5">

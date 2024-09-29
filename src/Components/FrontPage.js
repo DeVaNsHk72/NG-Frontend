@@ -2,28 +2,29 @@ import React, { useEffect, useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import Logo from '../logo.svg';
 import Teamwork from '../Union.svg';
+import { Link } from 'react-router-dom';
 
-function FrontPage({setAboutLink, setNotesLink, setBackToHome, setCSECluster, setECECluster, setMECluster,BackToHome ,AboutLink,NotesLink}) {
+function FrontPage() {
   
 
-  const GotoHome = () => {
-    setBackToHome(1);
-    setAboutLink(0);
-    setNotesLink(0);
-  };
+  // const GotoHome = () => {
+  //   setBackToHome(1);
+  //   setAboutLink(0);
+  //   setNotesLink(0);
+  // };
 
-  const GotoAbout = () => {
-    setBackToHome(0);
-    setAboutLink(1);
-    setNotesLink(0);
-  };
+  // const GotoAbout = () => {
+  //   setBackToHome(0);
+  //   setAboutLink(1);
+  //   setNotesLink(0);
+  // };
 
-  const GotoNotes = () => {
-    setBackToHome(0);
-    setAboutLink(0);
-    setNotesLink(true);
-    setBackToHome(false);
-  };
+  // const GotoNotes = () => {
+  //   setBackToHome(0);
+  //   setAboutLink(0);
+  //   setNotesLink(true);
+  //   setBackToHome(false);
+  // };
 
   const images = [
     '/images/firsthome.svg',
@@ -76,36 +77,36 @@ function FrontPage({setAboutLink, setNotesLink, setBackToHome, setCSECluster, se
     }
   }, [index, subIndex, fullText]);
 
-  const GoToCSCluster = () => {
-    setNotesLink(true);
-    setBackToHome(false);
-    setCSECluster(true);
-    setECECluster(false);
-    setMECluster(false);
-  };
+  // const GoToCSCluster = () => {
+  //   setNotesLink(true);
+  //   setBackToHome(false);
+  //   setCSECluster(true);
+  //   setECECluster(false);
+  //   setMECluster(false);
+  // };
 
-  const GoToECCluster = () => {
-    setNotesLink(true);
-    setBackToHome(false);
-    setCSECluster(false);
-    setECECluster(true);
-    setMECluster(false);
-  };
+  // const GoToECCluster = () => {
+  //   setNotesLink(true);
+  //   setBackToHome(false);
+  //   setCSECluster(false);
+  //   setECECluster(true);
+  //   setMECluster(false);
+  // };
 
-  const GoToMECluster = () => {
-    setNotesLink(true);
-    setBackToHome(false);
-    setCSECluster(false);
-    setECECluster(false);
-    setMECluster(true);
-  };
+  // const GoToMECluster = () => {
+  //   setNotesLink(true);
+  //   setBackToHome(false);
+  //   setCSECluster(false);
+  //   setECECluster(false);
+  //   setMECluster(true);
+  // };
 
-  const GoToNotes = () => {
-    setNotesLink(true);
-    setCSECluster(false);
-    setECECluster(false);
-    setMECluster(false);
-  };
+  // const GoToNotes = () => {
+  //   setNotesLink(true);
+  //   setCSECluster(false);
+  //   setECECluster(false);
+  //   setMECluster(false);
+  // };
 
   const GotoPYQ = () => {
     alert('Coming Soon');
@@ -133,26 +134,27 @@ function FrontPage({setAboutLink, setNotesLink, setBackToHome, setCSECluster, se
         </div>
 
         {/* Links for larger screens & dropdown for smaller screens and iPads */}
-        <div className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
-          <div
-            onClick={GotoHome}
-            className={`cursor-pointer ${BackToHome ? 'text-[#20C030]' : 'text-white'} text-lg md:text-2xl hover:text-green-400`}
+        <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
+          <Link
+            to = '/'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
           >
             Home
-          </div>
-          <div
-            onClick={GotoAbout}
-            className={`cursor-pointer ${AboutLink ? 'text-[#20C030]' : 'text-white'} text-lg md:text-2xl hover:text-green-400`}
+          </Link>
+
+          <Link
+            to = '/about'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
           >
             About
-          </div>
-          <div
-            onClick={GotoNotes}
-            className={`cursor-pointer ${NotesLink ? 'text-[#20C030]' : 'text-white'} text-lg md:text-2xl hover:text-green-400`}
+          </Link>
+          <Link
+            to = '/notes'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
           >
             Notes
-          </div>
-        </div>
+          </Link>
+        </nav>
       </div>
 
 
@@ -173,33 +175,15 @@ function FrontPage({setAboutLink, setNotesLink, setBackToHome, setCSECluster, se
 
         {/* Buttons */}
         <div className='flex flex-row gap-5 md:gap-10 lg:gap-20 mt-8'>
-          <div onClick={GotoNotes} className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
+          <Link  to = '/notes' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
             <div className='text-black font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[30px]'>Notes</div>
-          </div>
+          </Link>
           <div onClick={GotoPYQ} className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
             <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[35px]'>PYQ's</div>
           </div>
         </div>
       </div>
 
-      {/* Info About Note
-      <div className='bg-white flex flex-col lg:flex-row min-w-full mt-[50px] gap-[20px] lg:gap-[300px] px-4'>
-        <div className='flex flex-col mt-[20px] lg:mt-[50px] w-full lg:w-[500px]'>
-          <div className='flex flex-col text-lg md:text-2xl font-medium text-justify'>
-            A learning hub where you access the best, high-quality notes crafted by professors
-            through their students. We've collected these valuable resources and paired them
-            with relevant YouTube tutorials to streamline your learning.
-          </div>
-
-          <div className='flex flex-col text-lg md:text-2xl italic text-[#20C030] font-medium text-justify mt-4'>
-            Whether you're preparing for CIE's or SEE's, NoteGo brings together expert knowledge
-            and visual guides to help you learn faster and smarter. Dive in and elevate your study
-            experience.
-          </div>
-        </div>
-        <img src={Teamwork} className='w-[250px] md:w-[350px] lg:w-[400px] mt-[20px] lg:mt-[50px] h-[250px] md:h-[350px] lg:h-[400px]' />
-      </div> */}
-      {/* Info About Note */}
 <div className='bg-white flex flex-col lg:flex-row items-center justify-center w-full mt-[50px] gap-[20px] lg:gap-[100px] px-4 py-10'>
   <div className='flex flex-col justify-center w-full lg:w-[50%]'>
     <div className='text-lg md:text-2xl font-medium text-justify'>
@@ -232,7 +216,7 @@ function FrontPage({setAboutLink, setNotesLink, setBackToHome, setCSECluster, se
             <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1>
             <h1 className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</h1>
             <h1 className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</h1>
-            <h1 onClick={GoToNotes} className='text-white text-base md:text-lg cursor-pointer'>Notes</h1>
+            <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
             <h1 className='text-white text-base md:text-lg cursor-pointer'>PYQ</h1>
           </div>
         </div>
@@ -240,9 +224,9 @@ function FrontPage({setAboutLink, setNotesLink, setBackToHome, setCSECluster, se
         <div className='flex flex-col gap-[30px] w-full lg:w-[200px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Navigate To</h1>
           <div className='flex flex-col'>
-            <h1 onClick={GoToCSCluster} className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</h1>
-            <h1 onClick={GoToECCluster} className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</h1>
-            <h1 onClick={GoToMECluster} className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</h1>
+            <Link to = '/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
+            <Link to = '/ECCluster'  className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
+            <Link to = '/MECluster' className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>
           </div>
         </div>
 
