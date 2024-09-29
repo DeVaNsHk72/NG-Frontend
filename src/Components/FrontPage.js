@@ -226,7 +226,7 @@ function FrontPage() {
           <div className='flex flex-col'>
             <Link to = '/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
             <Link to = '/ECCluster'  className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
-            <Link to = '/MECluster' className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>
+            <Link to = '/MECluster'  className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>
           </div>
         </div>
 

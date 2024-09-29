@@ -1,64 +1,48 @@
 import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import _, { curry } from 'lodash';
-import React, { useEffect, useRef, useState } from 'react';
+import debounce from 'lodash.debounce'
+import React, { useEffect, useRef, useState,useCallback } from 'react';
 import Logo from '../logo.svg';
 import { Link } from 'react-router-dom';
 
 function Notes() {
 
-    // const BackHome = () =>{
-    //     setBackToHome(true)
-    //     setNotesLink(false)
-    // }
-
-    // const GotoCSCluster=()=>{
-    //     setCSECluster(true)
-    //     setMECluster(false)
-    //     setECECluster(false)
-    // }
-
-    // const GotoECECluster=()=>{
-    //     setCSECluster(false)
-    //     setMECluster(false)
-    //     setECECluster(true)
-    // }
-
-    // const GotoMECluster=()=>{
-    //     setCSECluster(false)
-    //     setMECluster(true)
-    //     setECECluster(false)
-    // }
+   
 
 
     var SearchedSubject = useRef("")
 
     const [SearchedRelatedPdf,setSearchedRelatedPdf] = useState([])
   
-    const getSearchedSubject = (e) =>{
-
-      setSearchedRelatedPdf([])
-
-      const sanitizedInput = e.target.value.replace(/[^A-Za-z0-9]/g, '');
+    const handleInputChange = useCallback(
+      debounce(() => {
   
-      if(sanitizedInput.length){
+        var input = SearchedSubject.current.value.replace('^/[A-Za-z]$','')
   
-            var searchTerm
-  
+        if(input === "" || input.length === 0)
             setSearchedRelatedPdf([])
   
-    
-            searchTerm = { SubjectName: sanitizedInput };
+        if (input.length) {
+        
+          if (input.trim() === '') 
+            setSearchedRelatedPdf([])
+  
+          else {
             
+            var searchTerm
+    
+            setSearchedRelatedPdf([])
   
-  
-            axios.post("https://notego-backend.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
+            searchTerm = { SubjectName:input };
+            
+            axios.post("http://localhost:9000/api/GetPhysicsCycleSubjects", searchTerm)
             .then(response1 => {
               const physicsCycleData = response1.data;
-      
+  
               // Second API call for Chemistry Cycle
               setTimeout(() => {
-                axios.post("https://notego-backend.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
+                axios.post("http://localhost:9000/api/GetChemistryCycleSubjects", searchTerm)
                   .then(response2 => {
                     const chemistryCycleData = response2.data;
       
@@ -67,8 +51,7 @@ function Notes() {
       
                     // Remove duplicates based on SubjectNumber
                     const uniqueData = _.uniqBy(combinedData, (item) => `${item.SubjectName}-${item.code}`);
-                    
-      
+  
                   
                     setSearchedRelatedPdf(uniqueData);
                   })
@@ -85,11 +68,26 @@ function Notes() {
               console.log(err);
             });
           }
-          else
-              setSearchedRelatedPdf([])
-      
-  }
-
+        }
+      }, 200), // 200 ms delay
+      []
+    );
+  
+  
+  
+    useEffect(() => {
+      return () => {
+        handleInputChange.cancel(); // Cancel any pending debounced calls on unmount
+      };
+    }, [handleInputChange]);
+    
+  
+    const getSearchedSubject = () => {
+      handleInputChange();
+    };
+  
+  
+  
 
   const [SelectedSubjectNumber,setSelectedSubjectNumber] = useState([])
 
@@ -113,34 +111,7 @@ function Notes() {
   }
   
 
-const [rotatedPdfs, setRotatedPdfs] = useState({}); // Track rotated state for each PDF
 
-const handleRotatePdf = (subjectNumber) => {
-  setRotatedPdfs((prevRotatedPdfs) => ({
-    ...prevRotatedPdfs,
-    [subjectNumber]: true,  // Set the specific PDF to rotated
-  }));
-
-  // Reset the rotation after 300ms
-  setTimeout(() => {
-    setRotatedPdfs((prevRotatedPdfs) => ({
-      ...prevRotatedPdfs,
-      [subjectNumber]: false,  // Reset the specific PDF to non-rotated
-    }));
-  }, 300);
-};
-
-
-
-// const GotoHome = () =>{
-
-//   setNotesLink(false)
-//   setCSECluster(false)
-//   setECECluster(false)
-//   setMECluster(false)
-//   setBackToHome(true)
-
-// }
 
 const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -149,37 +120,25 @@ const toggleMenu = () => {
 };
 
 
+
 useEffect(() => {
-  
-  if (SearchedSubject.current.value === "" || SearchedSubject.current.value === " " )
-    setSearchedRelatedPdf([]); // Clear the CSRelatedPdf list
 
-  const delayDebounceFn = setTimeout(() => {
-    // Simulate search query here (e.g., fetch results)
-   
+  setTimeout(()=>{
+      
+  if(SearchedSubject.current.value.length === 0)
+    setSearchedRelatedPdf([])
+    
+  },100)
 
-    // Example: simulate setting the search results
-    // Replace this with your actual search logic
-  }, 500); // 500ms delay for debouncing
+  setTimeout(()=>{
+      
+    if(SearchedSubject.current.value.length === 0)
+      setSearchedRelatedPdf([])
+      
+    },100)
 
-  // Cleanup function: clear the timeout to avoid memory leaks
-  return () => clearTimeout(delayDebounceFn);
-  
-
-}, [SearchedRelatedPdf]); // Add all dependencies
-
-const [inputValue, setInputValue] = useState(" "); // Initialize with one space
-
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-
-    // Ensure at least one space remains in the input
-    if (value === "") {
-      setInputValue(" "); // Reset to a single space if input is cleared
-    } else {
-      setInputValue(value); // Otherwise, update normally
-    }
-  };
+ 
+}, [SearchedSubject]);
 
 
 
@@ -224,11 +183,10 @@ const [inputValue, setInputValue] = useState(" "); // Initialize with one space
       <input
         autoFocus
         ref={SearchedSubject}
-        onKeyUp={getSearchedSubject}
+        onChange={getSearchedSubject}
        
         className="h-[40px] w-80 max-w-[500px] placeholder:text-[#20C030] border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
-        placeholder="Search Your Subject"  value={inputValue} defaultValue="  "
-        onChange={handleInputChange}
+        placeholder="Search Your Subject"  
       />
       
     </div>

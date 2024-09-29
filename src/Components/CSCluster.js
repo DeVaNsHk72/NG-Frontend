@@ -1,8 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+
 
 import axios from 'axios'
 import 'bootstrap-icons/font/bootstrap-icons.min.css'
 import _ from 'lodash';
+
+import debounce from 'lodash.debounce'
+import React, { useEffect, useRef, useState,useCallback } from 'react';
 import Logo from '../logo.svg';
 import { Link } from 'react-router-dom';
 
@@ -12,6 +15,7 @@ function CSCluster() {
   const [CSRelatedPdf,setCSRelatedPdf] = useState([])
   const [Sem1,setSem1] = useState(0)
   const [Sem2,setSem2] = useState(0)
+
 
   
 
@@ -113,37 +117,40 @@ function CSCluster() {
   }
 
   var SearchedSubject = useRef("")
-  
-  const getSearchedSubject = (e) =>{
+  const handleInputChange = useCallback(
 
-    setSem1(false)
-    setSem2(false)
-    setPhysicsCycle(false)
-    setChemistryCycle(false)
-    const sanitizedInput = e.target.value.replace(/[^A-Za-z0-9]/g, '');
+    debounce(() => {
 
-    
-    setCSRelatedPdf([])
-     
+      setSem1(false)
+      setSem2(false)
+      setPhysicsCycle(false)
+      setChemistryCycle(false)
 
-    if(sanitizedInput.length){
+      const input = SearchedSubject.current.value.replace('^/[A-Za-z]$','')
 
-          var searchTerm
-
+      if(input === "" || input.length === 0)
           setCSRelatedPdf([])
 
+      if (input.length) {
+      
+        if (input.trim() === '') 
+          setCSRelatedPdf([])
+
+        else {
+
+          var searchTerm
   
-          searchTerm = { SubjectName: sanitizedInput };
+          setCSRelatedPdf([])
+
+          searchTerm = { SubjectName:input };
           
-
-
-          axios.post("https://notego-backend.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
+          axios.post("http://localhost:9000/api/GetPhysicsCycleSubjects", searchTerm)
           .then(response1 => {
             const physicsCycleData = response1.data;
-    
+
             // Second API call for Chemistry Cycle
             setTimeout(() => {
-              axios.post("https://notego-backend.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
+              axios.post("http://localhost:9000/api/GetChemistryCycleSubjects", searchTerm)
                 .then(response2 => {
                   const chemistryCycleData = response2.data;
     
@@ -152,7 +159,8 @@ function CSCluster() {
     
                   // Remove duplicates based on SubjectNumber
                   const uniqueData = _.uniqBy(combinedData, (item) => `${item.SubjectName}-${item.code}`);
-                  
+
+                
                   const filteredData = _.filter(uniqueData, (item) => item.ClusterCategory !== 'EC' &&  item.ClusterCategory !== 'ME');
     
                 
@@ -171,58 +179,23 @@ function CSCluster() {
             console.log(err);
           });
         }
-        else
-            setCSRelatedPdf([])
-    
-}
+      }
+    }, 200), // 200 ms delay
+    []
+  );
 
-const [isRotated,setisRotated] = useState(0)
-const RotateOnClick = () =>{
 
-    setSem1(false)
-    setSem2(false)
-    setPhysicsCycle(false)
-    setChemistryCycle(false)
-    setCSRelatedPdf([])
 
-    setisRotated(true)
-
-    setTimeout(() => {
-      setisRotated(0);
-    }, 300);
-}
-
-const [counter, setCounter] = useState(0);
-
-useEffect(() => {
-  
-    if (
-      (SearchedSubject.current.value === "" && // When the search box is empty
-      ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))))
-      || SearchedSubject.current.value === " " // Related cycles are not present
-    ) {
-      setCSRelatedPdf([]); // Clear the CSRelatedPdf list
-    }
-
+  useEffect(() => {
+    return () => {
+      handleInputChange.cancel(); // Cancel any pending debounced calls on unmount
+    };
+  }, [handleInputChange]);
   
 
+  const getSearchedSubject = () => {
+    handleInputChange();
 
-  
-}, [CSRelatedPdf, PhysicsCycle, ChemistryCycle, Sem1, Sem2]); // Add all dependencies
-
-
-
-const [inputValue, setInputValue] = useState(" "); // Initialize with one space
-
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-
-    // Ensure at least one space remains in the input
-    if (value === "") {
-      setInputValue(" "); // Reset to a single space if input is cleared
-    } else {
-      setInputValue(value); // Otherwise, update normally
-    }
   };
 
 
@@ -293,17 +266,17 @@ const [inputValue, setInputValue] = useState(" "); // Initialize with one space
         </div>
       </div>
     </div>
-
+ 
     <div className="flex justify-center mt-10">
         <input
             autoFocus
             ref={SearchedSubject}
             onKeyUp={getSearchedSubject}
             className="h-12  w-80 max-w-md border placeholder:text-black border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
-            placeholder="Search Your Subject" value={inputValue} defaultValue="  "
+            placeholder="Search Your Subject" 
             onChange={handleInputChange}
         />
-    </div>
+    </div> 
 
     <div className='flex justify-center gap-8 mt-5'>
     <div

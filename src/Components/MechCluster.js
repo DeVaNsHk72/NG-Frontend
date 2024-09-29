@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
 
+import debounce from 'lodash.debounce'
+import React, { useEffect, useRef, useState,useCallback } from 'react';
 import axios from 'axios'
 import 'bootstrap-icons/font/bootstrap-icons.min.css'
 import _ from 'lodash';
@@ -117,36 +118,40 @@ function MechanicalCluster() {
   }
 
   var SearchedSubject = useRef("")
-  
-  const getSearchedSubject = (e) =>{
+  const handleInputChange = useCallback(
 
-    setSem1(false)
-    setSem2(false)
-    setPhysicsCycle(false)
-    setChemistryCycle(false)
-    const sanitizedInput = e.target.value.replace(/[^A-Za-z0-9]/g, '');
+    debounce(() => {
 
-  
-    setMERelatedPdf([])
+      setSem1(false)
+      setSem2(false)
+      setPhysicsCycle(false)
+      setChemistryCycle(false)
 
-    if(sanitizedInput.length){
+      const input = SearchedSubject.current.value.replace('^/[A-Za-z]$','')
 
-          var searchTerm
-
+      if(input === "" || input.length === 0)
           setMERelatedPdf([])
 
+      if (input.length) {
+      
+        if (input.trim() === '') 
+          setMERelatedPdf([])
+
+        else {
+
+          var searchTerm
   
-          searchTerm = { SubjectName: sanitizedInput };
+          setMERelatedPdf([])
+
+          searchTerm = { SubjectName:input };
           
-
-
-          axios.post("https://notego-backend.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
+          axios.post("http://localhost:9000/api/GetPhysicsCycleSubjects", searchTerm)
           .then(response1 => {
             const physicsCycleData = response1.data;
-    
+
             // Second API call for Chemistry Cycle
             setTimeout(() => {
-              axios.post("https://notego-backend.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
+              axios.post("http://localhost:9000/api/GetChemistryCycleSubjects", searchTerm)
                 .then(response2 => {
                   const chemistryCycleData = response2.data;
     
@@ -155,9 +160,10 @@ function MechanicalCluster() {
     
                   // Remove duplicates based on SubjectNumber
                   const uniqueData = _.uniqBy(combinedData, (item) => `${item.SubjectName}-${item.code}`);
-                  
-                  const filteredData = _.filter(uniqueData, (item) => item.ClusterCategory !== 'CS' &&  item.ClusterCategory !== 'EC');
 
+                
+                  const filteredData = _.filter(uniqueData, (item) => item.ClusterCategory !== 'CS' &&  item.ClusterCategory !== 'EC');
+    
                 
                   setMERelatedPdf(filteredData);
                 })
@@ -174,81 +180,27 @@ function MechanicalCluster() {
             console.log(err);
           });
         }
-        else
-            setMERelatedPdf([])
-}
-
-const [isRotated,setisRotated] = useState(0)
-const RotateOnClick = () =>{
-
-    setSem1(false)
-    setSem2(false)
-    setPhysicsCycle(false)
-    setChemistryCycle(false)
-    setMERelatedPdf([])
-
-    setisRotated(true)
-
-    setTimeout(() => {
-      setisRotated(0);
-    }, 300);
-}
+      }
+    }, 200), // 200 ms delay
+    []
+  );
 
 
 
-useEffect(() => {
+  useEffect(() => {
+    return () => {
+      handleInputChange.cancel(); // Cancel any pending debounced calls on unmount
+    };
+  }, [handleInputChange]);
   
-  if (
-    (SearchedSubject.current.value === "" && // When the search box is empty
-    ((!PhysicsCycle && !(Sem1 || Sem2)) || (!ChemistryCycle && !(Sem1 || Sem2))))
-    || SearchedSubject.current.value === " " // Related cycles are not present
-  ) {
-    setMERelatedPdf([]); // Clear the CSRelatedPdf list
-  }
 
-  const delayDebounceFn = setTimeout(() => {
-    // Simulate search query here (e.g., fetch results)
-   
+  const getSearchedSubject = () => {
+    handleInputChange();
 
-    // Example: simulate setting the search results
-    // Replace this with your actual search logic
-  }, 500); // 500ms delay for debouncing
-
-  // Cleanup function: clear the timeout to avoid memory leaks
-  return () => clearTimeout(delayDebounceFn);
-
-}, [MERelatedPdf, PhysicsCycle, ChemistryCycle, Sem1, Sem2]); // Add all dependencies
-
-
-// const BackHome = () =>{
-
-
-//     setNotesLink(false)
-//     setBackToHome(true)
-//     setMECluster(false)
-// }
-
-// const BackToNotes = () =>{
-
-//   setNotesLink(true)
-//   setCSECluster(false)
-//   setMECluster(false)
-//   setECECluster(false)
-// }
-
-
-const [inputValue, setInputValue] = useState(" "); // Initialize with one space
-
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-
-    // Ensure at least one space remains in the input
-    if (value === "") {
-      setInputValue(" "); // Reset to a single space if input is cleared
-    } else {
-      setInputValue(value); // Otherwise, update normally
-    }
   };
+
+
+
 
   return (
     <div className='bg-black min-h-screen gap-[20px] flex flex-col  '>
@@ -319,16 +271,16 @@ const [inputValue, setInputValue] = useState(" "); // Initialize with one space
       </div>
     </div>
 
-    <div className="flex justify-center mt-10">
+     <div className="flex justify-center mt-10">
         <input
             autoFocus
             ref={SearchedSubject}
             onKeyUp={getSearchedSubject}
             className="h-12  w-80 max-w-md border placeholder:text-black border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
-            placeholder="Search Your Subject" value={inputValue} defaultValue="  "
+            placeholder="Search Your Subject" 
             onChange={handleInputChange}
         />
-    </div>
+    </div> 
 
     <div className='flex justify-center gap-8 mt-10'>
     <div
