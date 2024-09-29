@@ -267,14 +267,16 @@ const [inputValue, setInputValue] = useState(" "); // Initialize with one space
     /></Link>
 
 <Link
-        to = '/notes'
-        className='h-12 cursor-pointer relative w-full max-w-xs bg-[#20C030] rounded-full flex   mx-1 my-4'
-    >
-        <div className="text-white text-xl font-medium mx-12 my-2 ">BackToNotes</div>
-        <div className="bg-[#20C030] w-12 h-12 rounded-3xl absolute right-0  flex items-center justify-center">
-            <i className="bi bi-caret-left-fill text-white text-lg mx-2"></i>
-        </div>
-    </Link>
+  to='/notes'
+  className='h-12 hover:ring-2 hover:ring-blue-500  cursor-pointer relative min-w-xs max-w-xs bg-[#20C030] rounded-full flex items-center justify-between px-4 mx-1 my-4'
+>
+  <div className="text-white text-base mx-4 sm:text-lg md:text-xl font-medium">
+    BackToNotes
+  </div>
+  <div className="bg-[#20C030] w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ">
+    <i className="bi bi-caret-left-fill text-white text-sm sm:text-base md:text-lg"></i>
+  </div>
+</Link>
 </div>
 
 <div className='flex flex-col'>
@@ -290,14 +292,14 @@ const [inputValue, setInputValue] = useState(" "); // Initialize with one space
       <div className='flex flex-row gap-4' >
         <div
             onClick={SelectPhysicsCycle}
-            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${PhysicsCycle ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:ring-4 hover:ring-teal-400 hover:shadow-custom rounded-full  ${PhysicsCycle ? 'bg-[#20C030]' : 'bg-white' }`}
         >
             <div className={`text-xl w-full font-medium mx-2 my-1 ${PhysicsCycle ? 'text-white':'text-black'}`}>P-Cycle</div>
         </div>
 
         <div
             onClick={SelectChemistryCycle}
-            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full ${ChemistryCycle ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${ChemistryCycle ? 'bg-[#20C030]' : 'bg-white' }`}
         >
             <div className={`text-xl w-full font-medium mx-2 my-1 ${ChemistryCycle ? 'text-white':'text-black'}`}>C-Cycle</div>
         </div>
@@ -307,16 +309,16 @@ const [inputValue, setInputValue] = useState(" "); // Initialize with one space
       <div className='flex flex-row gap-4' >
         <div
             onClick={() => SelectSem(1)}
-            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full ${Sem1 ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${Sem1 ? 'bg-[#20C030]' : 'bg-white' }`}
         >
             <div className={`text-xl font-medium mx-4 my-1 ${Sem1 ? 'text-white':'text-black'}`}>Sem1</div>
         </div>
 
         <div
             onClick={() => SelectSem(2)}
-            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${Sem2 ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full  ${Sem2 ? 'bg-[#20C030]' : 'bg-white' }`}
         >
-            <div className={`text-xl font-medium mx-4 my-1 ${Sem2 ? 'text-white':'text-black'}`}>Sem2</div>
+            <div className={`text-xl font-medium  mx-4 my-1 ${Sem2 ? 'text-white':'text-black'}`}>Sem2</div>
         </div>
       </div>
     </div>
@@ -335,7 +337,7 @@ const [inputValue, setInputValue] = useState(" "); // Initialize with one space
     <div className='flex justify-center gap-8 mt-10'>
     <div
         onClick={ShowSelectedCycleRelatedPdf}
-        className='h-10 rounded-2xl hover:shadow-custom cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
+        className='h-10 rounded-2xl hover:shadow-custom hover:ring-4 hover:ring-blue-500  cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
     >
         <div className='text-white font-medium text-lg sm:text-xl'>Show Subjects</div>
     </div>

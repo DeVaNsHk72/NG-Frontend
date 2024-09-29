@@ -245,7 +245,7 @@ const [inputValue, setInputValue] = useState(" "); // Initialize with one space
     {/* CS Cluster Card */}
     <Link
       to = '/CSCluster'
-      className="flex flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
+      className="flex hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">CS Cluster</h1>
       <div className="text-center text-lg text-white">CSE</div>
@@ -259,7 +259,7 @@ const [inputValue, setInputValue] = useState(" "); // Initialize with one space
     {/* ECE Cluster Card */}
     <Link
       to = '/ECCluster'
-      className="flex flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
+      className="flex hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">EE Cluster</h1>
       <div className="text-center text-lg text-white">ECE</div>
@@ -269,7 +269,7 @@ const [inputValue, setInputValue] = useState(" "); // Initialize with one space
     {/* ME Cluster Card */}
     <Link
       to = '/MECluster'
-      className="flex flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
+      className="flex  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">Mech. Cluster</h1>
       <div className="text-center text-lg text-white">ME</div>
