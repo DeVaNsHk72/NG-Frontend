@@ -126,7 +126,7 @@ function CSCluster() {
       setPhysicsCycle(false)
       setChemistryCycle(false)
 
-      const input = SearchedSubject.current.value.replace('^/[A-Za-z]$','')
+      const input = SearchedSubject.current.value
 
       if(input === "" || input.length === 0)
           setCSRelatedPdf([])

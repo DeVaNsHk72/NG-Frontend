@@ -18,7 +18,7 @@ function Notes() {
     const handleInputChange = useCallback(
       debounce(() => {
   
-        var input = SearchedSubject.current.value.replace('^/[A-Za-z]$','')
+        var input = SearchedSubject.current.value
   
         if(input === "" || input.length === 0)
             setSearchedRelatedPdf([])
