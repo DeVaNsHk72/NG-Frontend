@@ -145,13 +145,13 @@ function MechanicalCluster() {
 
           searchTerm = { SubjectName:input };
           
-          axios.post("http://localhost:9000/api/GetPhysicsCycleSubjects", searchTerm)
+          axios.post("https://notego-backend.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
           .then(response1 => {
             const physicsCycleData = response1.data;
 
             // Second API call for Chemistry Cycle
             setTimeout(() => {
-              axios.post("http://localhost:9000/api/GetChemistryCycleSubjects", searchTerm)
+              axios.post("https://notego-backend.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
                 .then(response2 => {
                   const chemistryCycleData = response2.data;
     
