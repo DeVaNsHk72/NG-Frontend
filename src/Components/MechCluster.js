@@ -396,7 +396,8 @@ function MechanicalCluster() {
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Quick Links</h1>
           <div className='flex flex-col'>
             <Link to = '/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
-            <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1>
+            <Link to = '/Contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
+            {/* <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1> */}
             <Link to = '/PrivacyPolicy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
             <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>

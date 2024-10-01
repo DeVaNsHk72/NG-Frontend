@@ -9,6 +9,7 @@ import MECluster from './Components/MechCluster';
 import ECCluster from './Components/ElectricalCluster';
 import Tnc from './Components/Tnc'; // Import the Tnc component
 import PrivacyPolicy from './Components/PrivacyPolicy'; // Import the Tnc component
+import Contact from './Components/Contact';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/MECluster" element={<MECluster />} />
           <Route path="/Tnc" element={<Tnc />} /> {/* Add this line */}
           <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} /> {/* Add this line */}
+          <Route path="/Contact" element={<Contact />} /> {/* Add this line */}
         </Routes>
       </div>
     </Router>
