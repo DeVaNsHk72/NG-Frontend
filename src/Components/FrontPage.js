@@ -216,6 +216,7 @@ function FrontPage() {
             <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1>
             <h1 className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</h1>
             <h1 className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</h1>
+            <Link to = '/tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
             <h1 className='text-white text-base md:text-lg cursor-pointer'>PYQ</h1>
           </div>
