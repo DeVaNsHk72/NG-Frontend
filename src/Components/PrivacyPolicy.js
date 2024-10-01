@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import Logo from '../logo.svg';
 import { Link } from 'react-router-dom';
 
-function Tnc() {
+function PrivacyPolicy() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -32,30 +31,26 @@ function Tnc() {
         <Link to='/notes' className="cursor-pointer text-white text-lg md:text-2xl hover:text-green-400">Notes</Link>
       </nav>
       
-      {/* T&C Section */}
+      {/* Privacy Policy Section */}
       <div className="flex flex-col items-center mt-10 md:mt-20 px-4">
         {/* Title */}
-        <h1 className="text-3xl md:text-5xl font-bold text-center">Terms and Conditions</h1>
+        <h1 className="text-3xl md:text-5xl font-bold text-center">Privacy Policy</h1>
 
-        {/* T&C Content */}
+        {/* Privacy Policy Content */}
         <p className="mt-6 sm:mt-10 max-w-4xl text-base sm:text-lg md:text-xl text-center">
-          NoteGo serves as a connecting platform that provides students with easy access to resources 
-          and notes curated by professors and students of BMS College of Engineering (BMSCE). We do not 
-          claim ownership over the content and materials made available through the platform. Our role is 
-          to streamline access and bridge the gap between students and available academic resources.
+          Your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our platform, NoteGo. Please read this policy carefully. If you do not agree with the terms of this policy, please do not access the site.
         </p>
 
         <p className="mt-4 sm:mt-5 max-w-4xl text-base sm:text-lg md:text-xl text-center">
-          The content on this platform, including notes and resources, is the intellectual property of the 
-          respective professors and students at BMSCE. NoteGo is not responsible for the accuracy, completeness, 
-          or appropriateness of the materials provided. Users are advised to use the resources for educational 
-          purposes only and respect the intellectual property rights of the original content creators.
+          We may collect information about you in a variety of ways, including when you visit our site, register on the site, and interact with our content. This information may include personal identification information such as your name, email address, and other contact details.
         </p>
 
         <p className="mt-4 sm:mt-5 max-w-4xl text-base sm:text-lg md:text-xl text-center">
-          By using NoteGo, you acknowledge and agree that the platform merely facilitates access to the materials 
-          and is not liable for any discrepancies in the academic content. Any queries regarding the materials 
-          should be directed to the content providers, including professors or students who authored the materials.
+          We use your information to improve our platform, provide customer service, and communicate with you. We will not sell, trade, or rent your personal identification information to others.
+        </p>
+
+        <p className="mt-4 sm:mt-5 max-w-4xl text-base sm:text-lg md:text-xl text-center">
+          By using our platform, you consent to our Privacy Policy and agree to its terms. If you have any questions about this policy, please contact us at [your contact information].
         </p>
 
         <p className="mt-4 sm:mt-5 max-w-4xl text-base italic sm:text-lg md:text-xl text-[#20C030] text-center">
@@ -72,8 +67,8 @@ function Tnc() {
             YouTube tutorials for fast and efficient learning.
           </div>
         </div>
-{/* 
-        <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
+
+        {/* <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Quick Links</h1>
           <div className='flex flex-col'>
             <Link to='/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
@@ -100,8 +95,8 @@ function Tnc() {
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Navigate To</h1>
           <div className='flex flex-col'>
             <Link to='/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
-            <Link to='/ECCluster' className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
-            <Link to='/MECluster' className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>
+            <Link to='/ECCluster'  className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
+            <Link to='/MECluster'  className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>
           </div>
         </div>
 
@@ -114,4 +109,4 @@ function Tnc() {
   );
 }
 
-export default Tnc;
+export default PrivacyPolicy;
