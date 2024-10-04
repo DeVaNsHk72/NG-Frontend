@@ -10,7 +10,7 @@ import ECCluster from './Components/ElectricalCluster';
 import Tnc from './Components/Tnc'; // Import the Tnc component
 import PrivacyPolicy from './Components/PrivacyPolicy'; // Import the Tnc component
 import Contact from './Components/Contact';
-
+import PYQ from './Components/PYQ';
 function App() {
   return (
     <Router>
@@ -26,6 +26,7 @@ function App() {
           <Route path="/Tnc" element={<Tnc />} /> {/* Add this line */}
           <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} /> {/* Add this line */}
           <Route path="/Contact" element={<Contact />} /> {/* Add this line */}
+          <Route path="/pyq" element={<PYQ />} />
         </Routes>
       </div>
     </Router>

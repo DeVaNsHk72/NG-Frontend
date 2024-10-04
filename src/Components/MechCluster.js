@@ -6,6 +6,7 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css'
 import _ from 'lodash';
 import Logo from '../logo.svg';
 import { Link } from 'react-router-dom';
+import { PulseLoader } from 'react-spinners';
 
 function MechanicalCluster() {
   const [PhysicsCycle,setPhysicsCycle] = useState(false)
@@ -84,23 +85,23 @@ function MechanicalCluster() {
   const [SelectedSubjectNumber,setSelectedSubjectNumber] = useState([])
 
 
-  const ShowPdfDetails=(Pdf)=>{
+  // const ShowPdfDetails=(Pdf)=>{
 
-      var Faculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber === Pdf.SubjectNumber)
+  //     var Faculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber === Pdf.SubjectNumber)
       
-      if(Faculty.length === 0){
-        setSelectedSubjectNumber([...SelectedSubjectNumber,Pdf.SubjectNumber])
-      }
+  //     if(Faculty.length === 0){
+  //       setSelectedSubjectNumber([...SelectedSubjectNumber,Pdf.SubjectNumber])
+  //     }
 
       
-  }
+  // }
 
-  const DontShowPdfDetails = (Pdf)=>{
+  // const DontShowPdfDetails = (Pdf)=>{
 
-    var UpdateSelectedFaculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber !== Pdf.SubjectNumber)
-    setSelectedSubjectNumber(UpdateSelectedFaculty)
+  //   var UpdateSelectedFaculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber !== Pdf.SubjectNumber)
+  //   setSelectedSubjectNumber(UpdateSelectedFaculty)
     
-  }
+  // }
 
   const SelectSem = (Sem) =>{
 
@@ -165,7 +166,19 @@ function MechanicalCluster() {
                   const filteredData = _.filter(uniqueData, (item) => item.ClusterCategory !== 'CS' &&  item.ClusterCategory !== 'EC');
     
                 
+                  setFadeIn(true)
                   setMERelatedPdf(filteredData);
+
+                  setTimeout(()=>{
+
+                    if(uniqueData.length === 0){
+                      
+                      setMERelatedPdf([])
+                      SearchedSubject.current.value = ""
+  
+                  }
+  
+                  },1000)
                 })
                 .catch(err => {
                   console.error(err);
@@ -200,6 +213,53 @@ function MechanicalCluster() {
   };
 
 
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Enables smooth scrolling
+    });
+  }, []); // Empty dependency array to run only on mount
+
+
+  
+const isFirstRender = useRef(true)
+
+useEffect(()=>{
+
+    isFirstRender.current = false
+})
+
+
+  
+const handleToggle = (subjectNumber) => {
+
+
+
+  setSelectedSubjectNumber((prev) => {
+    // Check if the subject is already in the array
+    const existingSubject = prev.find(sub => sub.SubjectNumber === subjectNumber);
+    
+    if (existingSubject) {
+      // If it exists, toggle its state
+      return prev.map(sub =>
+        sub.SubjectNumber === subjectNumber
+          ? { ...sub, State: existingSubject.State === 0 ? 1 : 0 } // Toggle between 0 and 1
+          : sub
+      );
+    } else {
+      // If it doesn't exist, add it with state 1 (expanded)
+      return [...prev, { SubjectNumber: subjectNumber, State: 1 }];
+    }
+  });
+
+  console.log("Toggled subject:", subjectNumber);
+  console.log(SelectedSubjectNumber);
+};
+
+
+
+const [fadeIn,setFadeIn] = useState(false)
 
 
   return (
@@ -271,16 +331,27 @@ function MechanicalCluster() {
       </div>
     </div>
 
-     <div className="flex justify-center mt-10">
-        <input
-            autoFocus
-            ref={SearchedSubject}
-            onKeyUp={getSearchedSubject}
-            className="h-12  w-80 max-w-md border placeholder:text-black border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
-            placeholder="Search Your Subject" 
-            onChange={handleInputChange}
-        />
-    </div> 
+    <div className="flex flex-col items-center  justify-center mt-10 ">
+      <input
+        autoFocus
+        
+        ref={SearchedSubject}
+        onKeyUp={getSearchedSubject} 
+        className="h-[40px] w-80 max-w-[500px] placeholder:text-[#20C030] border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
+        placeholder="Search Your Subject"
+      />
+
+    
+{!isFirstRender.current &&  SearchedSubject.current.value.length !== 0 && MERelatedPdf.length === 0 ?
+      
+      <div className="flex items-center justify-center mt-12  space-x-2">
+        
+        <PulseLoader color="#36d7b7" size={10} margin={2} />
+      </div>
+   :null
+    }
+    
+    </div>
 
     <div className='flex justify-center gap-8 mt-10'>
     <div
@@ -291,49 +362,42 @@ function MechanicalCluster() {
     </div>
 </div>
 
-{MERelatedPdf.length ? 
-  <div className="flex flex-col gap-4 border-4 bg-amber-100 rounded-md shadow-lg p-4 justify-between w-full  md:w-3/5 lg:w-3/4  max-w-3xl mx-auto mt-5">
-    <div className="flex flex-row justify-between text-black font-semibold">
-      <div className="flex-1 text-center">Contents</div>
 
-    </div>
+{MERelatedPdf.length?
+<div className={`mt-8  transition-all     duration-700 ease-in-out animate-fade-in-slide-up   ${fadeIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5' } `}>
+
+<div className="flex flex-col gap-4 border-2 bg-[#20C030] rounded-md shadow-lg p-4 justify-between w-full  md:w-3/5 lg:w-3/4  max-w-3xl mx-auto">
+  <div className="flex flex-row justify-between  font-semibold">
+    <div className="flex-1 text-white text-center">Contents</div>
+
   </div>
-
-  :null
-}
+</div>
 
 {MERelatedPdf.map((pdf) => (
-  <div key={pdf.SubjectNumber} className="transition-all duration-500 ease-in-out opacity-100 translate-y-0 animate-fade-in-slide-up mt-8">
-    <div className="flex flex-col gap-2 bg-slate-900 border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
-    <div className="flex flex-row justify-between items-center w-full">
+  <div key={pdf.SubjectNumber} className={` transition-all  duration-700 ease-in-out transform bg-black  ` } >
+    <div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+    <div className="flex flex-row justify-between items-center w-full bg-black">
   <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
     {pdf.SubjectName}
   </div>
   
   {/* Container for Expand and Reduce Icons */}
-  <div className="flex flex-col items-center flex-none">
+  <div  onClick={()=>handleToggle(pdf.SubjectNumber)} className="flex flex-col items-center flex-none">
     {/* Down Arrow (Expand) */}
     <i
-      onClick={() => ShowPdfDetails(pdf)}
-      className="bi bi-arrow-down-circle-fill text-3xl text-white cursor-pointer"
+      className={` text-3xl text-white cursor-pointer ${SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'bi bi-arrow-up-circle-fill' : 'bi-arrow-down-circle-fill'} `}
     ></i>
-    <span className="text-white text-sm mt-1">Expand</span> {/* Added Expand label */}
+    <span className="text-white text-sm mt-1">Expand/Reduce</span> {/* Added Expand label */}
   </div>
 
-  <div className="flex flex-col items-center flex-none">
-    {/* Up Arrow (Reduce) */}
-    <i
-      onClick={() => DontShowPdfDetails(pdf)}
-      className="bi bi-arrow-up-circle-fill text-3xl text-white cursor-pointer"
-    ></i>
-    <span className="text-white text-sm mt-1">Reduce</span> {/* Added Reduce label */}
-  </div>
+
 </div>
 
-{SelectedSubjectNumber.includes(pdf.SubjectNumber) && (
-  <div className="flex flex-col gap-5 mt-2">
+{SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber) ?
+  <div className={`flex flex-col gap-5 mt-2  overflow-auto  transition-all duration-700 ease-in-out bg-black 
+    ${SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'} `}>
     {/* Header Row */}
-    <div className="grid grid-cols-4 gap-2 bg-red-900 border-2 rounded-xl shadow-lg p-2 justify-between w-full">
+    <div className={`grid grid-cols-4 gap-2 bg-[#545454] border-2 border-white rounded-xl shadow-lg p-2 justify-between w-full transition-opacity duration-700 ease-in-out `}>
       <div className="text-white text-center md:text-left">Module No.</div>
       <div className="text-white text-center md:text-left">Module Name</div>
       <div className="text-white text-center md:text-left">PDF Link</div>
@@ -341,12 +405,12 @@ function MechanicalCluster() {
     </div>
 
     {/* Module Rows */}
-    <div className="flex flex-col gap-2">
+    <div className={`flex flex-col gap-5   transition-all  duration-700 ease-in-out transform ${ SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
       {pdf.Modules.map((module) => (
-        <div key={module.ModuleNum} className="grid grid-cols-4 gap-2 bg-amber-400 border-2 rounded-2xl shadow-lg p-2 w-full mx-auto">
-          <div className="text-black text-center ml-4 md:text-left">{module.ModuleNum}</div>
-          <div className="text-black text-center md:text-left">{module.ModuleName}</div>
-          <div className="text-center md:text-left">
+        <div key={module.ModuleNum} className="grid grid-cols-4 gap-2 bg-black border-2 border-white rounded-2xl shadow-lg p-2 w-full mx-auto">
+          <div className="text-white text-center ml-4 md:text-left">{module.ModuleNum}</div>
+          <div className="text-white text-center md:text-left">{module.ModuleName}</div>
+          <div className="text-center  md:text-left">
             {module.PdfLink.map((pdfLink, index) => (
               <a key={index} href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
                 <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '25px' }}></i>
@@ -362,7 +426,7 @@ function MechanicalCluster() {
       ))}
     </div>
   </div>
-)}
+:null}
 
 
     </div>
@@ -370,6 +434,7 @@ function MechanicalCluster() {
 ))}
 
 
+</div>:null}
 </div>
 
 <div className='bg-black min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
