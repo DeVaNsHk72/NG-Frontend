@@ -19,6 +19,8 @@ function MechanicalCluster() {
 
   const SelectPhysicsCycle=()=>{
 
+
+    SearchedSubject.current.value = ""
     setPhysicsCycle(true)
     setChemistryCycle(false)
 
@@ -29,6 +31,9 @@ function MechanicalCluster() {
   
   const SelectChemistryCycle=()=>{
 
+
+    SearchedSubject.current.value = ""
+
     setPhysicsCycle(false)
     setChemistryCycle(true)
 
@@ -38,6 +43,9 @@ function MechanicalCluster() {
 
 
   const ShowSelectedCycleRelatedPdf = ()=>{
+
+
+    SearchedSubject.current.value = ""
 
     setMERelatedPdf([])
 

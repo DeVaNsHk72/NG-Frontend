@@ -20,6 +20,9 @@ function ElectricalCluster() {
 
   const SelectPhysicsCycle=()=>{
 
+
+    SearchedSubject.current.value = ""
+
     setPhysicsCycle(true)
     setChemistryCycle(false)
 
@@ -30,6 +33,9 @@ function ElectricalCluster() {
   
   const SelectChemistryCycle=()=>{
 
+
+    SearchedSubject.current.value = ""
+
     setPhysicsCycle(false)
     setChemistryCycle(true)
     
@@ -38,6 +44,9 @@ function ElectricalCluster() {
 
 
   const ShowSelectedCycleRelatedPdf = ()=>{
+
+
+    SearchedSubject.current.value = ""
 
     setECERelatedPdf([])
 

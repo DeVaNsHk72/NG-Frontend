@@ -23,6 +23,9 @@ function CSCluster() {
 
   const SelectPhysicsCycle=()=>{
 
+
+    SearchedSubject.current.value = ""
+
     setPhysicsCycle(true)
     setChemistryCycle(false)
 
@@ -33,6 +36,9 @@ function CSCluster() {
   
   const SelectChemistryCycle=()=>{
 
+
+    SearchedSubject.current.value = ""
+
     setPhysicsCycle(false)
     setChemistryCycle(true)
 
@@ -42,6 +48,9 @@ function CSCluster() {
 
 
   const ShowSelectedCycleRelatedPdf = ()=>{
+
+
+    SearchedSubject.current.value = ""
 
     setCSRelatedPdf([])
 
@@ -104,6 +113,9 @@ function CSCluster() {
   // }
 
   const SelectSem = (Sem) =>{
+
+
+    SearchedSubject.current.value = ""
 
     if(Sem === 1){
       setSem1(1)

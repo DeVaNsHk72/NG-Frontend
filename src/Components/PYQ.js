@@ -19,6 +19,8 @@ function PYQ() {
 
   const SelectPhysicsCycle=()=>{
 
+    SearchedSubject.current.value = ""
+
     setPhysicsCycle(true)
     setChemistryCycle(false)
 
@@ -29,6 +31,8 @@ function PYQ() {
   
   const SelectChemistryCycle=()=>{
 
+    SearchedSubject.current.value = ""
+
     setPhysicsCycle(false)
     setChemistryCycle(true)
 
@@ -38,6 +42,8 @@ function PYQ() {
 
 
   const ShowSelectedCycleRelatedPdf = ()=>{
+
+    SearchedSubject.current.value = ""
 
     setCSRelatedPdf([])
 
@@ -65,6 +71,7 @@ function PYQ() {
         .then(response=>{
 
           setCSRelatedPdf(response.data)
+          
           console.log(response.data)
         })
     }
@@ -175,7 +182,7 @@ function PYQ() {
   
                   }
   
-                  },1000)
+                  },3000)
                 })
                 .catch(err => {
                   console.error(err);
@@ -252,7 +259,6 @@ const [fadeIn,setFadeIn] = useState(false)
     <i className="bi bi-caret-left-fill text-white text-sm sm:text-base md:text-lg"></i>
   </div>
 </Link>
-
 </div>
 
 <div className='flex flex-col'>
