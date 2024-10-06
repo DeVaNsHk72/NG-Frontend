@@ -610,7 +610,7 @@ const [fadeIn,setFadeIn] = useState(false)
             <Link to = '/PrivacyPolicy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
             <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
-            <h1 className='text-white text-base md:text-lg cursor-pointer'>PYQ</h1>
+            <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
           </div>
         </div>
 
