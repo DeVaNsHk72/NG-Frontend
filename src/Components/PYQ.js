@@ -1,23 +1,32 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+
 
 import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import _ from 'lodash';
+
 import debounce from 'lodash.debounce';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { PulseLoader } from 'react-spinners';
 import Logo from '../logo.svg';
-import { HashLoader, PulseLoader } from 'react-spinners';
+
 
 function PYQ() {
+
   const [PhysicsCycle,setPhysicsCycle] = useState(false)
   const [ChemistryCycle,setChemistryCycle] = useState(false)
   const [CSRelatedPdf,setCSRelatedPdf] = useState([])
   const [Sem1,setSem1] = useState(0)
   const [Sem2,setSem2] = useState(0)
 
+
+  const[ShowSubjectsClicked,setShowSubjectsClicked] = useState(false)
   
 
   const SelectPhysicsCycle=()=>{
+
+
+    setShowSubjectsClicked(false)
 
     SearchedSubject.current.value = ""
 
@@ -31,6 +40,9 @@ function PYQ() {
   
   const SelectChemistryCycle=()=>{
 
+
+    setShowSubjectsClicked(false)
+
     SearchedSubject.current.value = ""
 
     setPhysicsCycle(false)
@@ -42,6 +54,9 @@ function PYQ() {
 
 
   const ShowSelectedCycleRelatedPdf = ()=>{
+
+
+    setShowSubjectsClicked(false)
 
     SearchedSubject.current.value = ""
 
@@ -55,24 +70,104 @@ function PYQ() {
         Sem = "2CS"
 
     if((Sem1 || Sem2) && PhysicsCycle){
+
+      setShowSubjectsClicked(true)
+
         var myData = {Category:"CS",Sem:Sem}
         axios.post("https://notego-backend.onrender.com/api/PhysicsCycle/GetAllModules",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
           console.log(response.data)
+
+          if(response.data.length){
+            window.scrollTo({
+              top: 300,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }
+
+          
+          setTimeout(()=>{
+
+            if(response.data.length === 0){
+              
+              setCSRelatedPdf([])
+              SearchedSubject.current.value = ""
+
+          }
+
+          },1000)
+
+          
+          if(response.data.length === 0){
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth' // Enables smooth scrolling
+            });
+
+            setErrVal(true)
+            setTimeout(()=>{
+
+
+              setErrVal(false)
+
+            },1000)
+
+          }
         })  
     }
 
     else
     if((Sem1 || Sem2) && ChemistryCycle){
+
+      setShowSubjectsClicked(true)
+
+
         var myData = {Category:"CS",Sem:Sem}
         axios.post("https://notego-backend.onrender.com/api/ChemistryCycle/GetAllModules",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
-          
           console.log(response.data)
+
+          if(response.data.length){
+            window.scrollTo({
+              top: 300,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }
+
+          
+          setTimeout(()=>{
+
+            if(response.data.length === 0){
+              
+              setCSRelatedPdf([])
+              SearchedSubject.current.value = ""
+
+          }
+
+          },1000)
+
+          
+          if(response.data.length === 0){
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth' // Enables smooth scrolling
+            });
+
+            setErrVal(true)
+            setTimeout(()=>{
+
+
+              setErrVal(false)
+
+            },1000)
+
+          }
         })
     }
     else
@@ -84,29 +179,15 @@ function PYQ() {
 
 
 
-  
-  const [SelectedSubjectNumber,setSelectedSubjectNumber] = useState([])
+  const[ErrVal,setErrVal] = useState(false)
 
-
-  // const ShowPdfDetails=(Pdf)=>{
-
-  //     var Faculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber === Pdf.SubjectNumber)
-      
-  //     if(Faculty.length === 0){
-  //       setSelectedSubjectNumber([...SelectedSubjectNumber,Pdf.SubjectNumber])
-  //     }
-
-      
-  // }
-
-  // const DontShowPdfDetails = (Pdf)=>{
-
-  //   var UpdateSelectedFaculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber !== Pdf.SubjectNumber)
-  //   setSelectedSubjectNumber(UpdateSelectedFaculty)
-    
-  // }
 
   const SelectSem = (Sem) =>{
+
+
+    setShowSubjectsClicked(false)
+
+    SearchedSubject.current.value = ""
 
     if(Sem === 1){
       setSem1(1)
@@ -138,19 +219,33 @@ function PYQ() {
 
       if (input.length) {
       
-        if (input.trim() === '') 
-          setCSRelatedPdf([])
+          if (input.trim() === '') {
+  
+            setTimeout(()=>{
+  
+                setCSRelatedPdf([])
+                SearchedSubject.current.value = ""
+  
+            },1000)
+  
+            setErrVal(true)
+              setTimeout(()=>{
+  
+  
+              setErrVal(false)
+  
+              },1000)
+  
+          }
 
         else {
 
           var searchTerm
-  
+
           setCSRelatedPdf([])
 
           searchTerm = { SubjectName:input };
 
-        
-          
           axios.post("https://notego-backend.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
           .then(response1 => {
             const physicsCycleData = response1.data;
@@ -160,19 +255,25 @@ function PYQ() {
               axios.post("https://notego-backend.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
                 .then(response2 => {
                   const chemistryCycleData = response2.data;
-    
+
                   // Combine both API results
                   const combinedData = [...physicsCycleData, ...chemistryCycleData];
-    
+
                   // Remove duplicates based on SubjectNumber
                   const uniqueData = _.uniqBy(combinedData, (item) => `${item.SubjectName}-${item.code}`);
 
-                
-                  const filteredData = _.filter(uniqueData, (item) => item.ClusterCategory !== 'EC' &&  item.ClusterCategory !== 'ME');
-    
-                 
-                  setFadeIn(true)
-                  setCSRelatedPdf(filteredData);
+                  if(uniqueData.length){
+                    window.scrollTo({
+                      top: 300,
+                      left: 0,
+                      behavior: 'smooth'
+                    });
+                    setFadeIn(true)
+                    setCSRelatedPdf(uniqueData);
+                    console.log("SearchedRelatedPdf: ")
+                    console.log(setCSRelatedPdf)
+                  }
+
                   setTimeout(()=>{
 
                     if(uniqueData.length === 0){
@@ -182,7 +283,24 @@ function PYQ() {
   
                   }
   
-                  },3000)
+                  },1000)
+
+                  
+                  if(uniqueData.length === 0){
+                    window.scrollTo({
+                      top: 0,
+                      behavior: 'smooth' // Enables smooth scrolling
+                    });
+
+                    setErrVal(true)
+                    setTimeout(()=>{
+
+
+                      setErrVal(false)
+
+                    },1000)
+
+                  }
                 })
                 .catch(err => {
                   console.error(err);
@@ -203,24 +321,6 @@ function PYQ() {
   );
 
 
-const [fadeIn,setFadeIn] = useState(false)
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // Enables smooth scrolling
-    });
-  }, []); // Empty dependency array to run only on mount
-
-
-
-  const isFirstRender = useRef(true);
-
-  // This useEffect runs only once when the component mounts
-  useEffect(() => {
-    isFirstRender.current = false; // Set to false after the first render
-  }, []);
-
   useEffect(() => {
     return () => {
       handleInputChange.cancel(); // Cancel any pending debounced calls on unmount
@@ -233,18 +333,32 @@ const [fadeIn,setFadeIn] = useState(false)
 
   };
 
+  const isFirstRender = useRef(true)
+
+  useEffect(()=>{
+
+      isFirstRender.current = false
+  },[])
+
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Enables smooth scrolling
+    });
+  }, []); // Empty dependency array to run only on mount
 
 
 
-
+const [fadeIn,setFadeIn] = useState(false)
 
   return (
     <div className='bg-black min-h-screen gap-[20px] flex flex-col  '>
 <div className='flex flex-col lg:flex-row gap-8 mx-auto max-w-screen-lg'>
-    <Link><img
+    <Link   to = '/' ><img
         src={Logo}
         alt="Logo"
-        to='/'
+      
         className='h-10 mx-4 my-4 cursor-pointer'
     /></Link>
 
@@ -253,18 +367,18 @@ const [fadeIn,setFadeIn] = useState(false)
   className='h-12 hover:ring-4 hover:ring-blue-500  cursor-pointer relative min-w-xs max-w-xs bg-[#20C030] rounded-full flex items-center justify-between px-4 mx-1 my-4'
 >
   <div className="text-white text-base mx-4 sm:text-lg md:text-xl font-medium">
-    BackToNotes
+    Back To Notes
   </div>
   <div className="bg-[#20C030] w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ">
     <i className="bi bi-caret-left-fill text-white text-sm sm:text-base md:text-lg"></i>
   </div>
 </Link>
+
 </div>
 
 <div className='flex flex-col'>
-
-<div className='text-white text-3xl mt-6 flex justify-center'>
-      <span className='text-center'>PYQ'S</span>
+    <div className='text-white text-3xl mt-6 flex justify-center'>
+      <span className='text-center'>Previous Year Questions</span>
     </div>
 
     {/* Flex container for all option buttons in a single line */}
@@ -305,40 +419,52 @@ const [fadeIn,setFadeIn] = useState(false)
         </div>
       </div>
     </div>
+
+
     
-    <div className="flex flex-col items-center  justify-center mt-10 ">
+    
+
+<div className="flex flex-col items-center  justify-center mt-10 ">
       <input
         autoFocus
         
         ref={SearchedSubject}
         onKeyUp={getSearchedSubject} 
-        className="h-[40px] w-80 max-w-[500px] placeholder:text-[#20C030] border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
+        className="h-[40px] w-80 max-w-[500px] placeholder:text-black border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
         placeholder="Search Your Subject"
       />
 
-    </div>
-
-    <div className='flex justify-center gap-8 mt-5'>
-    <div
-        onClick={ShowSelectedCycleRelatedPdf}
-        className='h-10 hover:ring-4 hover:ring-blue-500  rounded-2xl hover:shadow-custom cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
-    >
-        <div className='text-white font-medium text-lg sm:text-xl'>Show Subjects</div>
-    </div>
-</div>
-
+{!isFirstRender.current &&  SearchedSubject.current.value.length !== 0 && CSRelatedPdf.length === 0
   
-  
-{!isFirstRender.current &&  SearchedSubject.current.value.length !== 0 && CSRelatedPdf.length === 0 ?
+  ||(ShowSubjectsClicked && (( PhysicsCycle && (Sem1 || Sem2)) || (ChemistryCycle && (Sem1 || Sem2))) && CSRelatedPdf.length === 0) ?
       
-      <div className="flex items-center justify-center mt-12  space-x-2">
+
+      <div className='flex flex-row gap-2'>
+          <div className='text-lg text-white font-medium mt-12' >Loading</div>
+          <div className="flex items-center justify-center mt-12  space-x-2">
         
-        <PulseLoader color="#36d7b7" size={10} margin={2} />
+            <PulseLoader color="#36d7b7" size={10} margin={2} />
+          </div>
       </div>
    :null
+  
     }
     
-  
+    </div>
+
+    <div className='flex flex-col self-center gap-4 mt-5'>
+      <div
+          onClick={ShowSelectedCycleRelatedPdf}
+          className='h-10 hover:ring-4 hover:ring-blue-500 ml-[30px]  rounded-2xl hover:shadow-custom cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
+      >
+          <div className='text-white font-medium text-lg sm:text-xl'>Show Subjects</div>
+      </div>
+
+      <div className={`flex text-white justify-center items-center duration-1000 transition-all border-red-600  ease-in-out border-2 rounded-full mt-10 h-[40px] w-80 shadow-custom self-center font-medium ${ErrVal ? 'opacity-100':'opacity-0'}`}>
+        Search Results: Subject Not Found
+      </div>
+    </div>
+
 
 {CSRelatedPdf.length ?
 <div className={`mt-5  transition-all   duration-700 ease-in-out  animate-fade-in-slide-up  ${fadeIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5' } `}>
@@ -353,7 +479,7 @@ const [fadeIn,setFadeIn] = useState(false)
 <div className="flex flex-row gap-2 bg-gray-900 border-2 mt-4 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
     <div className="flex flex-row justify-between items-center w-full">
   <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
-    SubjectName
+    Subject Name
   </div>
   
   
@@ -362,8 +488,7 @@ const [fadeIn,setFadeIn] = useState(false)
     
     <span className="text-white text-sm mt-1">PdfLink</span> {/* Added Expand label */}
   </div>
-  
-  
+
 </div>
 </div>
 
@@ -380,11 +505,11 @@ const [fadeIn,setFadeIn] = useState(false)
   {/* Container for Expand and Reduce Icons */}
   <div className="text-center  md:text-left">
           
-              <a key={index} href={pdf.PYQLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-                <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '25px' }}></i>
-              </a>
-           
-          </div>
+      <a key={index} href={pdf.PYQLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
+          <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
+      </a>
+
+  </div>
   
 </div>
 
@@ -397,10 +522,63 @@ const [fadeIn,setFadeIn] = useState(false)
 
 </div>
 :null}
+
+
+
 </div>
 
-<div className='mb-[100px]'></div>
 
+<div className='mb-[200px]'>
+
+</div>
+
+<div className='bg-black min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+        <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
+          <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[20px] lg:mt-[50px]' />
+          <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
+            NoteGo brings together professor-curated student notes with relevant 
+            YouTube tutorials for fast and efficient learning.
+          </div>
+        </div>
+{/* 
+        <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
+          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Quick Links</h1>
+          <div className='flex flex-col'>
+            <Link to='/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
+            <Link to='/contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
+            <Link to='/privacy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
+            <Link to='/tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
+            <Link to='/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
+            <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
+          </div>
+        </div> */}
+        <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
+          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Quick Links</h1>
+          <div className='flex flex-col'>
+            <Link to = '/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
+            {/* <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1> */}
+            <Link to='/Contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
+            <Link to = '/PrivacyPolicy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
+            <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
+            <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
+            <h1 className='text-white text-base md:text-lg cursor-pointer'>PYQ</h1>
+          </div>
+        </div>
+
+        <div className='flex flex-col gap-[30px] w-full lg:w-[200px]'>
+          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Navigate To</h1>
+          <div className='flex flex-col'>
+            <Link to='/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
+            <Link to='/ECCluster' className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
+            <Link to='/MECluster' className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>
+          </div>
+        </div>
+
+        <div className='flex flex-row gap-[5px] mt-[60px]'>
+          <i className="bi bi-c-circle text-white" style={{ fontSize: '20px' }}></i>
+          <h1 className='text-white text-sm md:text-lg'>2024 by NoteGo</h1>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../logo.svg';
 import { Link } from 'react-router-dom';
 
 function Contact() {
+
+
+  
+  useEffect(()=>{
+
+    window.scrollTo({
+      top: 100,
+      left: 0,
+      behavior: 'smooth'
+    });
+  },[])
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -11,38 +22,45 @@ function Contact() {
   };
 
   return (
-    <div className="bg-zinc-950 min-h-screen flex flex-col items-center text-white">
+    <div className="bg-black min-h-screen flex flex-col items-center text-white">
       
-      {/* Links for larger screens & dropdown for smaller screens and iPads */}
-      <div className="w-full flex justify-between items-center px-4 md:px-20 py-6 mt-4">
-        <div className="flex items-center">
-          <img src={Logo} alt="Logo" className="h-[30px] md:h-[40px]" />
-        </div>
+      <div className='bg-black w-full flex justify-between items-center px-4 md:px-20 py-6 '>
+        <Link to = '/' className='flex items-center'>
+          <img src={Logo} alt="Logo" className='h-[30px] md:h-[40px]' />
+        </Link>
 
         {/* Hamburger Icon for mobile and iPads */}
-        <div className="lg:hidden flex">
-          <button onClick={toggleMenu} className="text-white text-3xl focus:outline-none">
-            <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'}`}></i>
+        <div className='lg:hidden flex'>
+          <button onClick={toggleMenu} className='text-white text-3xl focus:outline-none'>
+            <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'}`}></i> {/* Toggling icon from "hamburger" to "close" */}
           </button>
         </div>
+
+        {/* Links for larger screens & dropdown for smaller screens and iPads */}
+        <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
+          <Link
+            to = '/'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            Home
+          </Link>
+
+          <Link
+            to = '/notes'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            Notes
+          </Link>
+
+          <Link
+            to = '/pyq'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            PYQ'S
+          </Link>
+
+        </nav>
       </div>
-
-      {/* Links for larger screens & dropdown for smaller screens and iPads */}
-      <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
-        <Link
-          to = '/'
-          className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
-        >
-          Home
-        </Link>
-
-        <Link
-          to = '/notes'
-          className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
-        >
-          Notes
-        </Link>
-      </nav>
 
       {/* Contact Section */}
       <div className="flex flex-col items-center mt-10 md:mt-20 px-4">

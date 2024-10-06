@@ -1,13 +1,13 @@
 
-import debounce from 'lodash.debounce'
-import React, { useEffect, useRef, useState,useCallback } from 'react';
+import debounce from 'lodash.debounce';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import axios from 'axios'
-import 'bootstrap-icons/font/bootstrap-icons.min.css'
+import axios from 'axios';
+import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import _ from 'lodash';
-import Logo from '../logo.svg';
 import { Link } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';
+import Logo from '../logo.svg';
 
 function ElectricalCluster() {
   const [PhysicsCycle,setPhysicsCycle] = useState(false)
@@ -16,10 +16,13 @@ function ElectricalCluster() {
   const [Sem1,setSem1] = useState(0)
   const [Sem2,setSem2] = useState(0)
 
-  
+  const[ShowSubjectsClicked,setShowSubjectsClicked] = useState(false)
+
 
   const SelectPhysicsCycle=()=>{
 
+
+    setShowSubjectsClicked(false)
 
     SearchedSubject.current.value = ""
 
@@ -34,6 +37,8 @@ function ElectricalCluster() {
   const SelectChemistryCycle=()=>{
 
 
+    setShowSubjectsClicked(false)
+
     SearchedSubject.current.value = ""
 
     setPhysicsCycle(false)
@@ -45,6 +50,8 @@ function ElectricalCluster() {
 
   const ShowSelectedCycleRelatedPdf = ()=>{
 
+
+    setShowSubjectsClicked(false)
 
     SearchedSubject.current.value = ""
 
@@ -58,6 +65,10 @@ function ElectricalCluster() {
         Sem = "2EC"
 
     if((Sem1 || Sem2) && PhysicsCycle){
+
+        setShowSubjectsClicked(true)
+
+
         var myData = {Category:"EC",Sem:Sem}
         axios.post("https://notego-backend.onrender.com/api/PhysicsCycle/GetAllModules",myData)
         .then(response=>{
@@ -67,11 +78,52 @@ function ElectricalCluster() {
 
           setECERelatedPdf(filteredData)
           console.log(filteredData)
+
+          if(response.data.length){
+            window.scrollTo({
+              top: 300,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }
+
+          
+          setTimeout(()=>{
+
+            if(response.data.length === 0){
+              
+              setECERelatedPdf([])
+              SearchedSubject.current.value = ""
+
+          }
+
+          },1000)
+
+          
+          if(response.data.length === 0){
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth' // Enables smooth scrolling
+            });
+
+            setErrVal(true)
+            setTimeout(()=>{
+
+
+              setErrVal(false)
+
+            },1000)
+
+          }
         })  
     }
 
     else
     if((Sem1 || Sem2) && ChemistryCycle){
+
+      setShowSubjectsClicked(true)
+
+
         var myData = {Category:"CS",Sem:Sem}
         axios.post("https://notego-backend.onrender.com/api/ChemistryCycle/GetAllModules",myData)
         .then(response=>{
@@ -80,6 +132,43 @@ function ElectricalCluster() {
 
           setECERelatedPdf(filteredData)
           console.log(response.data)
+          if(response.data.length){
+            window.scrollTo({
+              top: 300,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }
+
+
+          
+          setTimeout(()=>{
+
+            if(response.data.length === 0){
+              
+              setECERelatedPdf([])
+              SearchedSubject.current.value = ""
+
+          }
+
+          },1000)
+
+          
+          if(response.data.length === 0){
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth' // Enables smooth scrolling
+            });
+
+            setErrVal(true)
+            setTimeout(()=>{
+
+
+              setErrVal(false)
+
+            },1000)
+
+          }
         })
     }
     else
@@ -94,26 +183,14 @@ function ElectricalCluster() {
   
   const [SelectedSubjectNumber,setSelectedSubjectNumber] = useState([])
 
+  const [ErrVal,setErrVal] = useState(false)
 
-  // const ShowPdfDetails=(Pdf)=>{
-
-  //     var Faculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber === Pdf.SubjectNumber)
-      
-  //     if(Faculty.length === 0){
-  //       setSelectedSubjectNumber([...SelectedSubjectNumber,Pdf.SubjectNumber])
-  //     }
-
-      
-  // }
-
-  // const DontShowPdfDetails = (Pdf)=>{
-
-  //   var UpdateSelectedFaculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber !== Pdf.SubjectNumber)
-  //   setSelectedSubjectNumber(UpdateSelectedFaculty)
-    
-  // }
 
   const SelectSem = (Sem) =>{
+
+    setShowSubjectsClicked(false)
+    SearchedSubject.current.value = ""
+
 
     if(Sem === 1){
       setSem1(1)
@@ -146,8 +223,24 @@ function ElectricalCluster() {
 
       if (input.length) {
       
-        if (input.trim() === '') 
-          setECERelatedPdf([])
+        if (input.trim() === '') {
+
+          setTimeout(()=>{
+
+              setECERelatedPdf([])
+              SearchedSubject.current.value = ""
+
+          },1000)
+
+          setErrVal(true)
+            setTimeout(()=>{
+
+
+            setErrVal(false)
+
+            },1000)
+
+        }
 
         else {
 
@@ -177,8 +270,21 @@ function ElectricalCluster() {
                   const filteredData = _.filter(uniqueData, (item) => item.ClusterCategory !== 'CS' &&  item.ClusterCategory !== 'ME');
     
                 
-                  setFadeIn(true)
-                  setECERelatedPdf(filteredData);
+                  if(filteredData.length){
+                    window.scrollTo({
+                      top: 300,
+                      left: 0,
+                      behavior: 'smooth'
+                    });
+                    setFadeIn(true)
+                    setECERelatedPdf(filteredData);
+                    setSelectedSubjectNumber([])
+                    console.log("SelectedSubjectNumber: ")
+                    setSelectedSubjectNumber(filteredData)
+                    console.log(SelectedSubjectNumber)
+                    console.log("SearchedRelatedPdf: ")
+                    console.log(setECERelatedPdf)
+                  }
 
                   setTimeout(()=>{
 
@@ -190,6 +296,23 @@ function ElectricalCluster() {
                   }
   
                   },1000)
+
+                  
+                  if(uniqueData.length === 0){
+                    window.scrollTo({
+                      top: 0,
+                      behavior: 'smooth' // Enables smooth scrolling
+                    });
+
+                    setErrVal(true)
+                    setTimeout(()=>{
+
+
+                      setErrVal(false)
+
+                    },1000)
+
+                  }
                 })
                 .catch(err => {
                   console.error(err);
@@ -285,7 +408,7 @@ const [fadeIn,setFadeIn] = useState(false)
   className='h-12 hover:ring-2 hover:ring-blue-500  cursor-pointer relative min-w-xs max-w-xs bg-[#20C030] rounded-full flex items-center justify-between px-4 mx-1 my-4'
 >
   <div className="text-white text-base mx-4 sm:text-lg md:text-xl font-medium">
-    BackToNotes
+    Back To Notes
   </div>
   <div className="bg-[#20C030] w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ">
     <i className="bi bi-caret-left-fill text-white text-sm sm:text-base md:text-lg"></i>
@@ -337,35 +460,49 @@ const [fadeIn,setFadeIn] = useState(false)
       </div>
     </div>
 
+
+
+
     <div className="flex flex-col items-center  justify-center mt-10 ">
       <input
         autoFocus
         
         ref={SearchedSubject}
         onKeyUp={getSearchedSubject} 
-        className="h-[40px] w-80 max-w-[500px] placeholder:text-[#20C030] border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
+        className="h-[40px] w-80 max-w-[500px] placeholder:text-black border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
         placeholder="Search Your Subject"
       />
 
-{!isFirstRender.current &&  SearchedSubject.current.value.length !== 0 && ECERelatedPdf.length === 0 ?
+{!isFirstRender.current &&  SearchedSubject.current.value.length !== 0 && ECERelatedPdf.length === 0
+  
+  ||(ShowSubjectsClicked && (( PhysicsCycle && (Sem1 || Sem2)) || (ChemistryCycle && (Sem1 || Sem2))) && ECERelatedPdf.length === 0) ?
       
-      <div className="flex items-center justify-center mt-12  space-x-2">
+
+      <div className='flex flex-row gap-2'>
+          <div className='text-lg text-white font-medium mt-12' >Loading</div>
+          <div className="flex items-center justify-center mt-12  space-x-2">
         
-        <PulseLoader color="#36d7b7" size={10} margin={2} />
+            <PulseLoader color="#36d7b7" size={10} margin={2} />
+          </div>
       </div>
    :null
+  
     }
     
     </div>
 
-    <div className='flex justify-center gap-8 mt-10'>
-    <div
-        onClick={ShowSelectedCycleRelatedPdf}
-        className='h-10 rounded-2xl hover:shadow-custom hover:ring-4 hover:ring-blue-500  cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
-    >
-        <div className='text-white font-medium text-lg sm:text-xl'>Show Subjects</div>
+    <div className='flex flex-col self-center gap-4 mt-5'>
+      <div
+          onClick={ShowSelectedCycleRelatedPdf}
+          className='h-10 hover:ring-4 hover:ring-blue-500 ml-[30px]  rounded-2xl hover:shadow-custom cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
+      >
+          <div className='text-white font-medium text-lg sm:text-xl'>Show Subjects</div>
+      </div>
+
+      <div className={`flex text-white justify-center items-center duration-1000 transition-all border-red-600  ease-in-out border-2 rounded-full mt-10 h-[40px] w-80 shadow-custom self-center font-medium ${ErrVal ? 'opacity-100':'opacity-0'}`}>
+        Search Results: Subject Not Found
+      </div>
     </div>
-</div>
 
 
 
@@ -420,13 +557,13 @@ const [fadeIn,setFadeIn] = useState(false)
           <div className="text-center  md:text-left">
             {module.PdfLink.map((pdfLink, index) => (
               <a key={index} href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-                <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '25px' }}></i>
+                <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
               </a>
             ))}
           </div>
           <div className="text-center md:text-left">
             <a href={module.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-              <i className="bi bi-youtube text-red-800" style={{ fontSize: '25px' }}></i>
+              <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '35px' }}></i>
             </a>
           </div>
         </div>

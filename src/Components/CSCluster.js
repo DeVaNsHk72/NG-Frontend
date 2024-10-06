@@ -18,14 +18,17 @@ function CSCluster() {
   const [Sem1,setSem1] = useState(0)
   const [Sem2,setSem2] = useState(0)
 
+  const[ShowSubjectsClicked,setShowSubjectsClicked] = useState(false)
 
+  
+  const [ErrVal,setErrVal] = useState(false)
   
 
   const SelectPhysicsCycle=()=>{
 
 
     SearchedSubject.current.value = ""
-
+    setShowSubjectsClicked(false)
     setPhysicsCycle(true)
     setChemistryCycle(false)
 
@@ -39,6 +42,7 @@ function CSCluster() {
 
     SearchedSubject.current.value = ""
 
+    setShowSubjectsClicked(false)
     setPhysicsCycle(false)
     setChemistryCycle(true)
 
@@ -49,8 +53,8 @@ function CSCluster() {
 
   const ShowSelectedCycleRelatedPdf = ()=>{
 
-
-    SearchedSubject.current.value = ""
+    setShowSubjectsClicked(false)
+    
 
     setCSRelatedPdf([])
 
@@ -62,23 +66,104 @@ function CSCluster() {
         Sem = "2CS"
 
     if((Sem1 || Sem2) && PhysicsCycle){
+
+      setShowSubjectsClicked(true)
+
+
         var myData = {Category:"CS",Sem:Sem}
         axios.post("https://notego-backend.onrender.com/api/PhysicsCycle/GetAllModules",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
           console.log(response.data)
+
+          if(response.data.length){
+            window.scrollTo({
+              top: 300,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }
+
+          
+          setTimeout(()=>{
+
+            if(response.data.length === 0){
+              
+              setCSRelatedPdf([])
+              setShowSubjectsClicked(false)
+          }
+
+          },1000)
+
+          
+          if(response.data.length === 0){
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth' // Enables smooth scrolling
+            });
+
+            setErrVal(true)
+            setTimeout(()=>{
+
+
+              setErrVal(false)
+
+            },1000)
+
+          }
         })  
     }
 
     else
     if((Sem1 || Sem2) && ChemistryCycle){
+
+      setShowSubjectsClicked(true)
+
+
         var myData = {Category:"CS",Sem:Sem}
         axios.post("https://notego-backend.onrender.com/api/ChemistryCycle/GetAllModules",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
           console.log(response.data)
+
+          if(response.data.length){
+            window.scrollTo({
+              top: 300,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }
+
+
+          setTimeout(()=>{
+
+            if(response.data.length === 0){
+              
+              setCSRelatedPdf([])
+              setShowSubjectsClicked(false)
+
+          }
+
+          },1000)
+
+          
+          if(response.data.length === 0){
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth' // Enables smooth scrolling
+            });
+
+            setErrVal(true)
+            setTimeout(()=>{
+
+
+              setErrVal(false)
+
+            },1000)
+
+          }
         })
     }
     else
@@ -94,27 +179,10 @@ function CSCluster() {
   const [SelectedSubjectNumber,setSelectedSubjectNumber] = useState([])
 
 
-  // const ShowPdfDetails=(Pdf)=>{
-
-  //     var Faculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber === Pdf.SubjectNumber)
-      
-  //     if(Faculty.length === 0){
-  //       setSelectedSubjectNumber([...SelectedSubjectNumber,Pdf.SubjectNumber])
-  //     }
-
-      
-  // }
-
-  // const DontShowPdfDetails = (Pdf)=>{
-
-  //   var UpdateSelectedFaculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber !== Pdf.SubjectNumber)
-  //   setSelectedSubjectNumber(UpdateSelectedFaculty)
-    
-  // }
-
   const SelectSem = (Sem) =>{
 
 
+    setShowSubjectsClicked(false)
     SearchedSubject.current.value = ""
 
     if(Sem === 1){
@@ -146,9 +214,24 @@ function CSCluster() {
           setCSRelatedPdf([])
 
       if (input.length) {
-      
-        if (input.trim() === '') 
-          setCSRelatedPdf([])
+
+        if (input.trim() === '') {
+
+          setTimeout(()=>{
+
+              setCSRelatedPdf([])
+              SearchedSubject.current.value = ""
+
+          },1000)
+
+          setErrVal(true)
+            setTimeout(()=>{
+
+            setErrVal(false)
+
+            },1000)
+
+        }
 
         else {
 
@@ -178,10 +261,27 @@ function CSCluster() {
 
                 
                   const filteredData = _.filter(uniqueData, (item) => item.ClusterCategory !== 'EC' &&  item.ClusterCategory !== 'ME');
-    
-                 
-                  setFadeIn(true)
-                  setCSRelatedPdf(filteredData);
+
+
+                  if(filteredData.length){
+                    window.scrollTo({
+                      top: 300,
+                      left: 0,
+                      behavior: 'smooth'
+                    });
+                    setFadeIn(true)
+                    setCSRelatedPdf(filteredData);
+                    setSelectedSubjectNumber([])
+                    console.log("SelectedSubjectNumber: ")
+                    setSelectedSubjectNumber(filteredData)
+                    console.log(SelectedSubjectNumber)
+                    console.log("SearchedRelatedPdf: ")
+                    console.log(setCSRelatedPdf)
+                  }
+                  
+
+
+
                   setTimeout(()=>{
 
                     if(uniqueData.length === 0){
@@ -192,6 +292,23 @@ function CSCluster() {
                   }
   
                   },1000)
+
+                  
+                  if(uniqueData.length === 0){
+                    window.scrollTo({
+                      top: 0,
+                      behavior: 'smooth' // Enables smooth scrolling
+                    });
+
+                    setErrVal(true)
+                    setTimeout(()=>{
+
+
+                      setErrVal(false)
+
+                    },1000)
+
+                  }
                 })
                 .catch(err => {
                   console.error(err);
@@ -286,12 +403,14 @@ const [fadeIn,setFadeIn] = useState(false)
   className='h-12 hover:ring-4 hover:ring-blue-500  cursor-pointer relative min-w-xs max-w-xs bg-[#20C030] rounded-full flex items-center justify-between px-4 mx-1 my-4'
 >
   <div className="text-white text-base mx-4 sm:text-lg md:text-xl font-medium">
-    BackToNotes
+    Back To Notes
   </div>
   <div className="bg-[#20C030] w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ">
     <i className="bi bi-caret-left-fill text-white text-sm sm:text-base md:text-lg"></i>
   </div>
 </Link>
+
+
 
 </div>
 
@@ -338,42 +457,52 @@ const [fadeIn,setFadeIn] = useState(false)
         </div>
       </div>
     </div>
- 
-          
+
 <div className="flex flex-col items-center  justify-center mt-10 ">
       <input
         autoFocus
-        
+
         ref={SearchedSubject}
         onKeyUp={getSearchedSubject} 
-        className="h-[40px] w-80 max-w-[500px] placeholder:text-[#20C030] border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
+        className="h-[40px] w-80 max-w-[500px]  placeholder:text-black border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
         placeholder="Search Your Subject"
       />
 
-{!isFirstRender.current &&  SearchedSubject.current.value.length !== 0 && CSRelatedPdf.length === 0 ?
+{!isFirstRender.current &&  SearchedSubject.current.value.length !== 0 && CSRelatedPdf.length === 0
+  
+  ||(ShowSubjectsClicked && (( PhysicsCycle && (Sem1 || Sem2)) || (ChemistryCycle && (Sem1 || Sem2))) && CSRelatedPdf.length === 0) ?
       
-      <div className="flex items-center justify-center mt-12  space-x-2">
+
+      <div className='flex flex-row gap-2'>
+          <div className='text-lg text-white font-medium mt-12' >Loading</div>
+          <div className="flex items-center justify-center mt-12  space-x-2">
         
-        <PulseLoader color="#36d7b7" size={10} margin={2} />
+            <PulseLoader color="#36d7b7" size={10} margin={2} />
+          </div>
       </div>
    :null
+  
     }
     
     </div>
 
-    <div className='flex justify-center gap-8 mt-5'>
-    <div
-        onClick={ShowSelectedCycleRelatedPdf}
-        className='h-10 hover:ring-4 hover:ring-blue-500  rounded-2xl hover:shadow-custom cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
-    >
-        <div className='text-white font-medium text-lg sm:text-xl'>Show Subjects</div>
+    <div className='flex flex-col self-center gap-4 mt-5'>
+      <div
+          onClick={ShowSelectedCycleRelatedPdf}
+          className='h-10 hover:ring-4 hover:ring-blue-500 ml-[30px]  rounded-2xl hover:shadow-custom cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
+      >
+          <div className='text-white font-medium text-lg sm:text-xl'>Show Subjects</div>
+      </div>
+
+      <div className={`flex text-white justify-center items-center duration-1000 transition-all border-red-600  ease-in-out border-2 rounded-full mt-10 h-[40px] w-80 shadow-custom self-center font-medium ${ErrVal ? 'opacity-100':'opacity-0'}`}>
+        Search Results: Subject Not Found
+      </div>
     </div>
-</div>
 
 
 
 {CSRelatedPdf.length ?
-<div className={`mt-8  transition-all     duration-700 ease-in-out animate-fade-in-slide-up   ${fadeIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5' } `}>
+<div className={`mt-4  transition-all     duration-700 ease-in-out animate-fade-in-slide-up   ${fadeIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5' } `}>
 
 <div className="flex flex-col gap-4 border-2 bg-[#20C030] rounded-md shadow-lg p-4 justify-between w-full  md:w-3/5 lg:w-3/4  max-w-3xl mx-auto">
   <div className="flex flex-row justify-between  font-semibold">
@@ -423,13 +552,13 @@ const [fadeIn,setFadeIn] = useState(false)
           <div className="text-center  md:text-left">
             {module.PdfLink.map((pdfLink, index) => (
               <a key={index} href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-                <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '25px' }}></i>
+                <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
               </a>
             ))}
           </div>
           <div className="text-center md:text-left">
             <a href={module.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-              <i className="bi bi-youtube text-red-800" style={{ fontSize: '25px' }}></i>
+              <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '35px' }}></i>
             </a>
           </div>
         </div>

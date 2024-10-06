@@ -1,11 +1,11 @@
 import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
-import _, { curry } from 'lodash';
-import debounce from 'lodash.debounce'
-import React, { useEffect, useRef, useState,useCallback } from 'react';
-import Logo from '../logo.svg';
+import _ from 'lodash';
+import debounce from 'lodash.debounce';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PulseLoader } from 'react-spinners';
+import Logo from '../logo.svg';
 
 function Notes() {
 
@@ -15,7 +15,14 @@ function Notes() {
     var SearchedSubject = useRef("")
 
     const [SearchedRelatedPdf,setSearchedRelatedPdf] = useState([])
-  
+
+
+    const [fadeIn,setFadeIn] = useState(false)
+
+    const [ErrVal,setErrVal] = useState(false)
+
+
+
     const handleInputChange = useCallback(
       debounce(() => {
   
@@ -26,11 +33,28 @@ function Notes() {
   
         if (input.length) {
         
-          if (input.trim() === '') 
-            setSearchedRelatedPdf([])
+          if (input.trim() === '') {
+
+            setTimeout(()=>{
+
+                setSearchedRelatedPdf([])
+                SearchedSubject.current.value = ""
+
+            },1000)
+
+            setErrVal(true)
+              setTimeout(()=>{
+
+
+              setErrVal(false)
+
+              },2500)
+
+          }
   
           else {
             
+            setFadeIn(false)
             var searchTerm
     
             setSearchedRelatedPdf([])
@@ -46,29 +70,58 @@ function Notes() {
                 axios.post("https://notego-backend.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
                   .then(response2 => {
                     const chemistryCycleData = response2.data;
-      
+
                     // Combine both API results
                     const combinedData = [...physicsCycleData, ...chemistryCycleData];
-      
+
                     // Remove duplicates based on SubjectNumber
                     const uniqueData = _.uniqBy(combinedData, (item) => `${item.SubjectName}-${item.code}`);
-  
-                  
-                    
-                  setFadeIn(true)
-                    setSearchedRelatedPdf(uniqueData);
 
+
+                  if(uniqueData.length){
+                    window.scrollTo({
+                      top: 300,
+                      behavior: 'smooth' // Enables smooth scrolling
+                    });
+                    setFadeIn(true)
+                    setSearchedRelatedPdf(uniqueData);
+                    setSelectedSubjectNumber([])
+                    console.log("SelectedSubjectNumber: ")
+                    setSelectedSubjectNumber(uniqueData)
+                    console.log(SelectedSubjectNumber)
+                    console.log("SearchedRelatedPdf: ")
+                    console.log(SearchedRelatedPdf)
+                  }
+                  
 
                     setTimeout(()=>{
-
                       if(uniqueData.length === 0){
-                        
+
+
                         setSearchedRelatedPdf([])
                         SearchedSubject.current.value = ""
-    
+
+
                     }
-    
+
                     },1000)
+
+                    if(uniqueData.length === 0){
+                      window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth' // Enables smooth scrolling
+                      });
+
+                      setErrVal(true)
+                      setTimeout(()=>{
+
+
+                        setErrVal(false)
+
+                      },2500)
+
+                    }
+
                   })
                   .catch(err => {
                     console.error(err);
@@ -114,27 +167,6 @@ function Notes() {
   const [SelectedSubjectNumber,setSelectedSubjectNumber] = useState([])
 
 
-  // const ShowPdfDetails=(Pdf)=>{
-
-  //     var Faculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber === Pdf.SubjectNumber)
-      
-  //     if(Faculty.length === 0){
-  //       setSelectedSubjectNumber([...SelectedSubjectNumber,Pdf.SubjectNumber])
-  //     }
-
-      
-  // }
-
-  // const DontShowPdfDetails = (Pdf)=>{
-
-  //   var UpdateSelectedFaculty = SelectedSubjectNumber.filter(SubjNumber=>SubjNumber !== Pdf.SubjectNumber)
-  //   setSelectedSubjectNumber(UpdateSelectedFaculty)
-    
-  // }
-  
-
-
-
 const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 const toggleMenu = () => {
@@ -171,8 +203,6 @@ useEffect(()=>{
 
 const handleToggle = (subjectNumber) => {
 
-
-
   setSelectedSubjectNumber((prev) => {
     // Check if the subject is already in the array
     const existingSubject = prev.find(sub => sub.SubjectNumber === subjectNumber);
@@ -195,14 +225,12 @@ const handleToggle = (subjectNumber) => {
 };
 
 
-const [fadeIn,setFadeIn] = useState(false)
-
   return (
 
-    <div className='flex flex-col min-h-screen bg-white gap-[25px]'>
+    <div className='flex flex-col min-h-screen bg-white gap-[10px]'>
 
        {/* Navbar */}
-       <div className='bg-black w-full flex justify-between items-center px-4 md:px-20 py-6 '>
+      <div className='bg-black w-full flex justify-between items-center px-4 md:px-20 py-6 '>
         <Link to = '/' className='flex items-center'>
           <img src={Logo} alt="Logo" className='h-[30px] md:h-[40px]' />
         </Link>
@@ -236,34 +264,46 @@ const [fadeIn,setFadeIn] = useState(false)
           >
             PYQ'S
           </Link>
-       
+
         </nav>
       </div>
 
 
+    
       <div className="flex flex-col items-center  justify-center mt-10 ">
       <input
         autoFocus
         
         ref={SearchedSubject}
         onKeyUp={getSearchedSubject} 
-        className="h-[40px] w-80 max-w-[500px] placeholder:text-[#20C030] border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
+        className="h-[40px] w-80 max-w-[500px] placeholder:text-black border-2  rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus: ring-offset-0"
         placeholder="Search Your Subject"
       />
 
     {!isFirstRender.current &&  SearchedSubject.current.value.length !== 0 && SearchedRelatedPdf.length === 0 ?
       
-      <div className="flex items-center justify-center mt-12  space-x-2">
+
+      <div className='flex flex-row gap-2'>
+          <div className='text-lg text-black font-medium mt-12' >Loading</div>
+          <div className="flex items-center justify-center mt-12  space-x-2">
         
-        <PulseLoader color="#36d7b7" size={10} margin={2} />
+            <PulseLoader color="#36d7b7" size={10} margin={2} />
+          </div>
       </div>
-   :null
+   : ErrVal ? 
+      
+  <div className={`flex text-black justify-center items-center duration-1000 transition-all border-red-600  ease-in-out border-2 rounded-full mt-10 h-[40px] w-80 shadow-custom self-center font-medium ${ErrVal ? 'opacity-100':'opacity-0'}`}>
+    Search Results: Subject Not Found
+  </div>:null
+
+  
     }
-    
+
+  
     </div>
 
     {SearchedRelatedPdf.length === 0?
-      <div className="text-[#20C030] text-4xl font-instrument w-full text-center mt-10">
+      <div className="text-[#20C030] text-4xl mt-10 font-instrument w-full text-center ">
         Select the Cluster
       </div>
       :null
@@ -274,8 +314,8 @@ const [fadeIn,setFadeIn] = useState(false)
     {/* CS Cluster Card */}
     <Link
       to = '/CSCluster'
-      className="flex hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
-    >
+      className="flex shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px]  p-4"
+     >
       <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">CS Cluster</h1>
       <div className="text-center text-lg text-white">CSE</div>
       <div className="text-center text-lg text-white">CSE (IOT)</div>
@@ -288,7 +328,7 @@ const [fadeIn,setFadeIn] = useState(false)
     {/* ECE Cluster Card */}
     <Link
       to = '/ECCluster'
-      className="flex hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
+      className="flex  shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">EE Cluster</h1>
       <div className="text-center text-lg text-white">ECE</div>
@@ -298,7 +338,7 @@ const [fadeIn,setFadeIn] = useState(false)
     {/* ME Cluster Card */}
     <Link
       to = '/MECluster'
-      className="flex  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-lg p-4"
+      className="flex shadow-custom-gray  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">Mech. Cluster</h1>
       <div className="text-center text-lg text-white">ME</div>
@@ -350,7 +390,7 @@ const [fadeIn,setFadeIn] = useState(false)
     </div>
 
     {/* Module Rows */}
-    <div className={`flex flex-col gap-5   transition-all  duration-700 ease-in-out transform ${ SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
+    <div className={`flex flex-col   transition-all  duration-700 ease-in-out transform ${ SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
       {pdf.Modules.map((module) => (
         <div key={module.ModuleNum} className="grid grid-cols-4 gap-2 bg-black border-2 border-white rounded-2xl shadow-lg p-2 w-full mx-auto">
           <div className="text-white text-center ml-4 md:text-left">{module.ModuleNum}</div>
@@ -358,15 +398,18 @@ const [fadeIn,setFadeIn] = useState(false)
           <div className="text-center  md:text-left">
             {module.PdfLink.map((pdfLink, index) => (
               <a key={index} href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-                <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '25px' }}></i>
+                <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
               </a>
             ))}
           </div>
           <div className="text-center md:text-left">
             <a href={module.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-              <i className="bi bi-youtube text-red-800" style={{ fontSize: '25px' }}></i>
+              <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '35px' }}></i>
             </a>
           </div>
+
+
+
         </div>
       ))}
     </div>
