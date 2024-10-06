@@ -31,6 +31,10 @@ module.exports = {
       animation: {
         'fade-in-slide-up': 'fade-in-slide-up 0.5s ease-out forwards',
       },
+
+      boxShadow: {
+        'custom-gray': '10px 10px 5px gray',
+      },
       
     },
   },
