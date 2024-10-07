@@ -86,11 +86,8 @@ function Notes() {
                     setFadeIn(true)
                     setSearchedRelatedPdf(uniqueData);
                     setSelectedSubjectNumber([])
-                    console.log("SelectedSubjectNumber: ")
                     setSelectedSubjectNumber(uniqueData)
-                    console.log(SelectedSubjectNumber)
-                    console.log("SearchedRelatedPdf: ")
-                    console.log(SearchedRelatedPdf)
+                   
                   }
                   
 
@@ -358,6 +355,20 @@ const handleToggle = (subjectNumber) => {
   </div>
 </div>
 
+<div className="flex flex-row gap-2 bg-gray-900 border-2 mt-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+    <div className="flex flex-row justify-between items-center w-full">
+  <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
+    Subject Name
+  </div>
+  
+  <div  className="flex flex-col items-center flex-none">
+    
+    <span className="text-white text-sm mt-1">Expand/Reduce</span> {/* Added Expand label */}
+  </div>
+
+</div>
+</div>
+
 {SearchedRelatedPdf.map((pdf) => (
   <div key={pdf.SubjectNumber} className={` transition-all  duration-700 ease-in-out  transform bg-white  ` } >
     <div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
@@ -372,7 +383,6 @@ const handleToggle = (subjectNumber) => {
     <i
       className={` text-3xl text-white cursor-pointer ${SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'bi bi-arrow-up-circle-fill' : 'bi-arrow-down-circle-fill'} `}
     ></i>
-    <span className="text-white text-sm mt-1">Expand/Reduce</span> {/* Added Expand label */}
   </div>
 
 

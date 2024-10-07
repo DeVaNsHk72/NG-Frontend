@@ -77,36 +77,6 @@ function FrontPage() {
     }
   }, [index, subIndex, fullText]);
 
-  // const GoToCSCluster = () => {
-  //   setNotesLink(true);
-  //   setBackToHome(false);
-  //   setCSECluster(true);
-  //   setECECluster(false);
-  //   setMECluster(false);
-  // };
-
-  // const GoToECCluster = () => {
-  //   setNotesLink(true);
-  //   setBackToHome(false);
-  //   setCSECluster(false);
-  //   setECECluster(true);
-  //   setMECluster(false);
-  // };
-
-  // const GoToMECluster = () => {
-  //   setNotesLink(true);
-  //   setBackToHome(false);
-  //   setCSECluster(false);
-  //   setECECluster(false);
-  //   setMECluster(true);
-  // };
-
-  // const GoToNotes = () => {
-  //   setNotesLink(true);
-  //   setCSECluster(false);
-  //   setECECluster(false);
-  //   setMECluster(false);
-  // };
 
   const GotoPYQ = () => {
     alert('Coming Soon');
@@ -202,15 +172,21 @@ function FrontPage() {
       {/* Footer */}
       <div className='bg-black min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
-          <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[20px] lg:mt-[50px]' />
+          <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
             NoteGo brings together professor-curated student notes with relevant 
             YouTube tutorials for fast and efficient learning.
           </div>
+
+          <div className='text-sm italic md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
+            Disclaimer: While the notes on this website are curated to assist in your studies, we advise students to 
+            first refer to their professor's notes and resources. This is particularly important for theory-intensive
+            subjects.
+          </div>
         </div>
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
-          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Quick Links</h1>
+          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Quick Links</h1>
           <div className='flex flex-col'>
             <Link to = '/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
             <Link to = '/Contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
@@ -223,7 +199,7 @@ function FrontPage() {
         </div>
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[200px]'>
-          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Navigate To</h1>
+          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Navigate To</h1>
           <div className='flex flex-col'>
             <Link to = '/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
             <Link to = '/ECCluster'  className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
@@ -231,11 +207,13 @@ function FrontPage() {
           </div>
         </div>
 
-        <div className='flex flex-row gap-[5px] mt-[60px]'>
+        <div className='flex flex-row gap-[5px] mt-[30px]'>
           <i className="bi bi-c-circle text-white" style={{ fontSize: '20px' }}></i>
           <h1 className='text-white text-sm md:text-lg'>2024 by NoteGo</h1>
         </div>
       </div>
+
+      <div className='mb-[50px]'></div>
 </div>
 
   );
