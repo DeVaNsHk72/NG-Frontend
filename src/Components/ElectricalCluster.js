@@ -67,6 +67,8 @@ function ElectricalCluster() {
     if((Sem1 || Sem2) && PhysicsCycle){
 
         setShowSubjectsClicked(true)
+        
+        setSelectedSubjectNumber([])
 
 
         var myData = {Category:"EC",Sem:Sem}
@@ -80,6 +82,8 @@ function ElectricalCluster() {
           console.log(filteredData)
 
           if(response.data.length){
+            
+            setSelectedSubjectNumber(response.data)
             window.scrollTo({
               top: 300,
               left: 0,
@@ -122,6 +126,7 @@ function ElectricalCluster() {
     if((Sem1 || Sem2) && ChemistryCycle){
 
       setShowSubjectsClicked(true)
+      setSelectedSubjectNumber([])
 
 
         var myData = {Category:"CS",Sem:Sem}
@@ -133,6 +138,8 @@ function ElectricalCluster() {
           setECERelatedPdf(filteredData)
           console.log(response.data)
           if(response.data.length){
+            
+            setSelectedSubjectNumber(response.data)
             window.scrollTo({
               top: 300,
               left: 0,

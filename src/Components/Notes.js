@@ -316,7 +316,7 @@ const handleToggle = (subjectNumber) => {
       to = '/CSCluster'
       className="flex shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px]  p-4"
      >
-      <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">CS Cluster</h1>
+      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  mt-2">CS Cluster</h1>
       <div className="text-center text-lg text-white">CSE</div>
       <div className="text-center text-lg text-white">CSE (IOT)</div>
       <div className="text-center text-lg text-white">CSE (DS)</div>
@@ -330,7 +330,7 @@ const handleToggle = (subjectNumber) => {
       to = '/ECCluster'
       className="flex  shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
     >
-      <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">EE Cluster</h1>
+      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  mt-2">EE Cluster</h1>
       <div className="text-center text-lg text-white">ECE</div>
       <div className="text-center text-lg text-white">EEE</div>
     </Link>
@@ -340,7 +340,7 @@ const handleToggle = (subjectNumber) => {
       to = '/MECluster'
       className="flex shadow-custom-gray  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
     >
-      <h1 className="text-3xl sm:text-4xl text-center text-white mt-2">Mech. Cluster</h1>
+      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  mt-2">Mech. Cluster</h1>
       <div className="text-center text-lg text-white">ME</div>
       <div className="text-center text-lg text-white">ASE</div>
       <div className="text-center text-lg text-white">CHEM</div>

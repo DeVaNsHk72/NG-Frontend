@@ -66,6 +66,9 @@ function MechanicalCluster() {
 
     if((Sem1 || Sem2) && PhysicsCycle){
 
+      
+      setSelectedSubjectNumber([])
+
       setShowSubjectsClicked(true)
 
 
@@ -81,6 +84,8 @@ function MechanicalCluster() {
           setMERelatedPdf(filteredData)
           console.log(response.data)
           if(response.data.length){
+            
+            setSelectedSubjectNumber(response.data)
             window.scrollTo({
               top: 300,
               left: 0,
@@ -124,7 +129,8 @@ function MechanicalCluster() {
 
       setShowSubjectsClicked(true)
 
-
+      
+      setSelectedSubjectNumber()
 
         var myData = {Category:"ME",Sem:Sem}
         axios.post("https://notego-backend.onrender.com/api/ChemistryCycle/GetAllModules",myData)
@@ -137,6 +143,8 @@ function MechanicalCluster() {
           setMERelatedPdf(filteredData)
           console.log(response.data)
           if(response.data.length){
+            
+            setSelectedSubjectNumber(response.data)
             window.scrollTo({
               top: 300,
               left: 0,

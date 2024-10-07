@@ -96,7 +96,7 @@ function About() {
 
   {/* Made By Section */}
   <p className="mt-4 sm:mt-5 max-w-4xl text-base italic sm:text-lg md:text-xl text-[#20C030] text-center">
-    Made By: Devansh Khetan, Utkarsh Chaurasia, Rishi Raj,Utkarsh Sinha, Vinayak Rodd
+    Made By: Devansh Khetan, Utkarsh Chaurasia, Rishi Raj, Vinayak Rodd
   </p>
 </div>
 {/* Footer */}

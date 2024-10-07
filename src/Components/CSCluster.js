@@ -69,6 +69,8 @@ function CSCluster() {
 
       setShowSubjectsClicked(true)
 
+      setSelectedSubjectNumber([])
+
 
         var myData = {Category:"CS",Sem:Sem}
         axios.post("https://notego-backend.onrender.com/api/PhysicsCycle/GetAllModules",myData)
@@ -78,6 +80,7 @@ function CSCluster() {
           console.log(response.data)
 
           if(response.data.length){
+            setSelectedSubjectNumber(response.data)
             window.scrollTo({
               top: 300,
               left: 0,
@@ -118,6 +121,7 @@ function CSCluster() {
     else
     if((Sem1 || Sem2) && ChemistryCycle){
 
+      setSelectedSubjectNumber([])
       setShowSubjectsClicked(true)
 
 
@@ -129,6 +133,8 @@ function CSCluster() {
           console.log(response.data)
 
           if(response.data.length){
+            
+            setSelectedSubjectNumber(response.data)
             window.scrollTo({
               top: 300,
               left: 0,
