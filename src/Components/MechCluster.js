@@ -427,13 +427,13 @@ const [fadeIn,setFadeIn] = useState(false)
 </Link>
 </div>
 
-<div className='flex flex-col'>
+<div className='flex flex-col transition-all     duration-700 ease-in-out animate-fade-in-slide-up  '>
     <div className='text-white text-3xl mt-6 flex justify-center'>
       <span className='text-center'>ME Cluster</span>
     </div>
 
     {/* Flex container for all option buttons in a single line */}
-    <div className='flex justify-center gap-2 flex-col mx-auto'>
+    <div className='flex transition-all     duration-700 ease-in-out animate-fade-in-slide-up  justify-center gap-2 flex-col mx-auto'>
 
       <h1 className='text-white text-2xl font-instrument mx-auto mt-4'>Select Cycle</h1>
       <div className='flex flex-row gap-4' >
@@ -476,7 +476,7 @@ const [fadeIn,setFadeIn] = useState(false)
 
     
 
-    <div className="flex flex-col items-center  justify-center mt-10 ">
+    <div className="flex flex-col items-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up  justify-center mt-10 ">
       <input
         autoFocus
         
@@ -492,7 +492,7 @@ const [fadeIn,setFadeIn] = useState(false)
   ||(ShowSubjectsClicked && (( PhysicsCycle && (Sem1 || Sem2)) || (ChemistryCycle && (Sem1 || Sem2))) && MERelatedPdf.length === 0) ?
       
 
-      <div className='flex flex-row gap-2'>
+      <div className='flex transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex-row gap-2'>
           <div className='text-lg text-white font-medium mt-12' >Loading</div>
           <div className="flex items-center justify-center mt-12  space-x-2">
         
@@ -505,7 +505,7 @@ const [fadeIn,setFadeIn] = useState(false)
     
     </div>
 
-    <div className='flex flex-col self-center gap-4 mt-5'>
+    <div className='flex flex-col transition-all     duration-700 ease-in-out animate-fade-in-slide-up  self-center gap-4 mt-5'>
       <div
           onClick={ShowSelectedCycleRelatedPdf}
           className='h-10 hover:ring-4 hover:ring-blue-500 ml-[30px]  rounded-2xl hover:shadow-custom cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
@@ -631,6 +631,7 @@ const [fadeIn,setFadeIn] = useState(false)
             <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
             <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
+            <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
           </div>
         </div>
 

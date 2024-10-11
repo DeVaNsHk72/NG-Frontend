@@ -22,7 +22,7 @@ function PrivacyPolicy() {
 
   return (
     <div className="bg-black min-h-screen flex flex-col items-center text-white">
-     <div className='bg-black w-full flex justify-between items-center px-4 md:px-20 py-6 '>
+     <div className='bg-black transition-all     duration-700 ease-in-out animate-fade-in-slide-up  w-full flex justify-between items-center px-4 md:px-20 py-6 '>
         <Link to = '/' className='flex items-center'>
           <img src={Logo} alt="Logo" className='h-[30px] md:h-[40px]' />
         </Link>
@@ -61,7 +61,7 @@ function PrivacyPolicy() {
       </div>
       
       {/* Privacy Policy Section */}
-      <div className="flex flex-col items-center mt-10 md:mt-20 px-4">
+      <div className="flex transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex-col items-center mt-10 md:mt-20 px-4">
         {/* Title */}
         <h1 className="text-3xl md:text-5xl font-bold text-center">Privacy Policy</h1>
 
@@ -84,7 +84,7 @@ function PrivacyPolicy() {
 
        
       </div>
-      <div className='bg-black min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+      <div className='bg-black transition-all     duration-700 ease-in-out animate-fade-in-slide-up  min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
@@ -109,6 +109,7 @@ function PrivacyPolicy() {
             <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
             <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
+            <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
           </div>
         </div>
 

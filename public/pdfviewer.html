@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Dark Mode Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        #controls {
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            
+            background-color: #1e1e1e;
+        }
+        #controls button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #pageInfo {
+            margin-left: 10px;
+            color: #ccc;
+        }
+        #pdfContainer {
+            flex-grow: 1;
+            overflow: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        #pdfViewer {
+            background-color: #121212;
+        }
+    </style>
+    <script src="node_modules/pdfjs-dist/build/pdf.min.js"></script>
+</head>
+<body>
+    <div id="controls">
+        <button id="prev">Previous</button>
+        <button id="next">Next</button>
+        <span id="pageInfo"></span>
+    </div>
+    <div id="pdfContainer">
+        <canvas id="pdfViewer"></canvas>
+    </div>
+    <script>
+        // Set the worker source
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'node_modules/pdfjs-dist/build/pdf.worker.min.js';
+
+        // Use a proxy URL
+        const proxyUrl = '/proxy?url=';
+        const pdfUrl = 'https://uc4f6bd6639c4c0fe9a710a14220.dl.dropboxusercontent.com/cd/0/inline2/CcFSWTLjDT2d0Gt1h1eWXZ4QREczS-lViUUNLX1gBBEWDW766KL1LT6ukKAdxo8GYfj-Kf7bjgcDQmbJaCHBVJRs-uXtVw0HJgRFs0aqR9yQKue5Z2KAlx2Yvaword0kzdbqETAne9B3AGxZEM-T8-yPTrgoerkWI-7XKfazwXJiZLQu4jvbc2q6OGRBLr9oVnH8wEdj5lHh4Ml9L5t02iqJAy3yEN0vXKHOQ4OThGgTaSsUmAQRQA1Ut_lIPKNReT2mqdpDsdMPIwTNGhit7-T0JRAcG5z8m02bdSNZAw-S709HamixlYfYW8jJTCFgc-AeJCrxJm0rmpTV-XEeTTrd4nV96_oSbot7IwZtlI3kp8hTWTDqpcOpistfsUki-K8/file';
+        const url = proxyUrl + encodeURIComponent(pdfUrl);
+
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        const scale = 1.5;
+        const canvas = document.getElementById('pdfViewer');
+        const ctx = canvas.getContext('2d');
+
+        function renderPage(num) {
+            pageRendering = true;
+            pdfDoc.getPage(num).then((page) => {
+                const viewport = page.getViewport({ scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport,
+                    background: 'rgba(0,0,0,0)'
+                };
+                const renderTask = page.render(renderContext);
+
+                renderTask.promise.then(() => {
+                    pageRendering = false;
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
+            });
+
+            document.getElementById('pageInfo').textContent = `Page ${num} of ${pdfDoc.numPages}`;
+        }
+
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        function onPrevPage() {
+            if (pageNum <= 1) {
+                return;
+            }
+            pageNum--;
+            queueRenderPage(pageNum);
+        }
+
+        function onNextPage() {
+            if (pageNum >= pdfDoc.numPages) {
+                return;
+            }
+            pageNum++;
+            queueRenderPage(pageNum);
+        }
+
+        document.getElementById('prev').addEventListener('click', onPrevPage);
+        document.getElementById('next').addEventListener('click', onNextPage);
+
+        pdfjsLib.getDocument(url).promise.then((pdf) => {
+            pdfDoc = pdf;
+            renderPage(pageNum);
+        }).catch((error) => {
+            console.error('Error loading PDF:', error);
+        });
+    </script>
+</body>
+</html>

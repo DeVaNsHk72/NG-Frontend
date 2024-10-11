@@ -262,12 +262,20 @@ const handleToggle = (subjectNumber) => {
             PYQ'S
           </Link>
 
+          
+          <Link
+            to = '/lab'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            LAB
+          </Link>
+
         </nav>
       </div>
 
 
     
-      <div className="flex flex-col items-center  justify-center mt-10 ">
+      <div className="flex flex-col items-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up   justify-center mt-10 ">
       <input
         autoFocus
         
@@ -300,14 +308,14 @@ const handleToggle = (subjectNumber) => {
     </div>
 
     {SearchedRelatedPdf.length === 0?
-      <div className="text-[#20C030] text-4xl mt-10 font-instrument w-full text-center ">
+      <div className="text-[#20C030] transition-all     duration-700 ease-in-out animate-fade-in-slide-up  text-4xl mt-10 font-instrument w-full text-center ">
         Select the Cluster
       </div>
       :null
     }
 
       {SearchedRelatedPdf.length === 0 ? (
-  <div className="flex flex-wrap justify-center gap-10 mt-10">
+  <div className="flex flex-wrap justify-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up  gap-10 mt-10">
     {/* CS Cluster Card */}
     <Link
       to = '/CSCluster'
@@ -392,11 +400,15 @@ const handleToggle = (subjectNumber) => {
   <div className={`flex flex-col gap-5 mt-2  overflow-auto  transition-all duration-700 ease-in-out bg-black 
     ${SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'} `}>
     {/* Header Row */}
-    <div className={`grid grid-cols-4 gap-2 bg-[#545454] border-2 border-white rounded-xl shadow-lg p-2 justify-between w-full transition-opacity duration-700 ease-in-out `}>
+
+    {pdf.Modules.length ? 
+    <div>
+    <div className={` gap-2 bg-[#545454] border-2 border-white rounded-xl shadow-lg p-2 justify-between w-full transition-opacity duration-700 ease-in-out grid grid-cols-4 `}>
       <div className="text-white text-center md:text-left">Module No.</div>
       <div className="text-white text-center md:text-left">Module Name</div>
       <div className="text-white text-center md:text-left">PDF Link</div>
       <div className="text-white text-center md:text-left">YouTube Link</div>
+       
     </div>
 
     {/* Module Rows */}
@@ -412,17 +424,21 @@ const handleToggle = (subjectNumber) => {
               </a>
             ))}
           </div>
+
+          {module.YoutubeLink !== "" ?
           <div className="text-center md:text-left">
             <a href={module.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
               <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '35px' }}></i>
             </a>
           </div>
-
+          :null}
 
 
         </div>
       ))}
     </div>
+    </div>
+    :null}
   </div>
 :null}
 

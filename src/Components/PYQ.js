@@ -227,6 +227,7 @@ function PYQ() {
                 SearchedSubject.current.value = ""
   
             },1000)
+            
   
             setErrVal(true)
               setTimeout(()=>{
@@ -374,7 +375,7 @@ const [fadeIn,setFadeIn] = useState(false)
 
 </div>
 
-<div className='flex flex-col'>
+<div className='flex transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex-col'>
     <div className='text-white text-3xl mt-6 flex justify-center'>
       <span className='text-center'>Previous Year Questions</span>
     </div>
@@ -484,7 +485,12 @@ const [fadeIn,setFadeIn] = useState(false)
   {/* Container for Expand and Reduce Icons */}
   <div  className="flex flex-col items-center flex-none">
     
-    <span className="text-white text-sm mt-1">PdfLink</span> {/* Added Expand label */}
+    <span className="text-white text-sm mt-1">CIEPdfLink</span> {/* Added Expand label */}
+  </div>
+
+  <div  className="flex flex-col items-center flex-none">
+    
+    <span className="text-white text-sm mt-1">SEE PdfLink</span> {/* Added Expand label */}
   </div>
 
 </div>
@@ -501,6 +507,14 @@ const [fadeIn,setFadeIn] = useState(false)
   
   
   {/* Container for Expand and Reduce Icons */}
+  <div className="text-center  md:text-left">
+          
+          <a key={index} href={pdf.CIEPdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
+              <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
+          </a>
+    
+  </div>
+
   <div className="text-center  md:text-left">
           
       <a key={index} href={pdf.PYQLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
@@ -554,6 +568,7 @@ const [fadeIn,setFadeIn] = useState(false)
             <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
             <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
+            <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
           </div>
         </div>
 

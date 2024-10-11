@@ -91,7 +91,7 @@ function FrontPage() {
   return (
     <div className="bg-zinc-950 min-h-screen flex flex-col items-center">
       {/* Navbar */}
-      <div className="w-full flex justify-between items-center px-4 md:px-20 py-6 mt-4">
+      <div className="w-full transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex justify-between items-center px-4 md:px-20 py-6 mt-4">
         <div className="flex items-center">
           <img src={Logo} alt="Logo" className="h-[30px] md:h-[40px]" />
         </div>
@@ -129,7 +129,7 @@ function FrontPage() {
 
 
       {/* Main Content */}
-      <div className='flex flex-col items-center mt-[20px] md:mt-[50px] px-4'>
+      <div className='flex flex-col transition-all     duration-700 ease-in-out animate-fade-in-slide-up  items-center mt-[20px] md:mt-[50px] px-4'>
         {/* Fixed space for text */}
         <div className='text-center text-white text-2xl md:text-4xl max-w-full md:max-w-4xl font-mono mb-6 md:mb-10 h-[80px] md:h-[100px]'>
           {fullText.slice(0, index + 1).map((item, idx) => (
@@ -154,7 +154,7 @@ function FrontPage() {
         </div>
       </div>
 
-<div className='bg-white flex flex-col lg:flex-row items-center justify-center w-full mt-[50px] gap-[20px] lg:gap-[100px] px-4 py-10'>
+<div className='bg-white transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex flex-col lg:flex-row items-center justify-center w-full mt-[50px] gap-[20px] lg:gap-[100px] px-4 py-10'>
   <div className='flex flex-col justify-center w-full lg:w-[50%]'>
     <div className='text-lg md:text-2xl font-medium text-justify'>
       A learning hub where you access the best, high-quality notes crafted by professors through their students. We've collected these valuable resources and paired them with relevant YouTube tutorials to streamline your learning.
@@ -170,7 +170,7 @@ function FrontPage() {
 
 
       {/* Footer */}
-      <div className='bg-black min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+      <div className='bg-black  transition-all     duration-700 ease-in-out animate-fade-in-slide-up  min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
