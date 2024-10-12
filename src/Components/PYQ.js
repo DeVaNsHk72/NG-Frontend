@@ -475,61 +475,80 @@ const [fadeIn,setFadeIn] = useState(false)
   </div>
 </div>
 
-<div className="flex flex-row gap-2 bg-gray-900 border-2 mt-4 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
-    <div className="flex flex-row justify-between items-center w-full">
-  <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
-    Subject Name
-  </div>
+
+{/* Header for Subject Name, CIE PdfLink, and SEE PdfLink */}
+<div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+  <div className="grid grid-cols-3 space-x-20  w-full mx-auto justify-between items-center">
+    {/* Subject Name */}
+    <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
+      Subject Name
+    </div>
+
+
   
-  
-  {/* Container for Expand and Reduce Icons */}
-  <div  className="flex flex-col items-center flex-none">
-    
-    <span className="text-white text-sm mt-1">CIEPdfLink</span> {/* Added Expand label */}
+    {/* CIE PdfLink */}
+    <div className='flex justify-center items-center space-x-5 flex-row gap-3'>
+      <div className="text-center">
+        <span className="text-white text-sm">CIE1</span>
+      </div>
+
+      <div className="text-center">
+        <span className="text-white text-sm">CIE2</span>
+      </div>
+
+      <div className="text-center">
+        <span className="text-white text-sm">CIE3</span>
+      </div>
+    </div>
+
+    {/* SEE PdfLink */}
+    <div className="text-center">
+      <span className="text-white text-sm">SEE</span>
+    </div>
   </div>
-
-  <div  className="flex flex-col items-center flex-none">
-    
-    <span className="text-white text-sm mt-1">SEE PdfLink</span> {/* Added Expand label */}
-  </div>
-
-</div>
 </div>
 
-
-{CSRelatedPdf.length &&  CSRelatedPdf.map((pdf,index) => (
+{/* Loop for PDFs */}
+{CSRelatedPdf.length > 0 && CSRelatedPdf.map((pdf, index) => (
   <div key={pdf.SubjectNumber} className="transition-all duration-500 ease-in-out opacity-100 translate-y-0 animate-fade-in-slide-up mt-2">
-    <div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
-    <div className="flex flex-row justify-between items-center w-full">
-  <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
-    {pdf.SubjectName}
-  </div>
-  
-  
-  {/* Container for Expand and Reduce Icons */}
-  <div className="text-center  md:text-left">
-          
-          <a key={index} href={pdf.CIEPdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-              <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
+    <div className="flex flex-col  bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+      <div className="grid grid-cols-3 space-x-20 w-full mx-auto justify-between items-center">
+        {/* Subject Name */}
+        <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
+          {pdf.SubjectName}
+        </div>
+
+        {/* CIE PdfLink */}
+        <div className='flex justify-center items-center space-x-3 flex-row gap-2' >
+          <div className="text-center">
+            <a href={pdf.CIE1} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+              <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '40px' }}></i>
+            </a>
+          </div>
+
+          <div className="text-center">
+            <a href={pdf.CIE2} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+              <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '40px' }}></i>
+            </a>
+          </div>
+
+          <div className="text-center">
+            <a href={pdf.CIE3} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+              <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '40px' }}></i>
+            </a>
+          </div>
+        </div>
+
+        {/* SEE PdfLink */}
+        <div className="text-center">
+          <a href={pdf.PYQLink} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+            <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '40px' }}></i>
           </a>
-    
-  </div>
-
-  <div className="text-center  md:text-left">
-          
-      <a key={index} href={pdf.PYQLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-          <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
-      </a>
-
-  </div>
-  
-</div>
-
-
+        </div>
+      </div>
     </div>
   </div>
 ))}
-
 
 
 </div>

@@ -7,24 +7,6 @@ import { Link } from 'react-router-dom';
 function FrontPage() {
   
 
-  // const GotoHome = () => {
-  //   setBackToHome(1);
-  //   setAboutLink(0);
-  //   setNotesLink(0);
-  // };
-
-  // const GotoAbout = () => {
-  //   setBackToHome(0);
-  //   setAboutLink(1);
-  //   setNotesLink(0);
-  // };
-
-  // const GotoNotes = () => {
-  //   setBackToHome(0);
-  //   setAboutLink(0);
-  //   setNotesLink(true);
-  //   setBackToHome(false);
-  // };
 
   const images = [
     '/images/firsthome.svg',
@@ -91,7 +73,7 @@ function FrontPage() {
   return (
     <div className="bg-zinc-950 min-h-screen flex flex-col items-center">
       {/* Navbar */}
-      <div className="w-full transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex justify-between items-center px-4 md:px-20 py-6 mt-4">
+      <div className="w-full flex justify-between items-center px-4 md:px-20 py-6 mt-4">
         <div className="flex items-center">
           <img src={Logo} alt="Logo" className="h-[30px] md:h-[40px]" />
         </div>
@@ -151,6 +133,9 @@ function FrontPage() {
           <Link  to='/pyq' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
             <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[35px]'>PYQ's</div>
           </Link>
+          <Link  to='/lab' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
+            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[35px]'>Lab</div>
+          </Link>
         </div>
       </div>
 
@@ -195,6 +180,7 @@ function FrontPage() {
             <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
             <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
+            <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
           </div>
         </div>
 

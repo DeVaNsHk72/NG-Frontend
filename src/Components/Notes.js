@@ -240,7 +240,7 @@ const handleToggle = (subjectNumber) => {
         </div>
 
         {/* Links for larger screens & dropdown for smaller screens and iPads */}
-        <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
+        <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0 z-50`}>
           <Link
             to = '/'
             className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
@@ -275,13 +275,13 @@ const handleToggle = (subjectNumber) => {
 
 
     
-      <div className="flex flex-col items-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up   justify-center mt-10 ">
+      <div className="flex flex-col items-center   justify-center mt-10 ">
       <input
         autoFocus
         
         ref={SearchedSubject}
         onKeyUp={getSearchedSubject} 
-        className="h-[40px] w-80 max-w-[500px] placeholder:text-black border-2  rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus: ring-offset-0"
+        className="h-[40px] w-80 max-w-[500px] placeholder:text-black border-2 z-10  rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus: ring-offset-0"
         placeholder="Search Your Subject"
       />
 
@@ -308,7 +308,7 @@ const handleToggle = (subjectNumber) => {
     </div>
 
     {SearchedRelatedPdf.length === 0?
-      <div className="text-[#20C030] transition-all     duration-700 ease-in-out animate-fade-in-slide-up  text-4xl mt-10 font-instrument w-full text-center ">
+      <div className="text-[#20C030] text-4xl mt-10 font-instrument w-full text-center ">
         Select the Cluster
       </div>
       :null

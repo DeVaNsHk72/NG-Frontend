@@ -25,7 +25,7 @@ function About() {
     <div className="bg-black min-h-screen  flex flex-col items-center text-white">
 
     
-<div className='bg-black w-full flex transition-all     duration-700 ease-in-out animate-fade-in-slide-up justify-between items-center px-4 md:px-20 py-6 '>
+<div className='bg-black w-full flex  transition-all     duration-700 ease-in-out animate-fade-in-slide-up justify-between items-center px-4 md:px-20 py-6 '>
         <Link to = '/' className='flex items-center'>
           <img src={Logo} alt="Logo" className='h-[30px] md:h-[40px]' />
         </Link>
@@ -38,7 +38,7 @@ function About() {
         </div>
 
         {/* Links for larger screens & dropdown for smaller screens and iPads */}
-        <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
+        <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0 z-50`}>
           <Link
             to = '/'
             className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
@@ -63,9 +63,7 @@ function About() {
         </nav>
       </div>
       
-      {/* About Section */}
-      {/* About Section */}
-<div className="flex flex-col transition-all     duration-700 ease-in-out animate-fade-in-slide-up  items-center mt-10 md:mt-20 px-4">
+<div className="flex flex-col   z-10  transition-all     duration-700 ease-in-out animate-fade-in-slide-up items-center mt-10 md:mt-20 px-4">
   {/* Title */}
   <h1 className="text-3xl md:text-5xl font-bold text-center">About NoteGo</h1>
 
