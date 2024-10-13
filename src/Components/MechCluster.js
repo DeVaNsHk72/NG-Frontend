@@ -73,7 +73,7 @@ function MechanicalCluster() {
 
 
         var myData = {Category:"ME",Sem:Sem}
-        axios.post("https://notego-backend.onrender.com/api/PhysicsCycle/GetAllModules",myData)
+        axios.post("https://notego-backend-final.onrender.com//api/PhysicsCycle/GetAllModules",myData)
         .then(response=>{
 
           const filteredData = _.filter(response.data, (item) => item.SubjectCode !== "22ME1ESIME/22ME2ESIME");
@@ -133,7 +133,7 @@ function MechanicalCluster() {
       setSelectedSubjectNumber()
 
         var myData = {Category:"ME",Sem:Sem}
-        axios.post("https://notego-backend.onrender.com/api/ChemistryCycle/GetAllModules",myData)
+        axios.post("https://notego-backend-final.onrender.com//api/ChemistryCycle/GetAllModules",myData)
         .then(response=>{
 
           const filteredData = _.filter(response.data, (item) => item.SubjectCode !== "22ME1ESIME/22ME2ESIME");
@@ -262,13 +262,13 @@ function MechanicalCluster() {
 
           searchTerm = { SubjectName:input };
           
-          axios.post("https://notego-backend.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
+          axios.post("https://notego-backend-final.onrender.com//api/GetPhysicsCycleSubjects", searchTerm)
           .then(response1 => {
             const physicsCycleData = response1.data;
 
             // Second API call for Chemistry Cycle
             setTimeout(() => {
-              axios.post("https://notego-backend.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
+              axios.post("https://notego-backend-final.onrender.com//api/GetChemistryCycleSubjects", searchTerm)
                 .then(response2 => {
                   const chemistryCycleData = response2.data;
     

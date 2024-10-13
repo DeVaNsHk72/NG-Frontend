@@ -77,7 +77,7 @@ function CSCluster() {
 
 
         var myData = {Category:"CS",Sem:Sem}
-        axios.post("https://notego-backend.onrender.com/api/PhysicsCycle/GetAllModules",myData)
+        axios.post("https://notego-backend-final.onrender.com//api/PhysicsCycle/GetAllModules",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
@@ -131,7 +131,7 @@ function CSCluster() {
 
 
         var myData = {Category:"CS",Sem:Sem}
-        axios.post("https://notego-backend.onrender.com/api/ChemistryCycle/GetAllModules",myData)
+        axios.post("https://notego-backend-final.onrender.com//api/ChemistryCycle/GetAllModules",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
@@ -255,13 +255,13 @@ function CSCluster() {
 
         
           
-          axios.post("https://notego-backend.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
+          axios.post("https://notego-backend-final.onrender.com//api/GetPhysicsCycleSubjects", searchTerm)
           .then(response1 => {
             const physicsCycleData = response1.data;
 
             // Second API call for Chemistry Cycle
             setTimeout(() => {
-              axios.post("https://notego-backend.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
+              axios.post("https://notego-backend-final.onrender.com//api/GetChemistryCycleSubjects", searchTerm)
                 .then(response2 => {
                   const chemistryCycleData = response2.data;
     

@@ -19,7 +19,7 @@ function Lab() {
         })
 
 
-        axios.post("https://notego-backend.onrender.com/api/LabVideos")
+        axios.post("https://notego-backend-final.onrender.com//api/LabVideos")
         .then(response=>{
 
             console.log(response.data)
