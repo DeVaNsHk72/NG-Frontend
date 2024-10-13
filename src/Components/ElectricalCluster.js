@@ -79,7 +79,6 @@ function ElectricalCluster() {
           const filteredData = _.filter(response.data, (item) => item.SubjectCode !== "22EC1ESIEL/22EC2ESIEL");
 
           setECERelatedPdf(filteredData)
-          console.log(filteredData)
 
           if(response.data.length){
             
@@ -136,7 +135,6 @@ function ElectricalCluster() {
           const filteredData = _.filter(response.data, (item) => item.SubjectCode !== "22EC1ESIEL/22EC2ESIEL");
 
           setECERelatedPdf(filteredData)
-          console.log(response.data)
           if(response.data.length){
             
             setSelectedSubjectNumber(response.data)

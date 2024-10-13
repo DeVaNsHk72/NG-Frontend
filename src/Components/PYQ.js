@@ -73,7 +73,7 @@ function PYQ() {
 
       setShowSubjectsClicked(true)
 
-        var myData = {Category:"CS",Sem:Sem}
+        var myData = {Category:"",Sem:Sem}
         axios.post("https://notego-backend-final.onrender.com/api/PhysicsCycle/GetAllModules",myData)
         .then(response=>{
 
@@ -125,7 +125,7 @@ function PYQ() {
       setShowSubjectsClicked(true)
 
 
-        var myData = {Category:"CS",Sem:Sem}
+        var myData = {Category:"",Sem:Sem}
         axios.post("https://notego-backend-final.onrender.com/api/ChemistryCycle/GetAllModules",myData)
         .then(response=>{
 

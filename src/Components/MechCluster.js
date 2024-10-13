@@ -79,10 +79,6 @@ function MechanicalCluster() {
           const filteredData = _.filter(response.data, (item) => item.SubjectCode !== "22ME1ESIME/22ME2ESIME");
 
           setMERelatedPdf(filteredData)
-          console.log(response.data)
-
-          setMERelatedPdf(filteredData)
-          console.log(response.data)
           if(response.data.length){
             
             setSelectedSubjectNumber(response.data)
@@ -139,9 +135,6 @@ function MechanicalCluster() {
           const filteredData = _.filter(response.data, (item) => item.SubjectCode !== "22ME1ESIME/22ME2ESIME");
 
           setMERelatedPdf(filteredData)
-          console.log(response.data)
-          setMERelatedPdf(filteredData)
-          console.log(response.data)
           if(response.data.length){
             
             setSelectedSubjectNumber(response.data)
