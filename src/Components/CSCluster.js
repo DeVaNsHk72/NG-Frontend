@@ -269,7 +269,7 @@ function CSCluster() {
                   const combinedData = [...physicsCycleData, ...chemistryCycleData];
     
                   // Remove duplicates based on SubjectNumber
-                  const uniqueData = _.uniqBy(combinedData, (item) => `${item.SubjectName}-${item.code}`);
+                  const uniqueData = _.uniqBy(combinedData, (item) => `${item.SubjectName}`);
 
                 
                   const filteredData = _.filter(uniqueData, (item) => item.ClusterCategory !== 'EC' &&  item.ClusterCategory !== 'ME');
@@ -468,7 +468,7 @@ const [fadeIn,setFadeIn] = useState(false)
 
 <div className="flex flex-col items-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up   justify-center mt-10 ">
       <input
-        autoFocus
+        
 
         ref={SearchedSubject}
         onKeyUp={getSearchedSubject} 
@@ -536,15 +536,18 @@ const [fadeIn,setFadeIn] = useState(false)
       
 
 {CSRelatedPdf.map((pdf) => (
+
+  <div>
+    {pdf.Modules.length ? 
   <div key={pdf.SubjectNumber} className={` transition-all  duration-700 ease-in-out transform bg-black  ` } >
     <div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
-    <div className="flex flex-row justify-between items-center w-full bg-black">
+    <div  onClick={()=>handleToggle(pdf.SubjectNumber)} className="flex flex-row justify-between items-center w-full bg-black cursor-pointer">
   <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
     {pdf.SubjectName}
   </div>
   
   {/* Container for Expand and Reduce Icons */}
-  <div  onClick={()=>handleToggle(pdf.SubjectNumber)} className="flex flex-col items-center flex-none">
+  <div  className="flex flex-col items-center flex-none">
     {/* Down Arrow (Expand) */}
     <i
       className={` text-3xl text-white cursor-pointer ${SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'bi bi-arrow-up-circle-fill' : 'bi-arrow-down-circle-fill'} `}
@@ -572,18 +575,26 @@ const [fadeIn,setFadeIn] = useState(false)
         <div key={module.ModuleNum} className="grid grid-cols-4 gap-2 bg-black border-2 border-white rounded-2xl shadow-lg p-2 w-full mx-auto">
           <div className="text-white text-center ml-4 md:text-left">{module.ModuleNum}</div>
           <div className="text-white text-center md:text-left">{module.ModuleName}</div>
-          <div className="text-center  md:text-left">
+          <div className="text-center flex flex-row flex-wrap gap-1 md:text-left">
             {module.PdfLink.map((pdfLink, index) => (
+              <div>
+                {module.PdfLink !== "" ?
               <a key={index} href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
                 <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
-              </a>
+              </a>:null}
+              </div>
             ))}
           </div>
-          <div className="text-center md:text-left">
+
+          <div className="text-center flex flex-row flex-wrap gap-1 md:text-left">
+            <div>
+          {module.YoutubeLink !== "" ?
             <a href={module.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
               <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '35px' }}></i>
-            </a>
+            </a>:null}
+            </div>
           </div>
+          
         </div>
       ))}
     </div>
@@ -592,13 +603,14 @@ const [fadeIn,setFadeIn] = useState(false)
 
 
     </div>
+  </div>:null}
   </div>
 ))}
 
 </div>:null}
 
 </div>
-<div className='bg-black min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+<div className='bg-black min-w-full h-auto lg:h-[480px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
@@ -615,7 +627,7 @@ const [fadeIn,setFadeIn] = useState(false)
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Quick Links</h1>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-[20px]'>
             <Link to = '/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
             <Link to = '/Contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
             {/* <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1> */}
@@ -629,7 +641,7 @@ const [fadeIn,setFadeIn] = useState(false)
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[200px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Navigate To</h1>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-[20px]'>
             <Link to = '/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
             <Link to = '/ECCluster'  className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
             <Link to = '/MECluster'  className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>

@@ -25,7 +25,7 @@ function About() {
     <div className="bg-black min-h-screen  flex flex-col items-center text-white">
 
     
-<div className='bg-black w-full flex  transition-all     duration-700 ease-in-out animate-fade-in-slide-up justify-between items-center px-4 md:px-20 py-6 '>
+<div className='bg-black w-full flex  transition-all  z-50   duration-700 ease-in-out animate-fade-in-slide-up justify-between items-center px-4 md:px-20 py-6 '>
         <Link to = '/' className='flex items-center'>
           <img src={Logo} alt="Logo" className='h-[30px] md:h-[40px]' />
         </Link>
@@ -58,6 +58,13 @@ function About() {
             className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
           >
             PYQ'S
+          </Link>
+
+          <Link
+            to = '/lab'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            Lab
           </Link>
 
         </nav>
@@ -102,7 +109,7 @@ function About() {
   </p>
 </div>
 {/* Footer */}
-<div className='bg-black min-w-full h-auto lg:h-[380px] transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+<div className='bg-black min-w-full h-auto lg:h-[480px] transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
@@ -119,7 +126,7 @@ function About() {
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Quick Links</h1>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-[20px]'>
             <Link to = '/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
             <Link to = '/Contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
             {/* <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1> */}
@@ -133,7 +140,7 @@ function About() {
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[200px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Navigate To</h1>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-[20px]'>
             <Link to = '/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
             <Link to = '/ECCluster'  className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
             <Link to = '/MECluster'  className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>

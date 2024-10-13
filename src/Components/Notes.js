@@ -277,7 +277,7 @@ const handleToggle = (subjectNumber) => {
     
       <div className="flex flex-col items-center   justify-center mt-10 ">
       <input
-        autoFocus
+        
         
         ref={SearchedSubject}
         onKeyUp={getSearchedSubject} 
@@ -319,37 +319,28 @@ const handleToggle = (subjectNumber) => {
     {/* CS Cluster Card */}
     <Link
       to = '/CSCluster'
-      className="flex shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px]  p-4"
+      className="flex shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px]  p-4"
      >
-      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  mt-2">CS Cluster</h1>
-      <div className="text-center text-lg text-white">CSE</div>
-      <div className="text-center text-lg text-white">CSE (IOT)</div>
-      <div className="text-center text-lg text-white">CSE (DS)</div>
-      <div className="text-center text-lg text-white">CSE (BS)</div>
-      <div className="text-center text-lg text-white">AI/ML</div>
-      <div className="text-center text-lg text-white">AI/DS</div>
+      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">CS Cluster</h1>
+      
     </Link>
 
     {/* ECE Cluster Card */}
     <Link
       to = '/ECCluster'
-      className="flex  shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
+      className="flex  shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
     >
-      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  mt-2">EE Cluster</h1>
-      <div className="text-center text-lg text-white">ECE</div>
-      <div className="text-center text-lg text-white">EEE</div>
+      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">EE Cluster</h1>
+     
     </Link>
 
     {/* ME Cluster Card */}
     <Link
       to = '/MECluster'
-      className="flex shadow-custom-gray  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[300px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
+      className="flex shadow-custom-gray  hover:ring-4 justify-center items-center hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
     >
-      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  mt-2">Mech. Cluster</h1>
-      <div className="text-center text-lg text-white">ME</div>
-      <div className="text-center text-lg text-white">ASE</div>
-      <div className="text-center text-lg text-white">CHEM</div>
-      <div className="text-center text-lg text-white">IME</div>
+      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">Mech. Cluster</h1>
+      
     </Link>
   </div>
 ) : (
@@ -378,15 +369,18 @@ const handleToggle = (subjectNumber) => {
 </div>
 
 {SearchedRelatedPdf.map((pdf) => (
+  
+  <div>
+    {pdf.Modules.length ? 
   <div key={pdf.SubjectNumber} className={` transition-all  duration-700 ease-in-out  transform bg-white  ` } >
     <div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
-    <div className="flex flex-row justify-between items-center w-full bg-black">
+    <div onClick={()=>handleToggle(pdf.SubjectNumber)}  className="flex flex-row justify-between items-center w-full bg-black cursor-pointer">
   <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
     {pdf.SubjectName}
   </div>
   
   {/* Container for Expand and Reduce Icons */}
-  <div  onClick={()=>handleToggle(pdf.SubjectNumber)} className="flex flex-col items-center flex-none">
+  <div  className="flex flex-col items-center flex-none">
     {/* Down Arrow (Expand) */}
     <i
       className={` text-3xl text-white cursor-pointer ${SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'bi bi-arrow-up-circle-fill' : 'bi-arrow-down-circle-fill'} `}
@@ -417,21 +411,27 @@ const handleToggle = (subjectNumber) => {
         <div key={module.ModuleNum} className="grid grid-cols-4 gap-2 bg-black border-2 border-white rounded-2xl shadow-lg p-2 w-full mx-auto">
           <div className="text-white text-center ml-4 md:text-left">{module.ModuleNum}</div>
           <div className="text-white text-center md:text-left">{module.ModuleName}</div>
-          <div className="text-center  md:text-left">
+
+          <div className="text-center flex flex-row flex-wrap gap-1 md:text-left">
             {module.PdfLink.map((pdfLink, index) => (
+              <div>
+                {module.PdfLink !== "" ?
               <a key={index} href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
                 <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
-              </a>
+              </a>:null}
+              </div>
             ))}
           </div>
 
+          <div className="text-center flex flex-row flex-wrap gap-1 md:text-left">
+            <div>
           {module.YoutubeLink !== "" ?
-          <div className="text-center md:text-left">
             <a href={module.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
               <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '35px' }}></i>
-            </a>
+            </a>:null}
+            </div>
           </div>
-          :null}
+          
 
 
         </div>
@@ -444,6 +444,7 @@ const handleToggle = (subjectNumber) => {
 
 
     </div>
+  </div>:null}
   </div>
 ))}
 

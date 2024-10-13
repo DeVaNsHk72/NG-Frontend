@@ -73,11 +73,11 @@ function FrontPage() {
   return (
     <div className="bg-zinc-950 min-h-screen flex flex-col items-center">
       {/* Navbar */}
-      <div className="w-full flex justify-between items-center px-4 md:px-20 py-6 mt-4">
+      <div className="w-full flex justify-between z-50 items-center px-4 md:px-20 py-6 mt-4">
         <div className="flex items-center">
           <img src={Logo} alt="Logo" className="h-[30px] md:h-[40px]" />
         </div>
-
+ 
         {/* Hamburger Icon for mobile and iPads */}
         <div className="lg:hidden flex">
           <button onClick={toggleMenu} className="text-white text-3xl focus:outline-none">
@@ -86,13 +86,8 @@ function FrontPage() {
         </div>
 
         {/* Links for larger screens & dropdown for smaller screens and iPads */}
-        <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
-          <Link
-            to = '/'
-            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
-          >
-            Home
-          </Link>
+        <nav className={`flex-col z-10 lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
+          
 
           <Link
             to = '/about'
@@ -105,6 +100,20 @@ function FrontPage() {
             className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
           >
             Notes
+          </Link>
+
+          <Link
+            to = '/pyq'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            PYQ'S
+          </Link>
+
+          <Link
+            to = '/lab'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            Lab
           </Link>
         </nav>
       </div>
@@ -134,7 +143,7 @@ function FrontPage() {
             <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[35px]'>PYQ's</div>
           </Link>
           <Link  to='/lab' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
-            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[35px]'>Lab</div>
+            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[30px] md:ml-[40px]'>Lab</div>
           </Link>
         </div>
       </div>
@@ -155,7 +164,7 @@ function FrontPage() {
 
 
       {/* Footer */}
-      <div className='bg-black  transition-all     duration-700 ease-in-out animate-fade-in-slide-up  min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+      <div className='bg-black  transition-all     duration-700 ease-in-out animate-fade-in-slide-up  min-w-full h-auto lg:h-[480px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
@@ -172,7 +181,7 @@ function FrontPage() {
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Quick Links</h1>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-[20px]'>
             <Link to = '/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
             <Link to = '/Contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
             {/* <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1> */}
@@ -186,7 +195,7 @@ function FrontPage() {
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[200px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Navigate To</h1>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-[20px]  '>
             <Link to = '/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
             <Link to = '/ECCluster'  className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
             <Link to = '/MECluster'  className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>

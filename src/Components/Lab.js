@@ -19,7 +19,7 @@ function Lab() {
         })
 
 
-        axios.post("https://notego-backend-final.onrender.com//api/LabVideos")
+        axios.post("https://notego-backend-final.onrender.com/api/LabVideos")
         .then(response=>{
 
             console.log(response.data)
@@ -110,7 +110,7 @@ function Lab() {
 
 </div>
 
-<div className='bg-black min-w-full h-auto lg:h-[380px] transition-all duration-500 ease-in-out  animate-fade-in-slide-up  flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+<div className='bg-black min-w-full h-auto lg:h-[480px] transition-all duration-500 ease-in-out  animate-fade-in-slide-up  flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[20px] lg:mt-[50px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
@@ -121,7 +121,7 @@ function Lab() {
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Quick Links</h1>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-[20px]'>
             <Link to = '/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
             {/* <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1> */}
             <Link to='/Contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
@@ -135,7 +135,7 @@ function Lab() {
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[200px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Navigate To</h1>
-          <div className='flex flex-col'>
+          <div className='flex flex-col gap-[20px]'>
             <Link to='/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
             <Link to='/ECCluster' className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
             <Link to='/MECluster' className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>
