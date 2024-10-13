@@ -61,13 +61,13 @@ function Notes() {
   
             searchTerm = { SubjectName:input };
             
-            axios.post("https://notego-backend-final.onrender.com//api/GetPhysicsCycleSubjects", searchTerm)
+            axios.post("https://notego-backend-final.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
             .then(response1 => {
               const physicsCycleData = response1.data;
   
               // Second API call for Chemistry Cycle
               setTimeout(() => {
-                axios.post("https://notego-backend-final.onrender.com//api/GetChemistryCycleSubjects", searchTerm)
+                axios.post("https://notego-backend-final.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
                   .then(response2 => {
                     const chemistryCycleData = response2.data;
 
