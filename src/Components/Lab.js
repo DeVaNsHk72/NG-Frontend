@@ -1,40 +1,43 @@
 
+
+
+
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../logo.svg';
-import axios from 'axios';
+import { PulseLoader } from 'react-spinners';
 
 
 function Lab() {
 
+
     const [LabRelatedPdf,setLabRelatedPdf] = useState([])
+    const [smoothEffect,setsmoothEffect] = useState(false)
 
     useEffect(()=>{
 
         window.scroll({
+
             top:0,
             behavior:'smooth'
         })
 
-
         axios.post("https://notego-backend-final.onrender.com/api/LabVideos")
         .then(response=>{
 
-            console.log(response.data)
+    
           setLabRelatedPdf(response.data)
-        
+          
         })
         .catch(err=>{
-
           console.log(err)
         })
 
-
+        setsmoothEffect(true)
     },[])
-
-
 
   return (
     <div className='bg-black min-h-screen gap-[20px] flex flex-col  '>
@@ -60,50 +63,57 @@ function Lab() {
 
 </div>
 
-<div className='flex flex-col'>
 
-<div className={`mt-5  transition-all   duration-700 ease-in-out  animate-fade-in-slide-up  `}>
+{LabRelatedPdf.length === 0 ?
+  <div className='flex self-center flex-row gap-2'>
+          <div className='text-lg text-white font-medium mt-12' >Loading</div>
+          <div className="flex items-center justify-center mt-12  space-x-2">
 
-<h1 className='text-white font-semibold text-center text-2xl' >Lab Resources</h1>
-<div className="flex flex-row gap-2 bg-gray-900 border-2 mt-4 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
-    <div className="flex flex-row justify-between items-center w-full">
-  <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
-    Subject Name
-  </div>
-  
-
-
-  
-  {/* Container for Expand and Reduce Icons */}
-  <div  className="flex flex-col items-center flex-none">
-    
-    <span className="text-white mt-1">YoutubeLink</span> {/* Added Expand label */}
-  </div>
-
-</div>
-</div>
-
-{LabRelatedPdf.map((pdf,index)=>
-  <div key={pdf.index} className="transition-all duration-500 ease-in-out opacity-100 translate-y-0 animate-fade-in-slide-up mt-2">
-    <div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
-    <div className="flex flex-row justify-between items-center w-full">
-  <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
-    {pdf.SubjectName}
-  </div>
-
-  {/* Container for Expand and Reduce Icons */}
-  <div className="text-center md:text-left">
-            <a href={pdf.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-              <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '35px' }}></i>
-            </a>
+            <PulseLoader color="#36d7b7" size={10} margin={2} />
           </div>
-</div>
+  </div>:null
+}
 
 
+<div className='flex flex-col'>
+<div className={`mt-5 transition-all duration-700 ease-in-out animate-fade-in-slide-up ${smoothEffect ? 'opacity-100':'opacity-0'}`}>
+
+  <h1 className='text-white font-semibold text-center text-2xl'>Lab Resources</h1>
+  
+  {/* Header Row */}
+  <div className="flex flex-row gap-2 bg-gray-900 border-2 mt-4 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+    <div className="w-full flex justify-between">
+      <div className="text-white text-center font-medium flex-1" style={{ maxWidth: '350px' }}>
+        Subject Name
+      </div>
+      <div className="text-white font-medium text-center flex-1">
+        YoutubeLink
+      </div>
     </div>
   </div>
-  )}
+
+  {/* Map over PDFs */}
+  {LabRelatedPdf.map((pdf, index) => (
+    <div key={index} className={`transition-all duration-500 ease-in-out animate-fade-in-slide-up mt-2 ${smoothEffect ? 'opacity-100' : 'opacity-0'}`}>
+      <div className="flex flex-row justify-between bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+        
+        {/* Subject Name */}
+        <div className="text-white text-center text-xl flex-1 mt-4" style={{ maxWidth: '360px' }}>
+          {pdf.SubjectName}
+        </div>
+        
+        {/* Youtube Link */}
+        <div className="text-center flex-1">
+          <a href={pdf.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
+            <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '45px' }}></i>
+          </a>
+        </div>
+      </div>
+    </div>
+   
+  ))}
 </div>
+
 
 
 <div className='mb-[200px]'>
@@ -118,7 +128,18 @@ function Lab() {
             YouTube tutorials for fast and efficient learning.
           </div>
         </div>
-
+{/* 
+        <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
+          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Quick Links</h1>
+          <div className='flex flex-col'>
+            <Link to='/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
+            <Link to='/contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
+            <Link to='/privacy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
+            <Link to='/tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
+            <Link to='/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
+            <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
+          </div>
+        </div> */}
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Quick Links</h1>
           <div className='flex flex-col gap-[20px]'>
@@ -128,8 +149,9 @@ function Lab() {
             <Link to = '/PrivacyPolicy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
             <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
-            <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
-            <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
+            <Link to = '/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
+            <Link to = '/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
+
           </div>
         </div>
 

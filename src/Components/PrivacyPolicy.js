@@ -22,7 +22,7 @@ function PrivacyPolicy() {
 
   return (
     <div className="bg-black min-h-screen flex flex-col items-center text-white">
-     <div className='bg-black transition-all     duration-700 ease-in-out animate-fade-in-slide-up  w-full flex justify-between items-center px-4 md:px-20 py-6 '>
+     <div className='bg-black transition-all   z-50  duration-700 ease-in-out animate-fade-in-slide-up  w-full flex justify-between items-center px-4 md:px-20 py-6 '>
         <Link to = '/' className='flex items-center'>
           <img src={Logo} alt="Logo" className='h-[30px] md:h-[40px]' />
         </Link>
@@ -57,11 +57,18 @@ function PrivacyPolicy() {
             PYQ'S
           </Link>
 
+          <Link
+            to = '/lab'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            Lab
+          </Link>
+
         </nav>
       </div>
       
       {/* Privacy Policy Section */}
-      <div className="flex transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex-col items-center mt-10 md:mt-20 px-4">
+      <div className="flex transition-all  z-10   duration-700 ease-in-out animate-fade-in-slide-up  flex-col items-center mt-10 md:mt-20 px-4">
         {/* Title */}
         <h1 className="text-3xl md:text-5xl font-bold text-center">Privacy Policy</h1>
 

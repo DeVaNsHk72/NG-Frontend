@@ -135,7 +135,7 @@ function CSCluster() {
         .then(response=>{
 
           setCSRelatedPdf(response.data)
-          console.log(response.data)
+          
 
           if(response.data.length){
             
@@ -541,21 +541,22 @@ const [fadeIn,setFadeIn] = useState(false)
     {pdf.Modules.length ? 
   <div key={pdf.SubjectNumber} className={` transition-all  duration-700 ease-in-out transform bg-black  ` } >
     <div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
-    <div  onClick={()=>handleToggle(pdf.SubjectNumber)} className="flex flex-row justify-between items-center w-full bg-black cursor-pointer">
-  <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
+    <div onClick={() => handleToggle(pdf.SubjectNumber)} className="flex cursor-pointer flex-row justify-between items-center w-full bg-black">
+  {/* SubjectName container */}
+  <div className="text-white text-center flex-1 break-words overflow-hidden whitespace-normal max-w-[250px] md:max-w-[350px]" style={{ minHeight: '3.5rem' }}>
     {pdf.SubjectName}
   </div>
-  
+
   {/* Container for Expand and Reduce Icons */}
-  <div  className="flex flex-col items-center flex-none">
-    {/* Down Arrow (Expand) */}
+  <div className="flex flex-col items-center flex-none">
     <i
-      className={` text-3xl text-white cursor-pointer ${SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'bi bi-arrow-up-circle-fill' : 'bi-arrow-down-circle-fill'} `}
+      className={`text-3xl text-white cursor-pointer ${
+        SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)
+          ? 'bi bi-arrow-up-circle-fill'
+          : 'bi-arrow-down-circle-fill'
+      }`}
     ></i>
-    
   </div>
-
-
 </div>
 
 {SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber) ?
@@ -575,7 +576,8 @@ const [fadeIn,setFadeIn] = useState(false)
         <div key={module.ModuleNum} className="grid grid-cols-4 gap-2 bg-black border-2 border-white rounded-2xl shadow-lg p-2 w-full mx-auto">
           <div className="text-white text-center ml-4 md:text-left">{module.ModuleNum}</div>
           <div className="text-white text-center md:text-left">{module.ModuleName}</div>
-          <div className="text-center flex flex-row flex-wrap gap-1 md:text-left">
+
+          <div className="text-center flex flex-row ml-[12px] flex-wrap gap-1 md:text-left">
             {module.PdfLink.map((pdfLink, index) => (
               <div>
                 {module.PdfLink !== "" ?
@@ -586,7 +588,7 @@ const [fadeIn,setFadeIn] = useState(false)
             ))}
           </div>
 
-          <div className="text-center flex flex-row flex-wrap gap-1 md:text-left">
+          <div className="text-center flex flex-row ml-[20px] flex-wrap gap-1 md:text-left">
             <div>
           {module.YoutubeLink !== "" ?
             <a href={module.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
