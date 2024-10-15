@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
-import Logo from '../logo.svg';
+import Logo from '../logo-fim.svg';
 import Teamwork from '../Union.svg';
 import { Link } from 'react-router-dom';
 
@@ -75,7 +75,7 @@ function FrontPage() {
       {/* Navbar */}
       <div className="w-full flex justify-between z-50 items-center px-4 md:px-20 py-6 mt-4">
         <div className="flex items-center">
-          <img src={Logo} alt="Logo" className="h-[30px] md:h-[40px]" />
+          <img src={Logo} alt="Logo" className="h-[45px] md:h-[55px]" />
         </div>
  
         {/* Hamburger Icon for mobile and iPads */}

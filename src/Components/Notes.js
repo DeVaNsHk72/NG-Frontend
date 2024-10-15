@@ -314,7 +314,17 @@ const handleToggle = (subjectNumber) => {
       :null
     }
 
+    {SearchedRelatedPdf.length === 0 ?
+
+      <div className="text-[#20C030] text-3xl mt-10 font-instrument w-full text-center ">
+        1st Year 
+      </div>:null}
+    
+      
+
       {SearchedRelatedPdf.length === 0 ? (
+      
+      
   <div className="flex flex-wrap justify-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up  gap-10 mt-10">
     {/* CS Cluster Card */}
     <Link
@@ -342,8 +352,60 @@ const handleToggle = (subjectNumber) => {
       <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">Mech. Cluster</h1>
       
     </Link>
+
+    <div className="text-[#20C030] text-3xl mt-10 font-instrument w-full text-center ">
+        2nd Year 
+      </div>
+     {/* CS Cluster Card */}
+     <a
+      href=''
+      className="flex shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px]  p-4"
+     >
+      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">CSE</h1>
+      
+    </a>
+
+    {/* ECE Cluster Card */}
+    <a
+      href=''
+      className="flex  shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
+    >
+      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">ISE</h1>
+     
+    </a>
+
+
+    <a
+      href=''
+      className="flex shadow-custom-gray  hover:ring-4 justify-center items-center hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
+    >
+      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">ECE</h1>
+      
+    </a>
+
+    {/* ME Cluster Card */}
+    <a
+      href=''
+      className="flex shadow-custom-gray  hover:ring-4 justify-center items-center hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
+    >
+      <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">ETE</h1>
+      
+    </a>
   </div>
-) : (
+
+        
+  
+
+  
+) 
+
+
+
+
+
+
+
+: (
   <div className={`mt-8  transition-all     duration-700 ease-in-out animate-fade-in-slide-up   ${fadeIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5' } `}>
 
 

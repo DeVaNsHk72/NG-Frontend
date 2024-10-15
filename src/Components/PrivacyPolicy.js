@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Logo from '../logo.svg';
+import Logo from '../logo-fim.svg';
 import { Link } from 'react-router-dom';
 
 function PrivacyPolicy() {

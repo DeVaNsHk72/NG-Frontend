@@ -4,17 +4,14 @@
 
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../logo.svg';
-import { PulseLoader } from 'react-spinners';
 
 
 function Lab() {
 
 
-    const [LabRelatedPdf,setLabRelatedPdf] = useState([])
     const [smoothEffect,setsmoothEffect] = useState(false)
 
     useEffect(()=>{
@@ -25,16 +22,16 @@ function Lab() {
             behavior:'smooth'
         })
 
-        axios.post("https://notego-backend-final.onrender.com/api/LabVideos")
-        .then(response=>{
+        // axios.post("https://notego-backend-final.onrender.com/api/LabVideos")
+        // .then(response=>{
 
     
-          setLabRelatedPdf(response.data)
+        //   setLabRelatedPdf(response.data)
           
-        })
-        .catch(err=>{
-          console.log(err)
-        })
+        // })
+        // .catch(err=>{
+        //   console.log(err)
+        // })
 
         setsmoothEffect(true)
     },[])
@@ -63,7 +60,7 @@ function Lab() {
 
 </div>
 
-
+{/* 
 {LabRelatedPdf.length === 0 ?
   <div className='flex self-center flex-row gap-2'>
           <div className='text-lg text-white font-medium mt-12' >Loading</div>
@@ -72,7 +69,7 @@ function Lab() {
             <PulseLoader color="#36d7b7" size={10} margin={2} />
           </div>
   </div>:null
-}
+} */}
 
 
 <div className='flex flex-col'>
@@ -93,25 +90,39 @@ function Lab() {
   </div>
 
   {/* Map over PDFs */}
-  {LabRelatedPdf.map((pdf, index) => (
-    <div key={index} className={`transition-all duration-500 ease-in-out animate-fade-in-slide-up mt-2 ${smoothEffect ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`transition-all duration-500 ease-in-out animate-fade-in-slide-up mt-2 ${smoothEffect ? 'opacity-100' : 'opacity-0'}`}>
       <div className="flex flex-row justify-between bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
         
         {/* Subject Name */}
         <div className="text-white text-center text-xl flex-1 mt-4" style={{ maxWidth: '360px' }}>
-          {pdf.SubjectName}
+          Chemistry
         </div>
         
         {/* Youtube Link */}
         <div className="text-center flex-1">
-          <a href={pdf.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
+          <a href={'https://www.youtube.com/watch?v=YhvQk7QpLHw&list=PL4hfmGq9GFwN0NLcqinGgVcfguUSN5-n8'} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
+            <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '45px' }}></i>
+          </a>
+        </div>
+      </div>
+
+      <div className="flex flex-row justify-between bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+        
+        {/* Subject Name */}
+        <div className="text-white text-center text-xl flex-1 mt-4" style={{ maxWidth: '360px' }}>
+          Physics
+        </div>
+        
+        {/* Youtube Link */}
+        <div className="text-center flex-1">
+          <a href={'https://www.youtube.com/watch?v=3n0Q_uOmSpQ&list=PLDNGR469DqdwGSorRf6xtqEvgxzzfeNmT'} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
             <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '45px' }}></i>
           </a>
         </div>
       </div>
     </div>
    
-  ))}
+  
 </div>
 
 
