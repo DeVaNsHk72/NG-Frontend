@@ -61,13 +61,13 @@ function Notes() {
   
             searchTerm = { SubjectName:input };
             
-            axios.post("https://notego-backend-final.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
+            axios.post("https://ng-backend-kr21.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
             .then(response1 => {
               const physicsCycleData = response1.data;
   
               // Second API call for Chemistry Cycle
               setTimeout(() => {
-                axios.post("https://notego-backend-final.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
+                axios.post("https://ng-backend-kr21.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
                   .then(response2 => {
                     const chemistryCycleData = response2.data;
 
@@ -358,7 +358,7 @@ const handleToggle = (subjectNumber) => {
       </div>
      {/* CS Cluster Card */}
      <a
-      href=''
+      href={''} target="_blank" rel="noopener noreferrer"
       className="flex shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px]  p-4"
      >
       <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">CSE</h1>
@@ -367,7 +367,7 @@ const handleToggle = (subjectNumber) => {
 
     {/* ECE Cluster Card */}
     <a
-      href=''
+      href={'https://drive.google.com/drive/folders/1agrFHTu8PbXMVdN2IDgNZ1LylhFV3oyG?usp=sharing'} target="_blank" rel="noopener noreferrer"
       className="flex  shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">ISE</h1>
@@ -376,7 +376,7 @@ const handleToggle = (subjectNumber) => {
 
 
     <a
-      href=''
+      href={''} target="_blank" rel="noopener noreferrer"
       className="flex shadow-custom-gray  hover:ring-4 justify-center items-center hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">ECE</h1>
@@ -385,7 +385,7 @@ const handleToggle = (subjectNumber) => {
 
     {/* ME Cluster Card */}
     <a
-      href=''
+      href={'https://drive.google.com/drive/folders/1EhLhccLuCmKzExF_GGacTMsIw6jUG-ZY'} target="_blank" rel="noopener noreferrer"
       className="flex shadow-custom-gray  hover:ring-4 justify-center items-center hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4"
     >
       <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]  ">ETE</h1>

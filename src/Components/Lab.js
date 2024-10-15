@@ -22,7 +22,7 @@ function Lab() {
             behavior:'smooth'
         })
 
-        // axios.post("https://notego-backend-final.onrender.com/api/LabVideos")
+        // axios.post("https://ng-backend-kr21.onrender.com/api/LabVideos")
         // .then(response=>{
 
     
