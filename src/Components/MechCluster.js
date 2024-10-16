@@ -475,8 +475,8 @@ const [fadeIn,setFadeIn] = useState(false)
   ||(ShowSubjectsClicked && (( PhysicsCycle && (Sem1 || Sem2)) || (ChemistryCycle && (Sem1 || Sem2))) && MERelatedPdf.length === 0) ?
       
 
-      <div className='flex flex-row gap-2 mb-5'>
-          <div className='text-lg text-white font-medium mt-2' >Loading</div>
+      <div className='flex flex-row gap-2 mb-5 transition-all     duration-700 ease-in-out animate-fade-in-slide-up'>
+          <div className='text-lg text-white font-medium ' >Loading</div>
           <div className="flex items-center justify-center   space-x-2">
         
             <PulseLoader color="#36d7b7" size={10} margin={2} />
@@ -625,8 +625,8 @@ const [fadeIn,setFadeIn] = useState(false)
           </div>
 
           <div className='text-sm italic md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
-            Disclaimer: While the notes on this website are curated to assist in your studies, we advise students to 
-            first refer to their professor's notes and resources. This is particularly important for theory-intensive
+          Disclaimer: While the notes and videos on this website are curated to assist in your studies, we advise students to 
+            first refer to their professor's notes and lectures. This is particularly important for theory-intensive
             subjects.
           </div>
         </div>
