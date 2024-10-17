@@ -81,7 +81,7 @@ function CSCluster() {
         .then(response=>{
 
           setCSRelatedPdf(response.data)
-          console.log(response.data)
+         
 
           if(response.data.length){
             setSelectedSubjectNumber(response.data)
@@ -388,8 +388,6 @@ const handleToggle = (subjectNumber) => {
     }
   });
 
-  console.log("Toggled subject:", subjectNumber);
-  console.log(SelectedSubjectNumber);
 };
 
 

@@ -379,8 +379,6 @@ const handleToggle = (subjectNumber) => {
     }
   });
 
-  console.log("Toggled subject:", subjectNumber);
-  console.log(SelectedSubjectNumber);
 };
 
 

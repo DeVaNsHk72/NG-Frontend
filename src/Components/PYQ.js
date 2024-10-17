@@ -78,7 +78,7 @@ function PYQ() {
         .then(response=>{
 
           setCSRelatedPdf(response.data)
-          console.log(response.data)
+         
 
           if(response.data.length){
             window.scrollTo({
@@ -130,7 +130,7 @@ function PYQ() {
         .then(response=>{
 
           setCSRelatedPdf(response.data)
-          console.log(response.data)
+        
 
           if(response.data.length){
             window.scrollTo({

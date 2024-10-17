@@ -136,8 +136,6 @@ function Notes() {
             }
         });
 
-        console.log("Toggled subject:", subjectNumber);
-        console.log(SelectedSubjectNumber);
     };
 
     return (
