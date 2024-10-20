@@ -87,7 +87,7 @@ function PYQ2ndYear() {
 
       const myData = {Branch:Branch,Sem:3}
 
-        axios.post("http://localhost:9000/api/getBranchRelatedPYQ",myData)
+        axios.post("https://notego-backend-final.onrender.com/api/getBranchRelatedPYQ",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
@@ -155,7 +155,7 @@ function PYQ2ndYear() {
 
       const myData = {Branch:Branch,Sem:4}
 
-        axios.post("http://localhost:9000/api/getBranchRelatedPYQ",myData)
+        axios.post("https://notego-backend-final.onrender.com/api/getBranchRelatedPYQ",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
@@ -639,18 +639,7 @@ function PYQ2ndYear() {
             YouTube tutorials for fast and efficient learning.
           </div>
         </div>
-{/* 
-        <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
-          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Quick Links</h1>
-          <div className='flex flex-col'>
-            <Link to='/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
-            <Link to='/contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
-            <Link to='/privacy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
-            <Link to='/tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
-            <Link to='/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
-            <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
-          </div>
-        </div> */}
+
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[20px] lg:mt-[60px]'>Quick Links</h1>
           <div className='flex flex-col gap-[20px]'>
