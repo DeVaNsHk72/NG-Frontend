@@ -377,7 +377,7 @@ const [fadeIn,setFadeIn] = useState(false)
 
 <div className='flex transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex-col'>
     <div className='text-white text-3xl mt-6 flex justify-center'>
-      <span className='text-center'>Previous Year Questions</span>
+      <span className='text-center'>1st Year Previous Year Questions</span>
     </div>
 
     {/* Flex container for all option buttons in a single line */}

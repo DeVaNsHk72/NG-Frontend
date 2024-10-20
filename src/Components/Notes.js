@@ -158,7 +158,7 @@ function Notes() {
                 <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0 z-50`}>
                     <Link to='/' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>Home</Link>
                     <Link to='/about' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>About</Link>
-                    <Link to='/pyq' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>PYQ'S</Link>
+                    <Link to='/pyq' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>1st Year PYQ'S</Link>
                     <Link to='/pyq2' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>2nd Year PYQ'S</Link>
                     <Link to='/lab' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>LAB</Link>
                 </nav>
