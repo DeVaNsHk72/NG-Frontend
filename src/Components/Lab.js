@@ -131,7 +131,7 @@ function Lab() {
 
 </div>
 
-<div className='bg-black min-w-full h-auto lg:h-[480px] transition-all duration-500 ease-in-out  animate-fade-in-slide-up  flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+<div className='bg-black min-w-full h-auto lg:h-[580px] transition-all duration-500 ease-in-out  animate-fade-in-slide-up  flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[20px] lg:mt-[50px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
@@ -162,6 +162,7 @@ function Lab() {
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
             <Link to = '/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
             <Link to = '/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
+            <Link to = '/pyq2' className='text-white text-base md:text-lg cursor-pointer'>2ndYearPYQ</Link>
 
           </div>
         </div>

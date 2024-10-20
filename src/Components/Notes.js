@@ -159,6 +159,7 @@ function Notes() {
                     <Link to='/' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>Home</Link>
                     <Link to='/about' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>About</Link>
                     <Link to='/pyq' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>PYQ'S</Link>
+                    <Link to='/pyq2' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>2nd Year PYQ'S</Link>
                     <Link to='/lab' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>LAB</Link>
                 </nav>
             </div>
@@ -186,56 +187,90 @@ function Notes() {
             </div>
 
             {SearchedRelatedPdf.length === 0 ?
-                <div className="text-[#20C030] text-4xl mt-10 font-instrument w-full text-center ">
+                <div className="text-[#20C030] text-4xl mt-10 font-instrument w-full text-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up ">
                     Select the Cluster
                 </div>
                 : null
             }
 
             {SearchedRelatedPdf.length === 0 ?
-                <div className="text-[#20C030] text-3xl mt-10 font-instrument w-full text-center ">
+                <div className="text-[#20C030] text-3xl mt-10 font-instrument w-full text-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up">
                     1st Year
                 </div> : null}
 
             {SearchedRelatedPdf.length === 0 ? (
-                <div className="flex flex-wrap justify-center transition-all duration-700 ease-in-out animate-fade-in-slide-up gap-10 mt-10">
-                    {/* CS Cluster Card */}
-                    <Link to='/CSCluster' className="flex shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] p-4">
-                        <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]">CS Cluster</h1>
-                    </Link>
-
-                    {/* ECE Cluster Card */}
-                    <Link to='/ECCluster' className="flex shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4">
-                        <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]">EE Cluster</h1>
-                    </Link>
-
-                    {/* ME Cluster Card */}
-                    <Link to='/MECluster' className="flex shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4">
-                        <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]">Mech. Cluster</h1>
-                    </Link>
-
-                    <div className="text-[#20C030] text-3xl mt-10 font-instrument w-full text-center ">
-                        2nd Year
-                    </div>
-                    {/* CS Cluster Card */}
-                    <a href={'https://drive.google.com/drive/folders/1dchMSugBDO4tYN1Dx6muivqOJy8_a4Ye?usp=drive_link'} target="_blank" rel="noopener noreferrer" className="flex shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] p-4">
-                        <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]">CSE</h1>
-                    </a>
-
-                    {/* ECE Cluster Card */}
-                    <a href={'https://drive.google.com/drive/folders/1agrFHTu8PbXMVdN2IDgNZ1LylhFV3oyG?usp=sharing'} target="_blank" rel="noopener noreferrer" className="flex shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4">
-                        <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]">ISE</h1>
-                    </a>
-
-                    <a href={'https://drive.google.com/drive/folders/1HLO0TwQAK31M0-28V7HlGB1PkdCVq05N?usp=sharing'} target="_blank" rel="noopener noreferrer" className="flex shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4">
-                        <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]">ECE</h1>
-                    </a>
-
-                    {/* ME Cluster Card */}
-                    <a href={'https://drive.google.com/drive/folders/1EhLhccLuCmKzExF_GGacTMsIw6jUG-ZY'} target="_blank" rel="noopener noreferrer" className="flex shadow-custom-gray hover:ring-4 justify-center items-center hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom p-4">
-                        <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]">ETE</h1>
-                    </a>
-                </div>
+             <div className={`flex flex-row transition-all flex-wrap  justify-center items-center  duration-100 ease-in-out  animate-fade-in-slide-up  gap-10 mt-10  `}>
+    
+            
+             {/* CS Cluster Card */}
+             <Link
+               to = '/CSCluster'
+               className="flex shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px]  "
+              >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">CS Cluster</h1>
+             
+             </Link>
+         
+             {/* ECE Cluster Card */}
+             <Link
+               to = '/ECCluster'
+               className="flex  shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom "
+             >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">EE Cluster</h1>
+            
+             </Link>
+         
+             {/* ME Cluster Card */}
+             <Link
+               to = '/MECluster'
+               className="flex shadow-custom-gray  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom "
+             >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">Mech. Cluster</h1>
+            
+             </Link>
+         
+           
+         
+             <div className="text-[#20C030] transition-all  flex-wrap duration-100 ease-in-out  animate-fade-in-slide-up text-4xl font-instrument mt-10 w-full text-center ">
+                 2nd Year
+               </div>
+         
+         
+               <Link
+               to = '/CSE2'
+               className="flex shadow-custom-gray  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom "
+             >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">CSE</h1>
+            
+             </Link>
+         
+             {/* CS Cluster Card */}
+             <Link
+               to = '/ISE2'
+               className="flex shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px]  "
+              >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">ISE</h1>
+             
+             </Link>
+         
+             {/* ECE Cluster Card */}
+             <Link
+               to = '/ECE2'
+               className="flex  shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom "
+             >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">ECE</h1>
+            
+             </Link>
+         
+             {/* ME Cluster Card */}
+             <Link
+               to = '/ETE2'
+               className="flex shadow-custom-gray  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom "
+             >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">ETE</h1>
+            
+             </Link>
+           </div>
             ) : (
 
                 <div className={`mt-8 transition-all duration-700 ease-in-out animate-fade-in-slide-up ${fadeIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
@@ -289,16 +324,16 @@ function Notes() {
                                                                     <div className="text-white text-center ml-4 md:text-left">{module.ModuleNum}</div>
                                                                     <div className="text-white text-center md:text-left">{module.ModuleName}</div>
 
-                                                                    <div className="text-center flex flex-row ml-[10px] flex-wrap gap-1 md:text-left">
-                                                                        {module.PdfLink.map((pdfLink, index) => (
+                                                                    <div className="grid grid-cols-2 gap-4 md:grid-cols-2 text-center md:text-left ml-[12px]">
+                                                                            {module.PdfLink.map((pdfLink, index) => (
                                                                             <div key={index}>
                                                                                 {module.PdfLink !== "" ?
                                                                                     <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
                                                                                         <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
                                                                                     </a> : null}
-                                                                            </div>
+                                                                              </div>
                                                                         ))}
-                                                                    </div>
+</div>
 
                                                                     <div className="text-center flex flex-row ml-[20px] flex-wrap gap-1 md:text-left">
                                                                         <div>

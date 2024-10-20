@@ -428,7 +428,7 @@ const [fadeIn,setFadeIn] = useState(false)
     {/* Flex container for all option buttons in a single line */}
     <div className='flex transition-all     duration-700 ease-in-out animate-fade-in-slide-up  justify-center gap-2 flex-col mx-auto'>
       
-      <h1 className='text-white text-2xl font-instrument mx-auto mt-4'>Select Cycle</h1>
+      <h1 className='text-[#20C030] text-2xl font-instrument mx-auto mt-4'>Select Cycle</h1>
       <div className='flex flex-row gap-4'>
         <div
             onClick={SelectPhysicsCycle}
@@ -446,7 +446,7 @@ const [fadeIn,setFadeIn] = useState(false)
       </div>
     
       
-      <h1 className='text-white text-2xl font-instrument mx-auto mt-4'>Select Semester</h1>
+      <h1 className='text-[#20C030] text-2xl font-instrument mx-auto mt-4'>Select Semester</h1>
       <div className='flex flex-row gap-4'>
         <div
             onClick={() => SelectSem(1)}
@@ -574,37 +574,43 @@ const [fadeIn,setFadeIn] = useState(false)
       <div className="text-white text-center md:text-left">PDF Link</div>
       <div className="text-white text-center md:text-left">YouTube Link</div>
     </div>
-
-    {/* Module Rows */}
-    <div className={`flex flex-col gap-5   transition-all  duration-700 ease-in-out transform ${ SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
+  
+    <div className={`flex flex-col   transition-all  duration-700 ease-in-out transform ${ SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
       {pdf.Modules.map((module) => (
         <div key={module.ModuleNum} className="grid grid-cols-4 gap-2 bg-black border-2 border-white rounded-2xl shadow-lg p-2 w-full mx-auto">
           <div className="text-white text-center ml-4 md:text-left">{module.ModuleNum}</div>
           <div className="text-white text-center md:text-left">{module.ModuleName}</div>
 
-          <div className="text-center flex flex-row ml-[12px] flex-wrap gap-1 md:text-left">
-            {module.PdfLink.map((pdfLink, index) => (
-              <div>
-                {module.PdfLink !== "" ?
-              <a key={index} href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-                <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
-              </a>:null}
-              </div>
-            ))}
-          </div>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-2 text-center md:text-left ml-[12px]">
+  {module.PdfLink.map((pdfLink, index) => (
+    <div key={index}>
+      {pdfLink !== "" ? (
+        <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
+          <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
+        </a>
+      ) : null}
+    </div>
+  ))}
+</div>
 
-          <div className="text-center flex flex-row ml-[20px] flex-wrap gap-1 md:text-left">
-            <div>
+          <div className="text-center  flex flex-row ml-[20px] flex-wrap gap-1 md:text-left">
+          <div >
           {module.YoutubeLink !== "" ?
             <a href={module.YoutubeLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
               <i className="bi bi-youtube text-[#FF3131]" style={{ fontSize: '35px' }}></i>
             </a>:null}
-            </div>
           </div>
+          </div>
+
           
+
+
+
         </div>
       ))}
     </div>
+
+
   </div>
 :null}
 
@@ -617,7 +623,7 @@ const [fadeIn,setFadeIn] = useState(false)
 </div>:null}
 
 </div>
-<div className='bg-black min-w-full h-auto lg:h-[480px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+<div className='bg-black min-w-full h-auto lg:h-[580px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
@@ -643,6 +649,7 @@ const [fadeIn,setFadeIn] = useState(false)
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
             <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
             <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
+            <Link to = '/pyq2' className='text-white text-base md:text-lg cursor-pointer'>2ndYearPYQ</Link>
           </div>
         </div>
 

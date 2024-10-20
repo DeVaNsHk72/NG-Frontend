@@ -190,6 +190,7 @@ function FrontPage() {
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
             <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
             <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
+            <Link to = '/pyq2' className='text-white text-base md:text-lg cursor-pointer'>2ndYearPYQ</Link>
           </div>
         </div>
 

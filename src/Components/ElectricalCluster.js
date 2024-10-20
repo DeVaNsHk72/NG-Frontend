@@ -425,7 +425,7 @@ const [fadeIn,setFadeIn] = useState(false)
     {/* Flex container for all option buttons in a single line */}
     <div className='flex transition-all     duration-700 ease-in-out animate-fade-in-slide-up  justify-center gap-2 flex-col mx-auto'>
 
-      <h1 className='text-white text-2xl font-instrument mx-auto mt-4'>Select Cycle</h1>
+      <h1 className='text-[#20C030] text-2xl font-instrument mx-auto mt-4'>Select Cycle</h1>
       <div className='flex flex-row gap-4' >
         <div
             onClick={SelectPhysicsCycle}
@@ -442,7 +442,7 @@ const [fadeIn,setFadeIn] = useState(false)
         </div>
       </div>
 
-      <h1 className='text-white text-2xl font-instrument mx-auto mt-4'>Select Semester</h1>
+      <h1 className='text-[#20C030] text-2xl font-instrument mx-auto mt-4'>Select Semester</h1>
       <div className='flex flex-row gap-4' >
         <div
             onClick={() => SelectSem(1)}
@@ -578,16 +578,17 @@ const [fadeIn,setFadeIn] = useState(false)
           <div className="text-white text-center ml-4 md:text-left">{module.ModuleNum}</div>
           <div className="text-white text-center md:text-left">{module.ModuleName}</div>
 
-          <div className="text-center flex flex-row ml-[12px] flex-wrap gap-1 md:text-left">
-            {module.PdfLink.map((pdfLink, index) => (
-              <div>
-                {module.PdfLink !== "" ?
-              <a key={index} href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
-                <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
-              </a>:null}
-              </div>
-            ))}
-          </div>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-2 text-center md:text-left ml-[12px]">
+  {module.PdfLink.map((pdfLink, index) => (
+    <div key={index}>
+      {pdfLink !== "" ? (
+        <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
+          <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
+        </a>
+      ) : null}
+    </div>
+  ))}
+</div>
 
           <div className="text-center flex flex-row ml-[20px] flex-wrap gap-1 md:text-left">
             <div>
