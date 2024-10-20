@@ -38,7 +38,6 @@ function PYQ2ndYear() {
 
     setShowSubjectsClicked(false)
 
-    SearchedSubject.current.value = ""
 
     if(val === 3){
         setSem3(1)
@@ -59,7 +58,6 @@ function PYQ2ndYear() {
 
     setShowSubjectsClicked(false)
 
-    SearchedSubject.current.value = ""
 
     setCSRelatedPdf([])
 
@@ -218,12 +216,7 @@ function PYQ2ndYear() {
 
     debounce(() => {
 
-      setSem3(false)
-      setSem4(false)
-      setCSE(false)
-      setECE(false)
-      setISE(false)
-      setETE(false)
+     
 
       const input = SearchedSubject.current.value
 
@@ -251,19 +244,38 @@ function PYQ2ndYear() {
   
           }
 
-        else {
+        else if((Sem3 || Sem4) && (CSE || ECE || ISE || ETE)){
 
           var searchTerm
-
+          var Branch = ""
+          var Sem
           setCSRelatedPdf([])
 
-          searchTerm = { SubjectName:input };
+          if(Sem3)
+            Sem = 3
+          else
+          if(Sem4)
+            Sem = 4
+
+          if(CSE)
+            Branch = "CSE"
+          else
+          if(ECE)
+            Branch = "ECE"
+          else
+          if(ISE)
+            Branch = "ISE"
+          else
+          if(ETE)
+            Branch = "ETE"
+
+          searchTerm = { Branch:Branch,Sem:Sem };
 
           
 
             // Second API call for Chemistry Cycle
             setTimeout(() => {
-              axios.post("https://ng-backend-kr21.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
+              axios.post("https://ng-backend-kr21.onrender.com/api/getBranchRelatedPYQ", searchTerm)
                 .then(response2 => {
 
                   // Combine both API results
@@ -319,6 +331,10 @@ function PYQ2ndYear() {
                 // 2-second delay
               
 
+        }
+        else{
+          alert("Select the Semester and Branch")
+          SearchedSubject.current.value = ""
         }
       }
     }, 200), // 200 ms delay
@@ -473,24 +489,17 @@ function PYQ2ndYear() {
     </div>
 
    
+    <div className="flex flex-col items-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up   justify-center mt-10 ">
 
-<div className="flex flex-col items-center  justify-center mt-10 ">
-      <input
-        
-        ref={SearchedSubject}
-        onKeyUp={getSearchedSubject} 
-        className="h-[40px] w-80 max-w-[500px] placeholder:text-black border-2 border-black rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#20C030] focus:border-transparent"
-        placeholder="Search Your Subject"
-      />
-
-{!isFirstRender.current &&  SearchedSubject.current.value.length !== 0 && CSRelatedPdf.length === 0
   
-  ||(ShowSubjectsClicked && (( CSE && (Sem3 || Sem4)) || (ISE && (Sem3 || Sem4)) || (ECE && (Sem3 || Sem4)) || (ETE && (Sem3 || Sem4))) && CSRelatedPdf.length === 0) ?
+{!isFirstRender.current &&   CSRelatedPdf.length === 0
+  
+&& ShowSubjectsClicked && (( CSE && (Sem3 || Sem4)) || (ISE && (Sem3 || Sem4)) || (ECE && (Sem3 || Sem4)) || (ETE && (Sem3 || Sem4))) && CSRelatedPdf.length === 0 ?
       
 
-      <div className='flex flex-row gap-2'>
-          <div className='text-lg text-white font-medium mt-12' >Loading</div>
-          <div className="flex items-center justify-center mt-12  space-x-2">
+      <div className='flex flex-row gap-2 mb-5 transition-all     duration-700 ease-in-out animate-fade-in-slide-up'>
+          <div className='text-lg text-white font-medium ' >Loading</div>
+          <div className="flex items-center justify-center   space-x-2">
         
             <PulseLoader color="#36d7b7" size={10} margin={2} />
           </div>
@@ -498,21 +507,28 @@ function PYQ2ndYear() {
    :null
   
     }
+ <div className='flex flex-col transition-all duration-700 ease-in-out animate-fade-in-slide-up self-center gap-2 mt-0.5'>  {/* Reduced margin-top from 1 to 0.5 */}
+  <div
+    onClick={ShowSelectedCycleRelatedPdf}
+    className='h-10 hover:ring-4 hover:ring-blue-500 ml-[30px] rounded-2xl hover:shadow-custom cursor-pointer w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center'
+  >
+    <div className='text-white font-medium text-lg sm:text-xl'>Show Subjects</div>
+  </div>
+
+  <div className={`flex text-white justify-center items-center duration-1000 transition-all border-red-600 ease-in-out border-2 rounded-full mt-1 h-[40px] w-80 shadow-custom self-center font-medium ${ErrVal ? 'opacity-100':'opacity-0'}`}> {/* Reduced margin-top from 3 to 1 */}
+    Search Results: Subject Not Found
+  </div>
+
+</div>
+
+  
+  
+
     
     </div>
 
-    <div className='flex flex-col self-center gap-4 mt-5'>
-      <div
-          onClick={ShowSelectedCycleRelatedPdf}
-          className={`h-10 hover:ring-4 hover:ring-blue-500 ml-[30px]  rounded-2xl hover:shadow-custom cursor-pointer  w-64 max-w-md sm:max-w-xs bg-[#20C030] flex items-center justify-center   `}
-      >
-          <div className='text-white font-medium text-lg sm:text-xl'>Show Subjects</div>
-      </div>
 
-      <div className={`flex text-white justify-center items-center duration-1000 transition-all border-red-600  ease-in-out border-2 rounded-full mt-10 h-[40px] w-80 shadow-custom self-center font-medium ${ErrVal ? 'opacity-100':'opacity-0'}`}>
-        Search Results: Subject Not Found
-      </div>
-    </div>
+  
 
 
 {CSRelatedPdf.length ?

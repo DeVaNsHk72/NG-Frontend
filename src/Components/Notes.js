@@ -198,7 +198,17 @@ function Notes() {
                     1st Year
                 </div> : null}
 
+                {SearchedRelatedPdf.length === 0 ?
+                 <Link
+                 to = '/pyq'
+                 className="flex self-center mt-5 shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px]  "
+                >
+                 <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">PYQ'S</h1>
+               
+               </Link>: null}
+
             {SearchedRelatedPdf.length === 0 ? (
+            <div>
              <div className={`flex flex-row transition-all flex-wrap  justify-center items-center  duration-100 ease-in-out  animate-fade-in-slide-up  gap-10 mt-10  `}>
     
             
@@ -228,13 +238,28 @@ function Notes() {
                <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">Mech. Cluster</h1>
             
              </Link>
+            </div>
          
-           
-         
-             <div className="text-[#20C030] transition-all  flex-wrap duration-100 ease-in-out  animate-fade-in-slide-up text-4xl font-instrument mt-10 w-full text-center ">
-                 2nd Year
+
+            {SearchedRelatedPdf.length === 0 ?
+                <div className="text-[#20C030] self-center text-3xl mt-14 font-instrument w-full text-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up">
+                    2nd Year
+                </div> : null}
+
+                {SearchedRelatedPdf.length === 0 ?
+                 <div className="flex justify-center items-center">
+                 <Link
+                   to='/pyq2'
+                   className="flex self-center mt-5 shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] mx-auto"
+                 >
+                   <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]">PYQ'S</h1>
+                 </Link>
                </div>
-         
+               : null}
+            
+            <div className={`flex flex-row transition-all flex-wrap  justify-center items-center  duration-100 ease-in-out  animate-fade-in-slide-up  gap-10 mt-10  `}>
+    
+            
          
                <Link
                to = '/CSE2'
@@ -271,6 +296,7 @@ function Notes() {
             
              </Link>
            </div>
+        </div>
             ) : (
 
                 <div className={`mt-8 transition-all duration-700 ease-in-out animate-fade-in-slide-up ${fadeIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
