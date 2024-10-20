@@ -87,7 +87,7 @@ function PYQ2ndYear() {
 
       const myData = {Branch:Branch,Sem:3}
 
-        axios.post("https://notego-backend-final.onrender.com/api/getBranchRelatedPYQ",myData)
+        axios.post("https://ng-backend-kr21.onrender.com/api/getBranchRelatedPYQ",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
@@ -155,7 +155,7 @@ function PYQ2ndYear() {
 
       const myData = {Branch:Branch,Sem:4}
 
-        axios.post("https://notego-backend-final.onrender.com/api/getBranchRelatedPYQ",myData)
+        axios.post("https://ng-backend-kr21.onrender.com/api/getBranchRelatedPYQ",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
@@ -263,7 +263,7 @@ function PYQ2ndYear() {
 
             // Second API call for Chemistry Cycle
             setTimeout(() => {
-              axios.post("https://notego-backend-final.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
+              axios.post("https://ng-backend-kr21.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
                 .then(response2 => {
 
                   // Combine both API results
