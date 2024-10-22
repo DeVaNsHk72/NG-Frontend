@@ -408,7 +408,7 @@ const [fadeIn,setFadeIn] = useState(false)
   className='h-12 hover:ring-2 hover:ring-blue-500  cursor-pointer relative min-w-xs max-w-xs bg-[#20C030] rounded-full flex items-center justify-between px-4 mx-1 my-4'
 >
   <div className="text-white text-base mx-4 sm:text-lg md:text-xl font-medium">
-    Back To Notes
+    Back to Cluster
   </div>
   <div className="bg-[#20C030] w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ">
     <i className="bi bi-caret-left-fill text-white text-sm sm:text-base md:text-lg"></i>

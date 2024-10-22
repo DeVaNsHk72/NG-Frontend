@@ -359,7 +359,7 @@ function ISE2() {
   className='h-12 hover:ring-4 hover:ring-blue-500  cursor-pointer relative min-w-xs max-w-xs bg-[#20C030] rounded-full flex items-center justify-between px-4 mx-1 my-4'
 >
   <div className="text-white text-base mx-4 sm:text-lg md:text-xl font-medium">
-    Back To Notes
+    Back to Cluster
   </div>
   <div className="bg-[#20C030] w-10 h-10 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ">
     <i className="bi bi-caret-left-fill text-white text-sm sm:text-base md:text-lg"></i>
@@ -404,7 +404,7 @@ function ISE2() {
   ||(ShowSubjectsClicked && (Sem3 || Sem4) && ISERelatedPdf.length === 0) ?
       
 
-      <div className='flex flex-row gap-2'>
+      <div className='flex flex-row gap-2transition-all     duration-700 ease-in-out animate-fade-in-slide-up '>
           <div className='text-lg text-white font-medium mt-12' >Loading</div>
           <div className="flex items-center justify-center mt-12  space-x-2">
         

@@ -142,12 +142,15 @@ function FrontPage() {
         </div>
 
         {/* Buttons */}
-        <div className='flex flex-row gap-5 md:gap-10 lg:gap-20 mt-8'>
+        {/* <div className='flex flex-row gap-5 md:gap-10 lg:gap-20 mt-8'>
           <Link  to = '/notes' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
             <div className='text-black font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[30px]'>Notes</div>
           </Link>
           <Link  to='/pyq' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
-            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[40px]'>PYQ's</div>
+            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[40px]'>1st YearPYQ's</div>
+          </Link>
+          <Link  to='/pyq2' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
+            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[40px]'>2nd Year PYQ's</div>
           </Link>
 
 
@@ -156,10 +159,29 @@ function FrontPage() {
           <Link  to='/lab' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
             <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[30px] md:ml-[40px]'>Lab</div>
           </Link>
-        </div>
-      </div>
+        </div> */}
+       <div className='flex flex-row gap-5 md:gap-10 lg:gap-20 mt-8'>
+  <Link to='/notes' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
+    <div className='text-black font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[30px]'>Notes</div>
+  </Link>
 
-<div className='bg-white transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex flex-col lg:flex-row items-center justify-center w-full mt-[50px] gap-[20px] lg:gap-[100px] px-4 py-10'>
+  <div className="relative group z-50"> {/* Increased z-index */}
+    <div className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300 flex items-center justify-center'>
+      <div className='text-white font-semibold text-xl md:text-2xl mt-[2px]'>PYQ's</div>
+      <i className="bi bi-chevron-down text-white ml-2"></i> {/* Add an icon for better indication */}
+    </div>
+    <div className="absolute hidden group-hover:block bg-zinc-800 border border-gray-200 rounded-md mt-2 shadow-lg transition-all duration-300 ease-in-out z-50"> {/* Added z-index and kept position */}
+      <Link to='/pyq' className='block px-4 py-2 text-white hover:bg-green-400 hover:text-black transition duration-300'>1st Year PYQ's</Link>
+      <Link to='/pyq2' className='block px-4 py-2 text-white hover:bg-green-400 hover:text-black transition duration-300'>2nd Year PYQ's</Link>
+    </div>
+  </div>
+
+  <Link to='/lab' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
+    <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[30px] md:ml-[40px]'>Lab</div>
+  </Link>
+</div>
+
+<div className='bg-white transition-all z-10 duration-700 ease-in-out animate-fade-in-slide-up flex flex-col lg:flex-row items-center justify-center w-full mt-[50px] gap-[20px] lg:gap-[100px] px-4 py-10'>
   <div className='flex flex-col justify-center w-full lg:w-[50%]'>
     <div className='text-lg md:text-2xl font-medium text-justify'>
       A learning hub where you access the best, high-quality notes crafted by professors through their students. We've collected these valuable resources and paired them with relevant YouTube tutorials to streamline your learning.
@@ -171,6 +193,8 @@ function FrontPage() {
   <div className='flex justify-center lg:justify-end w-full lg:w-[50%] mt-[20px] lg:mt-0'>
     <img src={Teamwork} className='w-[250px] md:w-[350px] lg:w-[400px] h-[250px] md:h-[350px] lg:h-[400px]' />
   </div>
+</div>
+
 </div>
 
 
@@ -199,9 +223,10 @@ function FrontPage() {
             <Link to = '/PrivacyPolicy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
             <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
-            <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
+            <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>1st Year PYQ</Link>
+            <Link to='/pyq2' className='text-white text-base md:text-lg cursor-pointer'>2nd Year PYQ</Link>
             <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
-            <Link to = '/pyq2' className='text-white text-base md:text-lg cursor-pointer'>2ndYearPYQ</Link>
+        
           </div>
         </div>
 
