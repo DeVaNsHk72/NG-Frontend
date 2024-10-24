@@ -1,5 +1,3 @@
-
-
 import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import _ from 'lodash';

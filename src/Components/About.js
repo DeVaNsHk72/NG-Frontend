@@ -101,11 +101,11 @@ function About() {
 
   {/* Made By Section */}
   <p className="mt-4 sm:mt-5 max-w-4xl text-base italic sm:text-lg md:text-xl text-[#20C030] text-center">
-    Made By: Devansh Khetan, Utkarsh Chaurasia, Rishi Raj, Vinayak Rodd, Utkarsh Sinha
+    Made By: Vinayak Rod, Devansh Khetan, Utkarsh Chaurasia, Rishi Raj, Utkarsh Sinha
   </p>
 
   <p className="mt-4 sm:mt-5 max-w-4xl text-base italic sm:text-lg md:text-xl text-[#20C030] text-center">
-    Contributors: Nihal Ahmed, Rishika , Aakanshya Agarwal, Punarnava Viswanath
+    Contributors: Nihal Ahamed, Rishika Nayana Shakthi, Ashmit Gupta, Aakanshya Agarwal, Punarnava Viswanath
   </p>
 </div>
 {/* Footer */}
