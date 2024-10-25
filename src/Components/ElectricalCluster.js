@@ -72,7 +72,7 @@ function ElectricalCluster() {
 
 
         var myData = {Category:"EC",Sem:Sem}
-        axios.post("https://ng-backend-kr21.onrender.com/api/PhysicsCycle/GetAllModules",myData)
+        axios.post("https://ng-backend-y7a6.onrender.com/api/PhysicsCycle/GetAllModules",myData)
         .then(response=>{
 
           
@@ -129,7 +129,7 @@ function ElectricalCluster() {
 
 
         var myData = {Category:"CS",Sem:Sem}
-        axios.post("https://ng-backend-kr21.onrender.com/api/ChemistryCycle/GetAllModules",myData)
+        axios.post("https://ng-backend-y7a6.onrender.com/api/ChemistryCycle/GetAllModules",myData)
         .then(response=>{
 
           const filteredData = _.filter(response.data, (item) => item.SubjectCode !== "22EC1ESIEL/22EC2ESIEL");
@@ -256,13 +256,13 @@ function ElectricalCluster() {
 
           searchTerm = { SubjectName:input };
           
-          axios.post("https://ng-backend-kr21.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
+          axios.post("https://ng-backend-y7a6.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
           .then(response1 => {
             const physicsCycleData = response1.data;
 
             // Second API call for Chemistry Cycle
             setTimeout(() => {
-              axios.post("https://ng-backend-kr21.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
+              axios.post("https://ng-backend-y7a6.onrender.com/api/GetChemistryCycleSubjects", searchTerm)
                 .then(response2 => {
                   const chemistryCycleData = response2.data;
     

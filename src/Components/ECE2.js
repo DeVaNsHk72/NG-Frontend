@@ -44,7 +44,7 @@ function ECE2() {
    
 
           var myData = {Sem:3,Branch:"ECE"}
-          axios.post("https://ng-backend-kr21.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-backend-y7a6.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
 
             setECERelatedPdf(response.data)
@@ -100,7 +100,7 @@ function ECE2() {
   
   
           var myData = {Sem:4,Branch:"ECE"}
-          axios.post("https://ng-backend-kr21.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-backend-y7a6.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
   
             setECERelatedPdf(response.data)
@@ -213,28 +213,26 @@ function ECE2() {
   
           }
   
-          else {
+          else
+          {
   
             var searchTerm
     
             setECERelatedPdf([])
   
-            searchTerm = { SubjectName:input };
+            searchTerm = { SubjectName:input,Branch:"ECE" };
   
           
             
-         
+
   
               // Second API call for Chemistry Cycle
               setTimeout(() => {
-                axios.post("https://ng-backend-kr21.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
+                axios.post("https://ng-backend-y7a6.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
                   .then(response2 => {
-      
-      
-                    // Remove duplicates based on SubjectNumber
+
                     const filteredData = response2.data
-  
-  
+
                     if(filteredData.length){
                       window.scrollTo({
                         top: 300,

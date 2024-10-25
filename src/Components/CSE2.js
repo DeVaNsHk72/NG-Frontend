@@ -43,7 +43,7 @@ function CSE2() {
    
 
           var myData = {Sem:3,Branch:"CSE"}
-          axios.post("https://ng-backend-kr21.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-backend-y7a6.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
 
             setCSRelatedPdf(response.data)
@@ -99,7 +99,7 @@ function CSE2() {
   
   
           var myData = {Sem:4,Branch:"CSE"}
-          axios.post("https://ng-backend-kr21.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-backend-y7a6.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
   
             setCSRelatedPdf(response.data)
@@ -212,7 +212,8 @@ function CSE2() {
   
           }
   
-          else {
+          else
+          {
   
             var searchTerm
     
@@ -226,7 +227,7 @@ function CSE2() {
   
               // Second API call for Chemistry Cycle
               setTimeout(() => {
-                axios.post("https://ng-backend-kr21.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
+                axios.post("https://ng-backend-y7a6.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
                   .then(response2 => {
 
                     const filteredData = response2.data
@@ -287,7 +288,6 @@ function CSE2() {
       }, 200), // 200 ms delay
       []
     );
-
     useEffect(() => {
       return () => {
         handleInputChange.cancel(); // Cancel any pending debounced calls on unmount

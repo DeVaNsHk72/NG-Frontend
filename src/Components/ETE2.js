@@ -44,7 +44,7 @@ function ETE2() {
    
 
           var myData = {Sem:3,Branch:"ETE"}
-          axios.post("https://ng-backend-kr21.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-backend-y7a6.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
 
             setETERelatedPdf(response.data)
@@ -100,7 +100,7 @@ function ETE2() {
   
   
           var myData = {Sem:4,Branch:"ETE"}
-          axios.post("https://ng-backend-kr21.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-backend-y7a6.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
   
             setETERelatedPdf(response.data)
@@ -213,29 +213,26 @@ function ETE2() {
   
           }
   
-          else {
+          else
+          {
   
             var searchTerm
     
             setETERelatedPdf([])
   
-            searchTerm = { SubjectName:input };
+            searchTerm = { SubjectName:input,Branch:"ETE" };
   
           
             
-         
+
   
               // Second API call for Chemistry Cycle
               setTimeout(() => {
-                axios.post("https://ng-backend-kr21.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
+                axios.post("https://ng-backend-y7a6.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
                   .then(response2 => {
-            
-      
-      
-                    // Remove duplicates based on SubjectNumber
+
                     const filteredData = response2.data
-  
-  
+
                     if(filteredData.length){
                       window.scrollTo({
                         top: 300,
@@ -246,7 +243,9 @@ function ETE2() {
                       setSelectedSubjectNumber([])
                       console.log("SelectedSubjectNumber: ")
                       setSelectedSubjectNumber(filteredData)
-                    
+                      console.log(SelectedSubjectNumber)
+                      console.log("SearchedRelatedPdf: ")
+                      console.log(setETERelatedPdf)
                     }
                     
   

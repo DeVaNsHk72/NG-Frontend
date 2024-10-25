@@ -42,7 +42,7 @@ function ISE2() {
    
 
           var myData = {Sem:3,Branch:"ISE"}
-          axios.post("https://ng-backend-kr21.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-backend-y7a6.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
 
             setISERelatedPdf(response.data)
@@ -98,7 +98,7 @@ function ISE2() {
   
   
           var myData = {Sem:4,Branch:"ISE"}
-          axios.post("https://ng-backend-kr21.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-backend-y7a6.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
   
             setISERelatedPdf(response.data)
@@ -211,24 +211,26 @@ function ISE2() {
   
           }
   
-          else {
+          else
+          {
   
             var searchTerm
     
             setISERelatedPdf([])
   
-            searchTerm = { SubjectName:input };
+            searchTerm = { SubjectName:input,Branch:"ISE" };
   
+          
+            
 
+  
               // Second API call for Chemistry Cycle
               setTimeout(() => {
-                axios.post("https://ng-backend-kr21.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
+                axios.post("https://ng-backend-y7a6.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
                   .then(response2 => {
 
-                    // Remove duplicates based on SubjectNumber
-                    const filteredData =  response2.data;
-  
-  
+                    const filteredData = response2.data
+
                     if(filteredData.length){
                       window.scrollTo({
                         top: 300,
@@ -239,7 +241,9 @@ function ISE2() {
                       setSelectedSubjectNumber([])
                       console.log("SelectedSubjectNumber: ")
                       setSelectedSubjectNumber(filteredData)
-                    
+                      console.log(SelectedSubjectNumber)
+                      console.log("SearchedRelatedPdf: ")
+                      console.log(setISERelatedPdf)
                     }
                     
   
@@ -283,7 +287,6 @@ function ISE2() {
       }, 200), // 200 ms delay
       []
     );
-
     useEffect(() => {
       return () => {
         handleInputChange.cancel(); // Cancel any pending debounced calls on unmount
