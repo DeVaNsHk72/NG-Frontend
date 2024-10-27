@@ -138,7 +138,7 @@ function FrontPage() {
         </div>
         {/* Image */}
         <div className='mt-0 '>
-          <img className='w-[200px] md:w-[300px] lg:w-[400px] h-[200px] md:h-[300px] lg:h-[400px]' src={images[currentImageIndex]} alt="Slideshow" />
+          <img className='w-[200px] md:w-[300px] lg:w-[400px] h-[190px] md:h-[220px] lg:h-[400px]' src={images[currentImageIndex]} alt="Slideshow" />
         </div>
 
         {/* Buttons */}
@@ -180,6 +180,10 @@ function FrontPage() {
     <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[30px] md:ml-[40px]'>Lab</div>
   </Link>
 </div>
+<a href="https://www.dropbox.com/scl/fi/vvbckifxil9ckger7l0r2/UGFirstYear-Syllabus.pdf?rlkey=zi8jivpbngfrbwah2w7a5c8q8&st=8nbmglev&raw=1" target="_blank" rel="noopener noreferrer" class="h-[35px] mt-8 md:h-[40px] w-[200px] md:w-[260px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300">
+    <div class="text-white font-semibold text-xl md:text-2xl text-center">1st Year Syllabus</div>
+</a>
+
 
 <div className='bg-white transition-all z-10 duration-700 ease-in-out animate-fade-in-slide-up flex flex-col lg:flex-row items-center justify-center w-full mt-[50px] gap-[20px] lg:gap-[100px] px-4 py-10'>
   <div className='flex flex-col justify-center w-full lg:w-[50%]'>
