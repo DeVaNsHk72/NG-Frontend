@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Home page -->
+  <url>
+    <loc>https://notego.in/</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <!-- Notes page -->
+  <url>
+    <loc>https://notego.in/notes</loc>
+    <priority>1</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <!-- PYQs page -->
+  <url>
+    <loc>https://notego.in/pyqs</loc>
+    <priority>1</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  
+  <!-- Contact page -->
+  <url>
+    <loc>https://notego.in/lab</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+   <url>
+    <loc>https://notego.in/pyq</loc>
+    <priority>1</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+   <url>
+    <loc>https://notego.in/pyq2</loc>
+    <priority>1</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+   <url>
+    <loc>https://notego.in/about</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://notego.in/contact</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://notego.in/PrivacyPolicy</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://notego.in/Tnc</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://notego.in/CSCluster</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://notego.in/ECCluster</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://notego.in/MECluster</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Additional important pages can go here -->
+  
+</urlset>
