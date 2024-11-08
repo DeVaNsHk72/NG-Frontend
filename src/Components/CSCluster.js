@@ -568,6 +568,25 @@ const [fadeIn,setFadeIn] = useState(false)
   <div className={`flex flex-col gap-5 mt-2  overflow-auto  transition-all duration-700 ease-in-out bg-black 
     ${SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'} `}>
     {/* Header Row */}
+
+
+       
+<div className="flex items-center justify-between border-2 border-white rounded-xl p-2 md:p-4 w-full">
+  <div className="text-white text-center md:text-left">Syllabus</div>
+  {pdf.Syllabus !== "" ? (
+    <a
+      href={pdf.Syllabus}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-black cursor-pointer"
+    >
+      <i
+        className="bi bi-file-earmark-pdf-fill text-white"
+        style={{ fontSize: "35px" }}
+      ></i>
+    </a>
+  ) : null}
+</div>
     <div className={`grid grid-cols-4 gap-2 bg-[#545454] border-2 border-white rounded-xl shadow-lg p-2 justify-between w-full transition-opacity duration-700 ease-in-out `}>
       <div className="text-white text-center md:text-left">Module No.</div>
       <div className="text-white text-center md:text-left">Module Name</div>
