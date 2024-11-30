@@ -483,7 +483,7 @@ const [fadeIn,setFadeIn] = useState(false)
 
 
 {/* Header for Subject Name, CIE PdfLink, and SEE PdfLink */}
-<div className="flex flex-col gap-2 bg-black border-2 border-custom-dark rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+<div className="flex flex-col gap-2 bg-custom-dark border-2 border-custom-dark rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
   <div className="grid grid-cols-3 space-x-20  w-full mx-auto justify-between items-center">
     {/* Subject Name */}
     <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>

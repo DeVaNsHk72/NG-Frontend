@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
-import Logo from '../logo-fim.svg';
+import Logo from '../logo.svg';
 import Teamwork from '../Union.svg';
 import { Link } from 'react-router-dom';
 
@@ -73,11 +73,11 @@ function FrontPage() {
   return (
     <div className="bg-zinc-950 min-h-screen flex flex-col items-center">
       {/* Navbar */}
-      <div className="w-full flex justify-between z-50 items-center px-4 md:px-20 py-6 mt-4">
+      <div className="w-full transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex justify-between items-center px-4 md:px-20 py-6 mt-4">
         <div className="flex items-center">
-          <img src={Logo} alt="Logo" className="h-[45px] md:h-[55px]" />
+          <img src={Logo} alt="Logo" className="h-[30px] md:h-[40px]" />
         </div>
- 
+
         {/* Hamburger Icon for mobile and iPads */}
         <div className="lg:hidden flex">
           <button onClick={toggleMenu} className="text-white text-3xl focus:outline-none">
@@ -86,8 +86,13 @@ function FrontPage() {
         </div>
 
         {/* Links for larger screens & dropdown for smaller screens and iPads */}
-        <nav className={`flex-col z-10 lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
-          
+        <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
+          <Link
+            to = '/'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            Home
+          </Link>
 
           <Link
             to = '/about'
@@ -100,27 +105,6 @@ function FrontPage() {
             className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
           >
             Notes
-          </Link>
-
-          <Link
-            to = '/pyq'
-            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
-          >
-            1st Year PYQ's
-          </Link>
-
-          <Link
-            to = '/pyq2'
-            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
-          >
-            2nd Year PYQ's
-          </Link>
-
-          <Link
-            to = '/lab'
-            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
-          >
-            Lab
           </Link>
         </nav>
       </div>
@@ -138,52 +122,24 @@ function FrontPage() {
         </div>
         {/* Image */}
         <div className='mt-0 '>
-          <img className='w-[200px] md:w-[300px] lg:w-[400px] h-[190px] md:h-[220px] lg:h-[400px]' src={images[currentImageIndex]} alt="Slideshow" />
+          <img className='w-[200px] md:w-[300px] lg:w-[400px] h-[200px] md:h-[300px] lg:h-[400px]' src={images[currentImageIndex]} alt="Slideshow" />
         </div>
 
         {/* Buttons */}
-        {/* <div className='flex flex-row gap-5 md:gap-10 lg:gap-20 mt-8'>
+        <div className='flex flex-row gap-5 md:gap-10 lg:gap-20 mt-8'>
           <Link  to = '/notes' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
             <div className='text-black font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[30px]'>Notes</div>
           </Link>
           <Link  to='/pyq' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
-            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[40px]'>1st YearPYQ's</div>
+            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[35px]'>PYQ's</div>
           </Link>
-          <Link  to='/pyq2' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
-            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[40px]'>2nd Year PYQ's</div>
-          </Link>
-
-
-
-
           <Link  to='/lab' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
-            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[30px] md:ml-[40px]'>Lab</div>
+            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[35px]'>Lab</div>
           </Link>
-        </div> */}
-       <div className='flex flex-row gap-5 md:gap-10 lg:gap-20 mt-8'>
-  <Link to='/notes' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
-    <div className='text-black font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[30px]'>Notes</div>
-  </Link>
+        </div>
+      </div>
 
-  <div className="relative group z-50"> {/* Increased z-index */}
-    <div className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300 flex items-center justify-center'>
-      <div className='text-white font-semibold text-xl md:text-2xl mt-[2px]'>PYQ's</div>
-      <i className="bi bi-chevron-down text-white ml-2"></i> {/* Add an icon for better indication */}
-    </div>
-    <div className="absolute hidden group-hover:block bg-zinc-800 border border-gray-200 rounded-md mt-2 shadow-lg transition-all duration-300 ease-in-out z-50"> {/* Added z-index and kept position */}
-      <Link to='/pyq' className='block px-4 py-2 text-white hover:bg-green-400 hover:text-black transition duration-300'>1st Year PYQ's</Link>
-      <Link to='/pyq2' className='block px-4 py-2 text-white hover:bg-green-400 hover:text-black transition duration-300'>2nd Year PYQ's</Link>
-    </div>
-  </div>
-
-  <Link to='/lab' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
-    <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[30px] md:ml-[40px]'>Lab</div>
-  </Link>
-</div>
-
-
-
-<div className='bg-white transition-all z-10 duration-700 ease-in-out animate-fade-in-slide-up flex flex-col lg:flex-row items-center justify-center w-full mt-[50px] gap-[20px] lg:gap-[100px] px-4 py-10'>
+<div className='bg-white transition-all     duration-700 ease-in-out animate-fade-in-slide-up  flex flex-col lg:flex-row items-center justify-center w-full mt-[50px] gap-[20px] lg:gap-[100px] px-4 py-10'>
   <div className='flex flex-col justify-center w-full lg:w-[50%]'>
     <div className='text-lg md:text-2xl font-medium text-justify'>
       A learning hub where you access the best, high-quality notes crafted by professors through their students. We've collected these valuable resources and paired them with relevant YouTube tutorials to streamline your learning.
@@ -197,11 +153,9 @@ function FrontPage() {
   </div>
 </div>
 
-</div>
-
 
       {/* Footer */}
-      <div className='bg-black  transition-all     duration-700 ease-in-out animate-fade-in-slide-up  min-w-full h-auto lg:h-[480px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+      <div className='bg-black  transition-all     duration-700 ease-in-out animate-fade-in-slide-up  min-w-full h-auto lg:h-[380px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
@@ -218,23 +172,21 @@ function FrontPage() {
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Quick Links</h1>
-          <div className='flex flex-col gap-[20px]'>
+          <div className='flex flex-col'>
             <Link to = '/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
             <Link to = '/Contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
             {/* <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1> */}
             <Link to = '/PrivacyPolicy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
             <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
             <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
-            <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>1st Year PYQ</Link>
-            <Link to='/pyq2' className='text-white text-base md:text-lg cursor-pointer'>2nd Year PYQ</Link>
+            <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
             <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
-        
           </div>
         </div>
 
         <div className='flex flex-col gap-[30px] w-full lg:w-[200px]'>
           <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Navigate To</h1>
-          <div className='flex flex-col gap-[20px]  '>
+          <div className='flex flex-col'>
             <Link to = '/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
             <Link to = '/ECCluster'  className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
             <Link to = '/MECluster'  className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>

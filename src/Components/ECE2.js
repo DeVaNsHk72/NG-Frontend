@@ -459,8 +459,8 @@ function ECE2() {
 </div>
 
 
-<div   className="flex cursor-pointer flex-col gap-2 bg-black border-2 border-custom-dark rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
-    <div className="flex cursor-pointer flex-row justify-between items-center w-full bg-black">
+<div   className="flex cursor-pointer flex-col gap-2  bg-custom-dark border-2 border-custom-dark rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+    <div className="flex cursor-pointer bg-custom-dark flex-row justify-between items-center w-full bg-black">
   <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
     SubjectName
   </div>
