@@ -441,30 +441,30 @@ function PYQ2ndYear() {
     <div className='flex flex-wrap gap-4 mt-3 justify-center'>
     <div
         onClick={() => SelectBranch(1)}
-        className={`h-[35px] w-20 sm:w-[100px] md:w-[130px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${CSE ? 'bg-[#20C030]' : 'bg-white'}`}
+        className={`h-[35px] w-20 sm:w-[100px] md:w-[130px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${CSE ? 'bg-[#20C030]' : 'bg-custom-dark'}`}
     >
-        <div className={`text-xl sm:text-2xl md:text-3xl font-medium ${CSE ? 'text-white' : 'text-black'}`}>CSE</div>
+        <div className={`text-xl sm:text-2xl md:text-3xl font-medium text-white`}>CSE</div>
     </div>
 
     <div
         onClick={() => SelectBranch(2)}
-        className={`h-[35px] w-20 sm:w-[100px] md:w-[130px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${ISE ? 'bg-[#20C030]' : 'bg-white'}`}
+        className={`h-[35px] w-20 sm:w-[100px] md:w-[130px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${ISE ? 'bg-[#20C030]' : 'bg-custom-dark'}`}
     >
-        <div className={`text-xl sm:text-2xl md:text-3xl font-medium ${ISE ? 'text-white' : 'text-black'}`}>ISE</div>
+        <div className={`text-xl sm:text-2xl md:text-3xl font-medium text-white`}>ISE</div>
     </div>
 
     <div
         onClick={() => SelectBranch(3)}
-        className={`h-[35px] w-20 sm:w-[100px] md:w-[130px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${ECE ? 'bg-[#20C030]' : 'bg-white'}`}
+        className={`h-[35px] w-20 sm:w-[100px] md:w-[130px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${ECE ? 'bg-[#20C030]' : 'bg-custom-dark'}`}
     >
-        <div className={`text-xl sm:text-2xl md:text-3xl font-medium ${ECE ? 'text-white' : 'text-black'}`}>ECE</div>
+        <div className={`text-xl sm:text-2xl md:text-3xl font-medium text-white`}>ECE</div>
     </div>
 
     <div
         onClick={() => SelectBranch(4)}
-        className={`h-[35px] w-20 sm:w-[100px] md:w-[130px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${ETE ? 'bg-[#20C030]' : 'bg-white'}`}
+        className={`h-[35px] w-20 sm:w-[100px] md:w-[130px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${ETE ? 'bg-[#20C030]' : 'bg-custom-dark'}`}
     >
-        <div className={`text-xl sm:text-2xl md:text-3xl font-medium ${ETE ? 'text-white' : 'text-black'}`}>ETE</div>
+        <div className={`text-xl sm:text-2xl md:text-3xl font-medium text-white`}>ETE</div>
     </div>
 </div>
 
@@ -473,16 +473,16 @@ function PYQ2ndYear() {
 <div className='flex flex-wrap gap-4 justify-center'>
     <div
         onClick={() => SelectSem(3)}
-        className={`h-[35px] w-28 sm:w-[110px] md:w-[160px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 mt-[20px] cursor-pointer hover:shadow-custom rounded-full ${Sem3 ? 'bg-[#20C030]' : 'bg-white'}`}
+        className={`h-[35px] w-28 sm:w-[110px] md:w-[160px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 mt-[20px] cursor-pointer hover:shadow-custom rounded-full ${Sem3 ? 'bg-[#20C030]' : 'bg-custom-dark'}`}
     >
-        <div className={`text-xl sm:text-2xl md:text-3xl font-medium ${Sem3 ? 'text-white' : 'text-black'}`}>Sem3</div>
+        <div className={`text-xl sm:text-2xl md:text-3xl font-medium text-white`}>Sem3</div>
     </div>
 
     <div
         onClick={() => SelectSem(4)}
-        className={`h-[35px] w-28 sm:w-[110px] md:w-[160px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 mt-[20px] cursor-pointer hover:shadow-custom rounded-full ${Sem4 ? 'bg-[#20C030]' : 'bg-white'}`}
+        className={`h-[35px] w-28 sm:w-[110px] md:w-[160px] flex justify-center items-center hover:ring-4 hover:ring-teal-400 mt-[20px] cursor-pointer hover:shadow-custom rounded-full ${Sem4 ? 'bg-[#20C030]' : 'bg-custom-dark'}`}
     >
-        <div className={`text-xl sm:text-2xl md:text-3xl font-medium ${Sem4 ? 'text-white' : 'text-black'}`}>Sem4</div>
+        <div className={`text-xl sm:text-2xl md:text-3xl font-medium text-white`}>Sem4</div>
     </div>
 </div>
 
@@ -533,7 +533,7 @@ function PYQ2ndYear() {
 
 {CSRelatedPdf.length ?
 <div className={`mt-5`}>
-  <div className="flex flex-col gap-4 border-2 bg-[#20C030] rounded-md shadow-lg p-4 justify-between w-full sm:w-11/12 max-w-3xl mx-auto">
+  <div className="flex flex-col gap-4 border-2 bg-[#20C030] rounded-md border-custom-dark shadow-lg p-4 justify-between w-full sm:w-11/12 max-w-3xl mx-auto">
     <div className="flex flex-row justify-between font-semibold">
       <div className="flex-1 text-white text-center text-base sm:text-lg md:text-xl">Contents</div>
     </div>
@@ -544,7 +544,7 @@ function PYQ2ndYear() {
 
 
 {/* Header for Subject Name, CIE PdfLink, and SEE PdfLink */}
-<div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+<div className="flex flex-col gap-2 bg-black border-2 border-custom-dark rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
   <div className="grid grid-cols-3 space-x-20  w-full mx-auto justify-between items-center">
     {/* Subject Name */}
     <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
@@ -581,7 +581,7 @@ function PYQ2ndYear() {
   
   
   <div key={pdf.SubjectNumber} className="transition-all duration-500 ease-in-out opacity-100 translate-y-0 animate-fade-in-slide-up mt-2">
-    <div className="flex flex-col  bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+    <div className="flex flex-col  bg-black border-2 rounded-lg border-custom-dark shadow-lg p-4 mx-auto w-full max-w-3xl">
       <div className="grid grid-cols-3 space-x-20 w-full mx-auto justify-between items-center">
         {/* Subject Name */}
         <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>

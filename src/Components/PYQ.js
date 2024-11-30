@@ -387,16 +387,16 @@ const [fadeIn,setFadeIn] = useState(false)
       <div className='flex flex-row gap-4'>
         <div
             onClick={SelectPhysicsCycle}
-            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${PhysicsCycle ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${PhysicsCycle ? 'bg-[#20C030]' : 'bg-custom-dark' }`}
         >
-            <div className={`text-xl w-full font-medium mx-2 my-1 ${PhysicsCycle ? 'text-white':'text-black'}`}>P-Cycle</div>
+            <div className={`text-xl w-full font-medium mx-2 my-1 text-white`}>P-Cycle</div>
         </div>
 
         <div
             onClick={SelectChemistryCycle}
-            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full  ${ChemistryCycle ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full  ${ChemistryCycle ? 'bg-[#20C030]' : 'bg-custom-dark' }`}
         >
-            <div className={`text-xl w-full font-medium mx-2 my-1 ${ChemistryCycle ? 'text-white':'text-black'}`}>C-Cycle</div>
+            <div className={`text-xl w-full font-medium mx-2 my-1 text-white`}>C-Cycle</div>
         </div>
       </div>
     
@@ -405,16 +405,16 @@ const [fadeIn,setFadeIn] = useState(false)
       <div className='flex flex-row gap-4'>
         <div
             onClick={() => SelectSem(1)}
-            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${Sem1 ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${Sem1 ? 'bg-[#20C030]' : 'bg-custom-dark' }`}
         >
-            <div className={`text-xl font-medium mx-4 my-1 ${Sem1 ? 'text-white':'text-black'}`}>Sem1</div>
+            <div className={`text-xl font-medium mx-4 my-1 text-white`}>Sem1</div>
         </div>
 
         <div
             onClick={() => SelectSem(2)}
-            className={`h-10 w-full max-w-xs hover:ring-4 hover:ring-teal-400 mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${Sem2 ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs hover:ring-4 hover:ring-teal-400 mt-[20px] cursor-pointer hover:shadow-custom rounded-full  ${Sem2 ? 'bg-[#20C030]' : 'bg-custom-dark' }`}
         >
-            <div className={`text-xl font-medium mx-4 my-1 ${Sem2 ? 'text-white':'text-black'}`}>Sem2</div>
+            <div className={`text-xl font-medium mx-4 my-1 text-white`}>Sem2</div>
         </div>
       </div>
     </div>
@@ -474,7 +474,7 @@ const [fadeIn,setFadeIn] = useState(false)
 {CSRelatedPdf.length ?
 <div className={`mt-5  transition-all   duration-700 ease-in-out  animate-fade-in-slide-up  ${fadeIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5' } `}>
 
-<div className="flex flex-col gap-4 border-2 bg-[#20C030] rounded-md shadow-lg p-4 justify-between w-full  md:w-3/5 lg:w-3/4  max-w-3xl mx-auto">
+<div className="flex flex-col gap-4 border-2 bg-[#20C030] rounded-md  border-custom-dark shadow-lg p-4 justify-between w-full  md:w-3/5 lg:w-3/4  max-w-3xl mx-auto">
   <div className="flex flex-row justify-between  font-semibold">
     <div className="flex-1 text-white text-center">Contents</div>
 
@@ -483,7 +483,7 @@ const [fadeIn,setFadeIn] = useState(false)
 
 
 {/* Header for Subject Name, CIE PdfLink, and SEE PdfLink */}
-<div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+<div className="flex flex-col gap-2 bg-black border-2 border-custom-dark rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
   <div className="grid grid-cols-3 space-x-20  w-full mx-auto justify-between items-center">
     {/* Subject Name */}
     <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
@@ -520,7 +520,7 @@ const [fadeIn,setFadeIn] = useState(false)
 {CSRelatedPdf.length > 0 && CSRelatedPdf.map((pdf, index) => (
   
   <div key={pdf.index} className="transition-all duration-500 ease-in-out opacity-100 translate-y-0 animate-fade-in-slide-up mt-2">
-    <div className="flex flex-col  bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+    <div className="flex flex-col  bg-black border-2 border-custom-dark rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
       <div className="grid grid-cols-3 space-x-20 w-full mx-auto justify-between items-center">
         {/* Subject Name */}
         <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>

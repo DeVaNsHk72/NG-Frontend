@@ -429,16 +429,16 @@ const [fadeIn,setFadeIn] = useState(false)
       <div className='flex flex-row gap-4' >
         <div
             onClick={SelectPhysicsCycle}
-            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:ring-4 hover:ring-teal-400 hover:shadow-custom rounded-full  ${PhysicsCycle ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] cursor-pointer hover:ring-4 hover:ring-teal-400 hover:shadow-custom rounded-full  ${PhysicsCycle ? 'bg-[#20C030]' : 'bg-custom-dark' }`}
         >
-            <div className={`text-xl w-full font-medium mx-2 my-1 ${PhysicsCycle ? 'text-white':'text-black'}`}>P-Cycle</div>
+            <div className={`text-xl w-full font-medium mx-2 my-1 text-white`}>P-Cycle</div>
         </div>
 
         <div
             onClick={SelectChemistryCycle}
-            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${ChemistryCycle ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${ChemistryCycle ? 'bg-[#20C030]' : 'bg-custom-dark' }`}
         >
-            <div className={`text-xl w-full font-medium mx-2 my-1 ${ChemistryCycle ? 'text-white':'text-black'}`}>C-Cycle</div>
+            <div className={`text-xl w-full font-medium mx-2 my-1 text-white`}>C-Cycle</div>
         </div>
       </div>
 
@@ -446,16 +446,16 @@ const [fadeIn,setFadeIn] = useState(false)
       <div className='flex flex-row gap-4' >
         <div
             onClick={() => SelectSem(1)}
-            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${Sem1 ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full ${Sem1 ? 'bg-[#20C030]' : 'bg-custom-dark' }`}
         >
-            <div className={`text-xl font-medium mx-4 my-1 ${Sem1 ? 'text-white':'text-black'}`}>Sem1</div>
+            <div className={`text-xl font-medium mx-4 my-1 text-white`}>Sem1</div>
         </div>
 
         <div
             onClick={() => SelectSem(2)}
-            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full  ${Sem2 ? 'bg-[#20C030]' : 'bg-white' }`}
+            className={`h-10 w-full max-w-xs mt-[20px] hover:ring-4 hover:ring-teal-400 cursor-pointer hover:shadow-custom rounded-full  ${Sem2 ? 'bg-[#20C030]' : 'bg-custom-dark' }`}
         >
-            <div className={`text-xl font-medium  mx-4 my-1 ${Sem2 ? 'text-white':'text-black'}`}>Sem2</div>
+            <div className={`text-xl font-medium  mx-4 my-1 text-white`}>Sem2</div>
         </div>
       </div>
     </div>
@@ -514,7 +514,7 @@ const [fadeIn,setFadeIn] = useState(false)
 
 <div className={`mt-8  transition-all     duration-700 ease-in-out animate-fade-in-slide-up   ${fadeIn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5' } `}>
 
-<div className="flex flex-col gap-4 border-2 bg-[#20C030] rounded-md shadow-lg p-4 justify-between w-full  md:w-3/5 lg:w-3/4  max-w-3xl mx-auto">
+<div className="flex flex-col gap-4 border-2 bg-[#20C030] border-custom-dark rounded-md shadow-lg p-4 justify-between w-full  md:w-3/5 lg:w-3/4  max-w-3xl mx-auto">
   <div className="flex flex-row justify-between  font-semibold">
     <div className="flex-1 text-white text-center">Contents</div>
 
@@ -522,7 +522,7 @@ const [fadeIn,setFadeIn] = useState(false)
 </div>
 
 
-<div className="flex flex-row gap-2 bg-gray-900 border-2 mt-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+<div className="flex flex-row gap-2 bg-custom-dark border-2 mt-2 border-custom-dark rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
     <div className="flex flex-row justify-between items-center w-full">
   <div className="text-white text-center flex-1" style={{ maxWidth: '350px' }}>
     Subject Name
@@ -541,7 +541,7 @@ const [fadeIn,setFadeIn] = useState(false)
   <div>
     {pdf.Modules.length ? 
   <div key={pdf.SubjectNumber} className={` transition-all  duration-700 ease-in-out transform bg-black  ` } >
-    <div className="flex flex-col gap-2 bg-black border-2 rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
+    <div className="flex flex-col gap-2 bg-black border-2 border-custom-dark rounded-lg shadow-lg p-4 mx-auto w-full max-w-3xl">
     <div onClick={() => handleToggle(pdf.SubjectNumber)} className="flex cursor-pointer flex-row justify-between items-center w-full bg-black">
   {/* SubjectName container */}
   <div className="text-white text-center flex-1 break-words overflow-hidden whitespace-normal max-w-[250px] md:max-w-[350px]" style={{ minHeight: '3.5rem' }}>
@@ -566,25 +566,17 @@ const [fadeIn,setFadeIn] = useState(false)
     {/* Header Row */}
 
        
-<div className="flex items-center justify-between border-2 border-white rounded-xl p-2 md:p-4 w-full">
+<div className="flex items-center justify-between border-2 border-custom-dark  rounded-xl p-2 md:p-4 w-full">
   <div className="text-white text-center md:text-left">Syllabus</div>
   {pdf.Syllabus !== "" ? (
-    <a
-      href={pdf.Syllabus}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-black cursor-pointer"
-    >
-      <i
-        className="bi bi-file-earmark-pdf-fill text-white"
-        style={{ fontSize: "35px" }}
-      ></i>
-    </a>
-  ) : null}
+        <a href={pdf.Syllabus} target="_blank" rel="noopener noreferrer" className="text-black cursor-pointer">
+          <i className="bi bi-file-earmark-pdf-fill text-white" style={{ fontSize: '35px' }}></i>
+        </a>
+      ) : null}
 </div>
 
 
-    <div className={`grid grid-cols-4 gap-2 bg-[#545454] border-2 border-white rounded-xl shadow-lg p-2 justify-between w-full transition-opacity duration-700 ease-in-out `}>
+    <div className={`grid grid-cols-4 gap-2 bg-custom-dark border-2 border-custom-dark  rounded-xl shadow-lg p-2 justify-between w-full transition-opacity duration-700 ease-in-out `}>
       <div className="text-white text-center md:text-left">Module No.</div>
       <div className="text-white text-center md:text-left">Module Name</div>
       <div className="text-white text-center md:text-left">PDF Link</div>
@@ -594,7 +586,7 @@ const [fadeIn,setFadeIn] = useState(false)
     {/* Module Rows */}
     <div className={`flex flex-col gap-5   transition-all  duration-700 ease-in-out transform ${ SelectedSubjectNumber.some(sub => sub.SubjectNumber === pdf.SubjectNumber && sub.State === 1)  ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
       {pdf.Modules.map((module) => (
-        <div key={module.ModuleNum} className="grid grid-cols-4 gap-2 bg-black border-2 border-white rounded-2xl shadow-lg p-2 w-full mx-auto">
+        <div key={module.ModuleNum} className="grid grid-cols-4 gap-2 bg-black border-2 border-custom-dark rounded-2xl shadow-lg p-2 w-full mx-auto">
           <div className="text-white text-center ml-4 md:text-left">{module.ModuleNum}</div>
           <div className="text-white text-center md:text-left">{module.ModuleName}</div>
 

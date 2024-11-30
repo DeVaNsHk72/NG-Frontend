@@ -35,6 +35,11 @@ module.exports = {
       boxShadow: {
         'custom-gray': '10px 10px 5px gray',
       },
+
+      colors: {
+        'custom-dark': 'rgb(24, 26, 27)', // Existing color
+        'custom-dark-2': 'rgb(55, 59, 61)', // New custom color
+      },
       
     },
   },
