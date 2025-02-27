@@ -73,7 +73,7 @@ function MechanicalCluster() {
 
 
         var myData = {Category:"ME",Sem:Sem}
-        axios.post("https://ng-backend-kr21.onrender.com/api/PhysicsCycle/GetAllModules",myData)
+        axios.post("https://ng-backend-hqmv.onrender.com/api/PhysicsCycle/GetAllModules",myData)
         .then(response=>{
 
           const filteredData = _.filter(response.data, (item) => item.SubjectCode !== "22ME1ESIME/22ME2ESIME");
@@ -129,7 +129,7 @@ function MechanicalCluster() {
       setSelectedSubjectNumber()
 
         var myData = {Category:"ME",Sem:Sem}
-        axios.post("https://ng-backend-kr21.onrender.com/api/ChemistryCycle/GetAllModules",myData)
+        axios.post("https://ng-backend-hqmv.onrender.com/api/ChemistryCycle/GetAllModules",myData)
         .then(response=>{
 
           const filteredData = _.filter(response.data, (item) => item.SubjectCode !== "22ME1ESIME/22ME2ESIME");
@@ -255,7 +255,7 @@ function MechanicalCluster() {
 
           searchTerm = { SubjectName:input };
           
-          axios.post("https://ng-backend-kr21.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
+          axios.post("https://ng-backend-hqmv.onrender.com/api/GetPhysicsCycleSubjects", searchTerm)
           .then(response1 => {
             const physicsCycleData = response1.data;
 
