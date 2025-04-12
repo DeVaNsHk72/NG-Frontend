@@ -70,6 +70,9 @@ function FrontPage() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+
+  const [isOpenPYQ, setIsOpenPYQ] = useState(false);
+
   return (
     <div className="bg-zinc-950 min-h-screen flex flex-col items-center">
       {/* Navbar */}
@@ -166,14 +169,22 @@ function FrontPage() {
   </Link>
 
   <div className="relative group z-50"> {/* Increased z-index */}
-    <div className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300 flex items-center justify-center'>
+    <div onClick={()=>setIsOpenPYQ(!isOpenPYQ)} className={`h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black  transition duration-300 flex items-center justify-center  ${isOpenPYQ ? 'bg-green-400 ' : 'hover:bg-black-400 '} `}>
       <div className='text-white font-semibold text-xl md:text-2xl mt-[2px]'>PYQ's</div>
-      <i className="bi bi-chevron-down text-white ml-2"></i> {/* Add an icon for better indication */}
+      
+      {!isOpenPYQ ? 
+          <i className="bi bi-chevron-down text-white ml-2"></i> 
+          :
+          <i className="bi bi-chevron-up text-white ml-2"></i>
+      }
     </div>
-    <div className="absolute hidden group-hover:block bg-zinc-800 border border-gray-200 rounded-md mt-2 shadow-lg transition-all duration-300 ease-in-out z-50"> {/* Added z-index and kept position */}
-      <Link to='/pyq' className='block px-4 py-2 text-white hover:bg-green-400 hover:text-black transition duration-300'>1st Year PYQ's</Link>
-      <Link to='/pyq2' className='block px-4 py-2 text-white hover:bg-green-400 hover:text-black transition duration-300'>2nd Year PYQ's</Link>
-    </div>
+    
+    {isOpenPYQ ?
+      <div className="absolute  group-hover:block bg-zinc-800 border border-gray-200 rounded-md mt-2 shadow-lg transition-all duration-300 ease-in-out z-50"> {/* Added z-index and kept position */}
+        <Link to='/pyq' className='block px-4 py-2 text-white hover:bg-green-400 hover:text-black transition duration-300'>1st Year PYQ's</Link>
+        <Link to='/pyq2' className='block px-4 py-2 text-white hover:bg-green-400 hover:text-black transition duration-300'>2nd Year PYQ's</Link>
+      </div>
+    : null}
   </div>
 
   <Link to='/lab' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
@@ -201,7 +212,7 @@ function FrontPage() {
 
 
       {/* Footer */}
-      <div className='bg-black  transition-all     duration-700 ease-in-out animate-fade-in-slide-up  min-w-full h-auto lg:h-[480px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+      <div className='  transition-all     duration-700 ease-in-out animate-fade-in-slide-up  min-w-full h-auto lg:h-[480px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
         <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
           <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
           <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
@@ -247,7 +258,7 @@ function FrontPage() {
         </div>
       </div>
 
-      <div className='mb-[50px]'></div>
+      <div className='mb-[50px] '></div>
 </div>
 
   );
