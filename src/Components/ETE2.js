@@ -44,7 +44,7 @@ function ETE2() {
    
 
           var myData = {Sem:3,Branch:"ETE"}
-          axios.post("https://ng-backend-hqmv.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-backend-1-f4r9.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
 
             setETERelatedPdf(response.data)
@@ -100,7 +100,7 @@ function ETE2() {
   
   
           var myData = {Sem:4,Branch:"ETE"}
-          axios.post("https://ng-backend-hqmv.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-backend-1-f4r9.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
   
             setETERelatedPdf(response.data)
