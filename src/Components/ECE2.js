@@ -44,7 +44,7 @@ function ECE2() {
    
 
           var myData = {Sem:3,Branch:"ECE"}
-          axios.post("https://ng-backend-1-f4r9.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-frontend-1.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
 
             setECERelatedPdf(response.data)
@@ -100,7 +100,7 @@ function ECE2() {
   
   
           var myData = {Sem:4,Branch:"ECE"}
-          axios.post("https://ng-backend-1-f4r9.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-frontend-1.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
   
             setECERelatedPdf(response.data)
@@ -228,7 +228,7 @@ function ECE2() {
   
               // Second API call for Chemistry Cycle
               setTimeout(() => {
-                axios.post("https://ng-backend-1-f4r9.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
+                axios.post("https://ng-frontend-1.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
                   .then(response2 => {
 
                     const filteredData = response2.data
