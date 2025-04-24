@@ -42,7 +42,7 @@ function ISE2() {
    
 
           var myData = {Sem:3,Branch:"ISE"}
-          axios.post("https://ng-backend-1-f4r9.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-frontend-1.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
 
             setISERelatedPdf(response.data)
@@ -98,7 +98,7 @@ function ISE2() {
   
   
           var myData = {Sem:4,Branch:"ISE"}
-          axios.post("https://ng-backend-1-f4r9.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
+          axios.post("https://ng-frontend-1.onrender.com/api/SecondYear/SelectedBranchPdf",myData)
           .then(response=>{
   
             setISERelatedPdf(response.data)
