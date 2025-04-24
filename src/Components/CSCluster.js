@@ -77,7 +77,7 @@ function CSCluster() {
 
 
         var myData = {Category:"CS",Sem:Sem}
-        axios.post("https://ng-frontend-1.onrender.com/api/PhysicsCycle/GetAllModules",myData)
+        axios.post("https://ng-frontend-k2i1.onrender.com/api/PhysicsCycle/GetAllModules",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
@@ -131,7 +131,7 @@ function CSCluster() {
 
 
         var myData = {Category:"CS",Sem:Sem}
-        axios.post("https://ng-frontend-1.onrender.com/api/ChemistryCycle/GetAllModules",myData)
+        axios.post("https://ng-frontend-k2i1.onrender.com/api/ChemistryCycle/GetAllModules",myData)
         .then(response=>{
 
           setCSRelatedPdf(response.data)
