@@ -226,7 +226,7 @@ function ISE2() {
   
               // Second API call for Chemistry Cycle
               setTimeout(() => {
-                axios.post("https://ng-backend-kr21.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
+                axios.post("https://ng-backend-1-f4r9.onrender.com/api/GetSearchedBranchRelatedSubjects", searchTerm)
                   .then(response2 => {
 
                     const filteredData = response2.data
