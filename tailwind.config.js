@@ -16,6 +16,9 @@ module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {
+       fontSize: {
+        'xs-4': '4px',
+      },
       fontFamily: {
         'instrument': ['"Instrument Sans"', 'sans-serif'], // Add Instrument Sans
       },

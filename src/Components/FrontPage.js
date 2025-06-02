@@ -132,7 +132,7 @@ function FrontPage() {
       {/* Main Content */}
       <div className='flex flex-col transition-all     duration-700 ease-in-out animate-fade-in-slide-up  items-center mt-[20px] md:mt-[50px] px-4'>
         {/* Fixed space for text */}
-        <div className='text-center text-white text-2xl md:text-4xl max-w-full md:max-w-4xl font-mono mb-6 md:mb-10 h-[80px] md:h-[100px]'>
+        <div className='text-center text-white text-2xl md:text-3xl max-w-full md:max-w-4xl font-mono mb-6 md:mb-10 h-[50px] md:h-[60px]'>
           {fullText.slice(0, index + 1).map((item, idx) => (
             <span key={idx} className={`${item.color} ${item.fontStyle}`}>
               {index === idx ? displayedText : item.text}
@@ -140,8 +140,8 @@ function FrontPage() {
           ))}
         </div>
         {/* Image */}
-        <div className='mt-0 '>
-          <img className='w-[200px] md:w-[300px] lg:w-[400px] h-[190px] md:h-[220px] lg:h-[400px]' src={images[currentImageIndex]} alt="Slideshow" />
+        <div className='mt-5 '>
+          <img className='w-[200px] md:w-[300px] lg:w-[400px] h-[180px] md:h-[220px] lg:h-[330px]' src={images[currentImageIndex]} alt="Slideshow" />
         </div>
 
         {/* Buttons */}
@@ -192,9 +192,105 @@ function FrontPage() {
   </Link>
 </div>
 
+{/* 
+<div className='bg-[#D9D9D9] mt-10 flex flex-col lg:flex-row gap-5 w-full h-[250px] '>
 
 
-<div className='bg-white transition-all z-10 duration-700 ease-in-out animate-fade-in-slide-up flex flex-col lg:flex-row items-center justify-center w-full mt-[50px] gap-[20px] lg:gap-[100px] px-4 py-10'>
+    <img src='/images/vibez.png' width={200} height={50} className='mx-24' />
+
+    <div className='flex flex-col w-full lg:w-[50%] px-4 text-black mt-12'>
+      <p className='text-left text-lg md:text-xl font-semibold leading-relaxed'>
+        Tired of boring work zones?
+      </p>
+      <p className='text-left text-lg md:text-xl font-semibold leading-relaxed '>A place where ideas flow, snacks glow, and connections grow.</p>
+      <p className='text-left text-lg md:text-xl font-semibold leading-relaxed '>Hustle where the vibe matches your grind.</p>
+      <p className='text-left text-lg md:text-xl font-bold leading-relaxed'>#NoteGoXVibez</p>
+    </div>
+
+    <div className='bg-white lg:mt-20 h-[44px] justify-center flex gap-2 items-center w-[130px] rounded-full '>
+      <p className='text-center text-lg md:text-lg font-semibold leading-relaxed'>Explore</p>
+      <img src='/images/ArrowRight.svg' width={20} height={20} />
+
+    </div>
+
+</div> */}
+
+
+<Link to='https://vibezconnect.in'
+  className="
+    bg-[#D9D9D9] mt-10 w-full
+    px-4 sm:px-6 py-4 sm:py-6
+    flex flex-col lg:flex-row items-center lg:items-center
+    gap-2 lg:gap-10
+    min-h-[190px] 
+  "
+>
+  
+  {/* Left block – logo + copy */}
+  <div className="flex flex-row items-center gap-2 flex-1 lg:-mt-7">
+    <img
+      src="/images/vibez.png"
+      alt="Vibez Logo"
+      className="
+      hover:scale-105 transition
+        h-[92px] w-auto        /* ≈64 px on xs (<640) */
+        sm:h-20            /* 80 px on ≥640 */
+        md:h-28            /* 112 px on ≥768 */
+        lg:h-36 lg:ml-80 ml-5   /* 160 px + margin on ≥1024 */
+        xl:h-40           /* 192 px on ≥1280 */
+        object-contain shrink-0
+      "
+    />
+
+    <div className="flex  flex-col lg:ml-10 hover:scale-105 transition  justify-center text-black space-y-1 sm:space-y-1.5">
+      {[
+        'Dull work zones? Not here.',
+        'Ideas flow, snacks glow, vibes on point.', 
+        '#NoteGoXVibez',
+      ].map((line, i) => (
+        <p
+          key={i}
+          className="
+            text-[13px]          
+            sm:text-sm          
+            md:text-base         
+            xl:text-lg         
+            font-semibold
+            leading-snug
+            first:font-medium   
+            last:font-bold      
+            text-left
+          "
+        >
+          
+          {line}
+        </p>
+      ))}
+    </div>
+  </div>
+
+  {/* Explore button */}
+  <Link
+    to="https://vibezconnect.in"
+    className="
+      bg-white shrink-0 flex h-8
+      lg:h-10  items-center gap-2
+      px-4 rounded-full
+      cursor-pointer hover:scale-105 transition
+       lg:mr-72  -mt-3  lg:-mt-7
+    "
+  >
+    <span className="text-xs sm:text-sm md:text-base font-semibold">
+      Explore
+    </span>
+    <img src="/images/ArrowRight.svg" alt="Arrow" className="w-5 h-5" />
+  </Link>
+</Link>
+
+
+
+
+<div className='bg-white transition-all z-10 duration-700 ease-in-out animate-fade-in-slide-up flex flex-col lg:flex-row items-center justify-center w-full  gap-[20px] lg:gap-[100px] px-4 py-10'>
   <div className='flex flex-col justify-center w-full lg:w-[50%]'>
     <div className='text-lg md:text-2xl font-medium text-justify'>
       A learning hub where you access the best, high-quality notes crafted by professors through their students. We've collected these valuable resources and paired them with relevant YouTube tutorials to streamline your learning.
