@@ -139,6 +139,9 @@ function FrontPage() {
             </span>
           ))}
         </div>
+
+
+        
         {/* Image */}
         <div className='mt-5 '>
           <img className='w-[200px] md:w-[300px] lg:w-[400px] h-[180px] md:h-[220px] lg:h-[330px]' src={images[currentImageIndex]} alt="Slideshow" />
@@ -163,12 +166,15 @@ function FrontPage() {
             <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[30px] md:ml-[40px]'>Lab</div>
           </Link>
         </div> */}
-       <div className='flex flex-row gap-5 md:gap-10 lg:gap-20 mt-8'>
+
+
+        
+<div className='flex flex-row gap-5 md:gap-10  lg:gap-20 mt-8'>
   <Link to='/notes' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
     <div className='text-black font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[30px]'>Notes</div>
   </Link>
 
-  <div className="relative group z-50"> {/* Increased z-index */}
+  <div className="relative group "> {/* Increased z-index */}
     <div onClick={()=>setIsOpenPYQ(!isOpenPYQ)} className={`h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black  transition duration-300 flex items-center justify-center  ${isOpenPYQ ? 'bg-green-400 ' : 'hover:bg-black-400 '} `}>
       <div className='text-white font-semibold text-xl md:text-2xl mt-[2px]'>PYQ's</div>
       
@@ -216,81 +222,10 @@ function FrontPage() {
 </div> */}
 
 
-<Link to='https://vibezconnect.in'
-  className="
-    bg-[#D9D9D9] mt-10 w-full
-    px-4 sm:px-6 py-4 sm:py-6
-    flex flex-col lg:flex-row items-center lg:items-center
-    gap-2 lg:gap-10
-    min-h-[190px] 
-  "
->
-  
-  {/* Left block – logo + copy */}
-  <div className="flex flex-row items-center gap-2 flex-1 lg:-mt-7">
-    <img
-      src="/images/vibez.png"
-      alt="Vibez Logo"
-      className="
-      hover:scale-105 transition
-        h-[92px] w-auto        /* ≈64 px on xs (<640) */
-        sm:h-20            /* 80 px on ≥640 */
-        md:h-28            /* 112 px on ≥768 */
-        lg:h-36 lg:ml-80 ml-5   /* 160 px + margin on ≥1024 */
-        xl:h-40           /* 192 px on ≥1280 */
-        object-contain shrink-0
-      "
-    />
-
-    <div className="flex  flex-col lg:ml-10 hover:scale-105 transition  justify-center text-black space-y-1 sm:space-y-1.5">
-      {[
-        'Dull work zones? Not here.',
-        'Ideas flow, snacks glow, vibes on point.', 
-        '#NoteGoXVibez',
-      ].map((line, i) => (
-        <p
-          key={i}
-          className="
-            text-[13px]          
-            sm:text-sm          
-            md:text-base         
-            xl:text-lg         
-            font-semibold
-            leading-snug
-            first:font-medium   
-            last:font-bold      
-            text-left
-          "
-        >
-          
-          {line}
-        </p>
-      ))}
-    </div>
-  </div>
-
-  {/* Explore button */}
-  <Link
-    to="https://vibezconnect.in"
-    className="
-      bg-white shrink-0 flex h-8
-      lg:h-10  items-center gap-2
-      px-4 rounded-full
-      cursor-pointer hover:scale-105 transition
-       lg:mr-72  -mt-3  lg:-mt-7
-    "
-  >
-    <span className="text-xs sm:text-sm md:text-base font-semibold">
-      Explore
-    </span>
-    <img src="/images/ArrowRight.svg" alt="Arrow" className="w-5 h-5" />
-  </Link>
-</Link>
 
 
 
-
-<div className='bg-white transition-all z-10 duration-700 ease-in-out animate-fade-in-slide-up flex flex-col lg:flex-row items-center justify-center w-full  gap-[20px] lg:gap-[100px] px-4 py-10'>
+<div className='bg-white transition-all mt-14  duration-700 ease-in-out animate-fade-in-slide-up flex flex-col lg:flex-row items-center justify-center w-full  gap-[20px] lg:gap-[100px] px-4 py-4'>
   <div className='flex flex-col justify-center w-full lg:w-[50%]'>
     <div className='text-lg md:text-2xl font-medium text-justify'>
       A learning hub where you access the best, high-quality notes crafted by professors through their students. We've collected these valuable resources and paired them with relevant YouTube tutorials to streamline your learning.
