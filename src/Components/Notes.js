@@ -1,148 +1,211 @@
-import React, { useState } from 'react';
+
+import 'bootstrap-icons/font/bootstrap-icons.min.css';
+import _ from 'lodash';
+import React, {  useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../logo-fim.svg';
-import VantaGlobe from './VantaGlobe';
+import Logo from '../logo.svg';
 
-// ────────────────────────────────────────────────
-// SHARED ICON COMPONENT
-// ────────────────────────────────────────────────
-const LogoIcon = ({ className }) => <img src={Logo} alt="NoteGo logo" className={className} />;
+function Notes() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+   
 
-// ────────────────────────────────────────────────
-// HEADER – permanent dark styling, no `dark:` utilities
-// ────────────────────────────────────────────────
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  return (
-    <header className="align-center backdrop-blur-md fixed inset-x-0 top-0 z-40 flex items-center justify-between px-6 h-16 border-b border-slate-700">
-      <Link to="/" className="flex items-center gap-2 text-xl font-bold text-white">
-        <LogoIcon className="h-[32px] md:h-[37px] pt-2 text-blue-400" />
-      </Link>
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }, []);
 
-      <nav
-        className={`flex-col z-10 lg:flex-row bg-[#001128] lg:bg-transparent lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-8 gap-5 lg:static absolute w-full lg:w-auto top-full left-0 lg:top-auto lg:left-auto px-6 lg:px-0 py-5 lg:py-0 shadow-lg lg:shadow-none border-b border-slate-700 lg:border-none`}
-      >
-        <Link to="/about" onClick={() => setIsMenuOpen(false)} className="cursor-pointer text-white text-lg md:text-xl hover:text-blue-500">About</Link>
-        <Link to="/notes" onClick={() => setIsMenuOpen(false)} className="cursor-pointer text-white text-lg md:text-xl hover:text-blue-500">Notes</Link>
-        <Link to="/pyq" onClick={() => setIsMenuOpen(false)} className="cursor-pointer text-white text-lg md:text-xl hover:text-blue-500">PYQ</Link>
-        <Link to="/lab" onClick={() => setIsMenuOpen(false)} className="cursor-pointer text-white text-lg md:text-xl hover:text-blue-500">Lab</Link>
-      </nav>
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
-      <button onClick={toggleMenu} className="lg:hidden text-white text-3xl px-2 py-1 focus:outline-none">
-        <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'}`} />
-      </button>
-    </header>
-  );
-};
 
-// ────────────────────────────────────────────────
-// FOOTER – permanent dark styling
-// ────────────────────────────────────────────────
-const Footer = () => (
-  <footer className="bg-slate-800 border-t border-slate-700 py-6">
-    <div className="container mx-auto px-4 text-center text-slate-400">
-      <p>&copy; {new Date().getFullYear()} NoteGo. All Rights Reserved.</p>
-    </div>
-  </footer>
-);
 
-// ────────────────────────────────────────────────
-// YEAR CARD – permanent dark styling
-// ────────────────────────────────────────────────
-const YearCard = ({ to, title, description, iconClass }) => (
-  <Link
-    to={to}
-    className="group bg-slate-800 border border-slate-700 rounded-xl shadow-lg hover:shadow-blue-500/30 hover:-translate-y-2 p-8 text-center transition-all duration-300 w-full max-w-sm"
-  >
-    <div className="flex justify-center items-center mb-6">
-      <div className="bg-blue-900/50 p-5 rounded-full group-hover:bg-blue-800/80 transition-colors duration-300">
-        <i className={`${iconClass} text-5xl text-blue-400`} />
-      </div>
-    </div>
-    <h2 className="text-2xl font-bold text-white mb-2">{title}</h2>
-    <p className="text-slate-400">{description}</p>
-    <div className="mt-6 text-blue-400 font-semibold group-hover:text-blue-500 transition-colors">
-      Proceed <i className="bi bi-arrow-right-circle-fill ml-1" />
-    </div>
-  </Link>
-);
 
-// ────────────────────────────────────────────────
-// MAIN COMPONENT – permanent dark styling
-// ────────────────────────────────────────────────
-export default function PYQSelector() {
-  return (
-    <div className="flex flex-col text-slate-200  ">
-      {/* Decorative background animation */}
-      <VantaGlobe />
+    return (
+        <div className='flex flex-col min-h-screen bg-white gap-[10px]'>
 
-      <Header />
+            {/* Navbar */}
+            <div className='bg-black w-full flex justify-between items-center px-4 md:px-20 py-6 '>
+                <Link to='/' className='flex items-center'>
+                    <img src={Logo} alt="Logo" className='h-[30px] md:h-[40px]' />
+                </Link>
 
-      {/* Content */}
-      <main className="flex-1 min-h-screen flex flex-col items-center justify-center p-4 pt-24 md:p-8">
-        <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white">Select Your Year</h1>
-          <p className="mt-4 text-lg text-slate-400">Choose the relevant academic year to find your notes</p>
+                {/* Hamburger Icon for mobile and iPads */}
+                <div className='lg:hidden flex'>
+                    <button onClick={toggleMenu} className='text-white text-3xl focus:outline-none'>
+                        <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'}`}></i>
+                    </button>
+                </div>
+
+                {/* Links for larger screens & dropdown for smaller screens and iPads */}
+                <nav className={`flex-col lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0 z-50`}>
+                    <Link to='/' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>Home</Link>
+                    <Link to='/about' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>About</Link>
+                    <Link to='/pyq' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>1st Year PYQ'S</Link>
+                    <Link to='/pyq2' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>2nd Year PYQ'S</Link>
+                    <Link to='/lab' className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}>LAB</Link>
+                </nav>
+            </div>
+
+        
+
+                <div className="text-[#20C030] text-4xl mt-10 font-instrument w-full text-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up ">
+                    Select the Cluster
+                </div>
+              
+            
+
+                <div className="text-[#20C030] text-3xl mt-10 font-instrument w-full text-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up">
+                    1st Year
+                </div> 
+
+                 <Link
+                 to = '/pyq'
+                 className="flex self-center mt-5 shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px]  "
+                >
+                 <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">PYQ'S</h1>
+               
+               </Link>
+
+            <div>
+             <div className={`flex flex-row transition-all flex-wrap  justify-center items-center  duration-100 ease-in-out  animate-fade-in-slide-up  gap-10 mt-10  `}>
+    
+            
+             {/* CS Cluster Card */}
+             <Link
+               to = '/CSCluster'
+               className="flex shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px]  "
+              >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">CS Cluster</h1>
+             
+             </Link>
+         
+             {/* ECE Cluster Card */}
+             <Link
+               to = '/ECCluster'
+               className="flex  shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom "
+             >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">EE Cluster</h1>
+            
+             </Link>
+         
+             {/* ME Cluster Card */}
+             <Link
+               to = '/MECluster'
+               className="flex shadow-custom-gray  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom "
+             >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">Mech. Cluster</h1>
+            
+             </Link>
+            </div>
+         
+                <div className="text-[#20C030] self-center text-3xl mt-14 font-instrument w-full text-center transition-all     duration-700 ease-in-out animate-fade-in-slide-up">
+                    2nd Year
+                </div> 
+
+                 <div className="flex justify-center items-center">
+                 <Link
+                   to='/pyq2'
+                   className="flex self-center mt-5 shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] mx-auto"
+                 >
+                   <h1 className="text-3xl sm:text-4xl text-center text-[#20C030]">PYQ'S</h1>
+                 </Link>
+               </div>
+          
+            
+            <div className={`flex flex-row transition-all flex-wrap  justify-center items-center  duration-100 ease-in-out  animate-fade-in-slide-up  gap-10 mt-10  `}>
+    
+            
+         
+               <Link
+               to = '/CSE2'
+               className="flex shadow-custom-gray  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom "
+             >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">CSE</h1>
+            
+             </Link>
+         
+             {/* CS Cluster Card */}
+             <Link
+               to = '/ISE2'
+               className="flex shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px]  "
+              >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">ISE</h1>
+             
+             </Link>
+         
+             {/* ECE Cluster Card */}
+             <Link
+               to = '/ECE2'
+               className="flex  shadow-custom-gray hover:ring-4 hover:ring-teal-400 flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom "
+             >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">ECE</h1>
+            
+             </Link>
+         
+             {/* ME Cluster Card */}
+             <Link
+               to = '/ETE2'
+               className="flex shadow-custom-gray  hover:ring-4 hover:ring-teal-400  flex-col gap-2 cursor-pointer bg-black rounded-3xl h-[50px] w-80 sm:w-[250px] md:w-[300px] shadow-custom "
+             >
+               <h1 className="text-3xl sm:text-4xl text-center text-[#20C030] ">ETE</h1>
+            
+             </Link>
+           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8 w-full items-center justify-center">
-          <YearCard
-            to="/firstyearnotes"
-            title="1st Year Notes"
-            description="For Semesters 1 & 2. Filter by P‑Cycle or C‑Cycle."
-            iconClass="bi bi-file-earmark-text"
-          />
-          <YearCard
-            to="/senioryearnotes"
-            title="2nd / 3rd / 4th Year Notes"
-            description="For Semesters 3 and above. Filter by academic branch."
-            iconClass="bi bi-file-earmark-spreadsheet-fill"
-          />
+
+            <div className='mb-[50px]'></div>
+            <div className='bg-black min-w-full h-auto lg:h-[480px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+                <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
+                    <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
+                    <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
+                        NoteGo brings together professor-curated student notes with relevant
+                        YouTube tutorials for fast and efficient learning.
+                    </div>
+
+                    <div className='text-sm italic md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
+                        Disclaimer: While the notes and videos on this website are curated to assist in your studies, we advise students to
+                        first refer to their professor's notes and lectures. This is particularly important for theory-intensive
+                        subjects.
+                    </div>
+                </div>
+
+                
+
+                <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
+                    <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Quick Links</h1>
+                    <div className='flex flex-col gap-[20px]'>
+                        <Link to='/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
+                        <Link to='/Contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
+                        <Link to='/PrivacyPolicy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
+                        <Link to='/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
+                        <Link to='/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
+                        <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>PYQ</Link>
+                        <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
+                    </div>
+                </div>
+
+                <div className='flex flex-col gap-[30px] w-full lg:w-[200px]'>
+                    <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Navigate To</h1>
+                    <div className='flex flex-col gap-[20px]'>
+                        <Link to='/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
+                        <Link to='/ECCluster' className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
+                        <Link to='/MECluster' className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>
+                    </div>
+                </div>
+
+                <div className='flex flex-row gap-[5px] mt-[30px]'>
+                    <i className="bi bi-c-circle text-white" style={{ fontSize: '20px' }}></i>
+                    <h1 className='text-white text-sm md:text-lg'>2024 by NoteGo</h1>
+                </div>
+            </div>
+
         </div>
-      </main>
-
-      {/* Site‑wide footer */}
-      <footer className="bg-[#001128] w-full text-white flex justify-between">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-y-12 lg:gap-y-0 lg:gap-x-12 px-6 py-12">
-          {/* NoteGo blurb */}
-          <div className="w-full max-w-xs text-center">
-            <h2 className="text-lg font-semibold mb-4">NoteGo</h2>
-            <p className="text-sm leading-relaxed opacity-90">
-              One‑stop hub for notes, tutorials &amp; PYQs,<br />built by students for students.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="w-full max-w-xs text-center">
-            <h2 className="text-lg font-semibold mb-4">Quick Links</h2>
-            <ul className="space-y-2">
-              <li><Link to="/about" className="hover:underline">About</Link></li>
-              <li><Link to="/contact" className="hover:underline">Contact</Link></li>
-              <li><Link to="/privacypolicy" className="hover:underline">Privacy Policy</Link></li>
-              <li><Link to="/tnc" className="hover:underline">Terms &amp; Conditions</Link></li>
-            </ul>
-          </div>
-
-          {/* Navigate To */}
-          <div className="w-full max-w-xs text-center">
-            <h2 className="text-lg font-semibold mb-4">Navigate To</h2>
-            <ul className="space-y-2">
-              <li><Link to="/notes" className="hover:underline">Notes</Link></li>
-              <li><Link to="/pyq" className="hover:underline">PYQ</Link></li>
-              <li><Link to="/lab" className="hover:underline">Lab</Link></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
-
-      {/* Copyright strip */}
-      <div className="border-t w-full text-white bg-[#001128] border-white/10">
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 px-6 py-4 text-xs md:text-sm">
-          <i className="bi bi-c-circle" /> 2025 by NoteGo
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
+
+export default Notes;

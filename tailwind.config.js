@@ -20,17 +20,7 @@ module.exports = {
         'xs-4': '4px',
       },
       fontFamily: {
-        jetbrains: [
-          '"JetBrains Mono"',
-          'ui-monospace',
-          'SFMono-Regular',
-          'Menlo',
-          'Monaco',
-          'Consolas',
-          '"Liberation Mono"',
-          '"Courier New"',
-          'monospace',
-        ],
+        'instrument': ['"Instrument Sans"', 'sans-serif'], // Add Instrument Sans
       },
       boxShadow: {
         'custom': '0 .28vw .57vw 0 rgba(0, 0, 0, 0.2), 0 .42vw 1.42vw 0 rgba(0, 0, 0, 0.19)', // Add your custom shadow here
@@ -48,11 +38,6 @@ module.exports = {
       boxShadow: {
         'custom-gray': '10px 10px 5px gray',
       },
-      // tailwind.config.js
-
-  darkMode: 'class',      // ← must be 'class', not 'media'
-
-
 
       colors: {
         'custom-dark': 'rgb(24, 26, 27)', // Existing color

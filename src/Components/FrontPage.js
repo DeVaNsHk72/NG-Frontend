@@ -3,9 +3,66 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import Logo from '../logo-fim.svg';
 import Teamwork from '../Union.svg';
 import { Link } from 'react-router-dom';
-import VantaGlobe from './VantaGlobe'
 
 function FrontPage() {
+  
+
+
+  const images = [
+    '/images/firsthome.svg',
+    '/images/secondhome.svg',
+    '/images/thirdhome.svg',
+  ];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  const fullText = [
+    { text: 'Everything you need ', color: 'text-white', fontStyle: 'font-normal' },
+    { text: 'at one place ', color: 'text-white', fontStyle: 'font-normal' },
+    { text: 'to ace college ', color: 'text-[#20C030]', fontStyle: 'font-semibold italic' },
+    { text: 'academics.', color: 'text-[#20C030]', fontStyle: 'font-semibold italic' },
+  ];
+
+  const [displayedText, setDisplayedText] = useState('');
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+
+  useEffect(() => {
+    if (index < fullText.length && subIndex < fullText[index].text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev + fullText[index].text[subIndex]);
+        setSubIndex(subIndex + 1);
+      }, 100);
+      return () => clearTimeout(timeout);
+    } else if (subIndex === fullText[index]?.text?.length) {
+      if (index < fullText.length - 1) {
+        setTimeout(() => {
+          setIndex(index + 1);
+          setSubIndex(0);
+          setDisplayedText('');
+        }, 500);
+      } else {
+        setTimeout(() => {
+          setIndex(0);
+          setSubIndex(0);
+          setDisplayedText('');
+        }, 1000);
+      }
+    }
+  }, [index, subIndex, fullText]);
+
+
+  const GotoPYQ = () => {
+    alert('Coming Soon');
+  };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,172 +74,223 @@ function FrontPage() {
   const [isOpenPYQ, setIsOpenPYQ] = useState(false);
 
   return (
-    <div className="bg-transparent min-h-screen flex flex-col items-center">
-      <VantaGlobe />
+    <div className="bg-zinc-950 min-h-screen flex flex-col items-center">
       {/* Navbar */}
-      <div className=" w-full flex justify-between z-50 items-center  px-4 md:px-10 py-6 mt-4">
-
-        <div className='bg-white/10 align-center backdrop-blur-md  fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-3.5
-                
-            border border-white/30 
-            rounded-xl        
-            shadow-lg mt-5 mx-5'>
-          <div className="flex items-center">
-            <img src={Logo} alt="Logo" className="h-[32px] md:h-[40px]" />
-          </div>
-
-          {/* Hamburger Icon for mobile and iPads */}
-          <div className="lg:hidden flex px-2 py-1 ">
-            <button onClick={toggleMenu} className="text-white text-3xl focus:outline-none">
-              <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'}`}></i>
-            </button>
-          </div>
-
-          {/* Links for larger screens & dropdown for smaller screens and iPads */}
-          <nav className={`flex-col z-10 rounded-2xl  lg:flex-row bg-[#132f56] lg:bg-transparent lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute  w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
-
-
-            <Link
-              to='/about'
-              className={`cursor-pointer text-white text-lg md:text-xl hover:text-blue-600`}
-            >
-              About
-            </Link>
-            <Link
-              to='/notes'
-              className={`cursor-pointer text-white text-lg md:text-xl hover:text-blue-600`}
-            >
-              Notes
-            </Link>
-
-            <Link
-              to='/pyq'
-              className={`cursor-pointer text-white text-lg md:text-xl hover:text-blue-600`}
-            >
-              PYQ
-            </Link>
-
-            {/* <Link
-              to='/pyq2'
-              className={`cursor-pointer text-white text-lg md:text-xl hover:text-green-400`}
-            >
-              2nd Year PYQ's
-            </Link> */}
-
-            <Link
-              to='/lab'
-              className={`cursor-pointer text-white text-lg md:text-xl hover:text-blue-600`}
-            >
-              Lab
-            </Link>
-          </nav>
+      <div className="w-full flex justify-between z-50 items-center px-4 md:px-20 py-6 mt-4">
+        <div className="flex items-center">
+          <img src={Logo} alt="Logo" className="h-[45px] md:h-[55px]" />
         </div>
+ 
+        {/* Hamburger Icon for mobile and iPads */}
+        <div className="lg:hidden flex">
+          <button onClick={toggleMenu} className="text-white text-3xl focus:outline-none">
+            <i className={`bi ${isMenuOpen ? 'bi-x' : 'bi-list'}`}></i>
+          </button>
+        </div>
+
+        {/* Links for larger screens & dropdown for smaller screens and iPads */}
+        <nav className={`flex-col z-10 lg:flex-row lg:flex ${isMenuOpen ? 'flex' : 'hidden'} lg:gap-10 gap-5 lg:static absolute bg-zinc-950 w-full lg:w-auto top-[70px] left-0 px-4 lg:px-0 py-5 lg:py-0`}>
+          
+
+          <Link
+            to = '/about'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            About
+          </Link>
+          <Link
+            to = '/notes'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            Notes
+          </Link>
+
+          <Link
+            to = '/pyq'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            1st Year PYQ's
+          </Link>
+
+          <Link
+            to = '/pyq2'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            2nd Year PYQ's
+          </Link>
+
+          <Link
+            to = '/lab'
+            className={`cursor-pointer text-white text-lg md:text-2xl hover:text-green-400`}
+          >
+            Lab
+          </Link>
+        </nav>
       </div>
 
 
       {/* Main Content */}
-      <div className="relative z-1 md:px-10 pt-[170px]">
-        <h1 className="[word-spacing:-0.4em] text-7xl md:text-9xl text-center text-white mb-6">
-          We make<br />
-          studying<br />
-          easy!
-        </h1>
-      </div>
-      <div className='flex flex-col transition-all   duration-700 ease-in-out animate-fade-in-slide-up  items-center mt-[20px] md:mt-[50px] px-4'>
+      <div className='flex flex-col transition-all     duration-700 ease-in-out animate-fade-in-slide-up  items-center mt-[20px] md:mt-[50px] px-4'>
         {/* Fixed space for text */}
+        <div className='text-center text-white text-2xl md:text-3xl max-w-full md:max-w-4xl font-mono mb-6 md:mb-10 h-[50px] md:h-[60px]'>
+          {fullText.slice(0, index + 1).map((item, idx) => (
+            <span key={idx} className={`${item.color} ${item.fontStyle}`}>
+              {index === idx ? displayedText : item.text}
+            </span>
+          ))}
+        </div>
 
 
+        
+        {/* Image */}
+        <div className='mt-5 '>
+          <img className='w-[200px] md:w-[300px] lg:w-[400px] h-[180px] md:h-[220px] lg:h-[330px]' src={images[currentImageIndex]} alt="Slideshow" />
+        </div>
 
-        <div className='flex flex-row gap-5 md:gap-10  lg:gap-20 mt-8'>
-          <Link to='/notes' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-blue-300 transition duration-300'>
+        {/* Buttons */}
+        {/* <div className='flex flex-row gap-5 md:gap-10 lg:gap-20 mt-8'>
+          <Link  to = '/notes' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
             <div className='text-black font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[30px]'>Notes</div>
           </Link>
-
-          
-          <Link to='/pyq' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-blue-300 transition duration-300'>
-            <div className='text-black font-semibold text-center text-xl md:text-2xl mt-[2px] '>PYQ</div>
+          <Link  to='/pyq' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
+            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[40px]'>1st YearPYQ's</div>
           </Link>
-          {/* 
-          <Link to='/lab' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
+          <Link  to='/pyq2' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
+            <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[40px]'>2nd Year PYQ's</div>
+          </Link>
+
+
+
+
+          <Link  to='/lab' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
             <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[30px] md:ml-[40px]'>Lab</div>
-          </Link> */}
-        </div>
+          </Link>
+        </div> */}
 
 
+        
+<div className='flex flex-row gap-5 md:gap-10  lg:gap-20 mt-8'>
+  <Link to='/notes' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer rounded-full bg-white hover:bg-gray-200 transition duration-300'>
+    <div className='text-black font-semibold text-xl md:text-2xl mt-[2px] ml-[20px] md:ml-[30px]'>Notes</div>
+  </Link>
 
-        <div className=' transition-all mt-14  
-            rounded-xl duration-700 ease-in-out animate-fade-in-slide-up flex flex-col lg:flex-row items-center justify-center w-full  gap-[20px] lg:gap-[100px] px-4 py-4'>
-          <div className='flex flex-col items-center justify-center
-  backdrop-blur-none    
-   md:bg-transparent
-   md:border-none
-  rounded px-5 py-5
-  w-full lg:w-1/2 z-50'>
-            <div className='text-lg text-white md:text-2xl font-medium text-justify'>
-              A learning hub where you access the best, high-quality notes crafted by professors through their students. We've collected these valuable resources and paired them with relevant YouTube tutorials to streamline your learning.
-            </div>
-            <div className='text-lg md:text-2xl italic text-blue-300 font-medium text-justify mt-4'>
-              Whether you're preparing for CIE's or SEE's, NoteGo brings together expert knowledge and visual guides to help you learn faster and smarter. Dive in and elevate your study experience.
-            </div>
-          </div>
-        </div>
-
+  <div className="relative group "> {/* Increased z-index */}
+    <div onClick={()=>setIsOpenPYQ(!isOpenPYQ)} className={`h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black  transition duration-300 flex items-center justify-center  ${isOpenPYQ ? 'bg-green-400 ' : 'hover:bg-black-400 '} `}>
+      <div className='text-white font-semibold text-xl md:text-2xl mt-[2px]'>PYQ's</div>
+      
+      {!isOpenPYQ ? 
+          <i className="bi bi-chevron-down text-white ml-2"></i> 
+          :
+          <i className="bi bi-chevron-up text-white ml-2"></i>
+      }
+    </div>
+    
+    {isOpenPYQ ?
+      <div className="absolute  group-hover:block bg-zinc-800 border border-gray-200 rounded-md mt-2 shadow-lg transition-all duration-300 ease-in-out z-50"> {/* Added z-index and kept position */}
+        <Link to='/pyq' className='block px-4 py-2 text-white hover:bg-green-400 hover:text-black transition duration-300'>1st Year PYQ's</Link>
+        <Link to='/pyq2' className='block px-4 py-2 text-white hover:bg-green-400 hover:text-black transition duration-300'>2nd Year PYQ's</Link>
       </div>
+    : null}
+  </div>
+
+  <Link to='/lab' className='h-[35px] md:h-[40px] w-[100px] md:w-[130px] cursor-pointer border-2 border-white rounded-full bg-black hover:bg-green-400 hover:text-black transition duration-300'>
+    <div className='text-white font-semibold text-xl md:text-2xl mt-[2px] ml-[30px] md:ml-[40px]'>Lab</div>
+  </Link>
+</div>
+
+{/* 
+<div className='bg-[#D9D9D9] mt-10 flex flex-col lg:flex-row gap-5 w-full h-[250px] '>
+
+
+    <img src='/images/vibez.png' width={200} height={50} className='mx-24' />
+
+    <div className='flex flex-col w-full lg:w-[50%] px-4 text-black mt-12'>
+      <p className='text-left text-lg md:text-xl font-semibold leading-relaxed'>
+        Tired of boring work zones?
+      </p>
+      <p className='text-left text-lg md:text-xl font-semibold leading-relaxed '>A place where ideas flow, snacks glow, and connections grow.</p>
+      <p className='text-left text-lg md:text-xl font-semibold leading-relaxed '>Hustle where the vibe matches your grind.</p>
+      <p className='text-left text-lg md:text-xl font-bold leading-relaxed'>#NoteGoXVibez</p>
+    </div>
+
+    <div className='bg-white lg:mt-20 h-[44px] justify-center flex gap-2 items-center w-[130px] rounded-full '>
+      <p className='text-center text-lg md:text-lg font-semibold leading-relaxed'>Explore</p>
+      <img src='/images/ArrowRight.svg' width={20} height={20} />
+
+    </div>
+
+</div> */}
+
+
+
+
+
+<div className='bg-white transition-all mt-14  duration-700 ease-in-out animate-fade-in-slide-up flex flex-col lg:flex-row items-center justify-center w-full  gap-[20px] lg:gap-[100px] px-4 py-4'>
+  <div className='flex flex-col justify-center w-full lg:w-[50%]'>
+    <div className='text-lg md:text-2xl font-medium text-justify'>
+      A learning hub where you access the best, high-quality notes crafted by professors through their students. We've collected these valuable resources and paired them with relevant YouTube tutorials to streamline your learning.
+    </div>
+    <div className='text-lg md:text-2xl italic text-[#20C030] font-medium text-justify mt-4'>
+      Whether you're preparing for CIE's or SEE's, NoteGo brings together expert knowledge and visual guides to help you learn faster and smarter. Dive in and elevate your study experience.
+    </div>
+  </div>
+  <div className='flex justify-center lg:justify-end w-full lg:w-[50%] mt-[20px] lg:mt-0'>
+    <img src={Teamwork} className='w-[250px] md:w-[350px] lg:w-[400px] h-[250px] md:h-[350px] lg:h-[400px]' />
+  </div>
+</div>
+
+</div>
 
 
       {/* Footer */}
-      <footer className="bg-[#001128] w-full text-white flex justify-between">
-        {/* main content */}
-        <div
-          className="
-    max-w-7xl mx-auto
-    grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
-    place-items-center       /* centers each cell horizontally & vertically  */
-    gap-y-12 lg:gap-y-0 lg:gap-x-12
-    px-6 py-12
-  "
-        >
-          {/* ─────────── NoteGo blurb ─────────── */}
-          <div className="w-full max-w-xs text-center">
-            <h2 className="text-lg font-semibold mb-4">NoteGo</h2>
-            <p className="text-sm leading-relaxed opacity-90">
-              One-stop hub for notes, tutorials &amp; PYQs,<br />
-              built by students for students.
-            </p>
+      <div className='  transition-all     duration-700 ease-in-out animate-fade-in-slide-up  min-w-full h-auto lg:h-[480px] flex flex-col lg:flex-row gap-10 lg:gap-[150px] px-4 py-10'>
+        <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
+          <img src={Logo} alt="Logo" className='h-[30px] lg:h-[40px] mt-[10px] lg:mt-[20px]' />
+          <div className='text-sm md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
+            NoteGo brings together professor-curated student notes with relevant 
+            YouTube tutorials for fast and efficient learning.
           </div>
 
-          {/* ─────────── Quick Links ─────────── */}
-          <div className="w-full max-w-xs text-center">
-            <h2 className="text-lg font-semibold mb-4">Quick Links</h2>
-            <ul className="space-y-2">
-              <li><Link to="/about" className="hover:underline">About</Link></li>
-              <li><Link to="/contact" className="hover:underline">Contact</Link></li>
-              <li><Link to="/privacypolicy" className="hover:underline">Privacy Policy</Link></li>
-              <li><Link to="/tnc" className="hover:underline">Terms &amp; Conditions</Link></li>
-            </ul>
-          </div>
-
-          {/* ─────────── Navigate To ─────────── */}
-          <div className="w-full max-w-xs text-center">
-            <h2 className="text-lg font-semibold mb-4">Navigate To</h2>
-            <ul className="space-y-2">
-              <li><Link to="/notes" className="hover:underline">Notes</Link></li>
-              <li><Link to="/pyq" className="hover:underline">PYQ</Link></li>
-              <li><Link to="/lab" className="hover:underline">Lab</Link></li>
-            </ul>
+          <div className='text-sm italic md:text-md font-instrument ml-[0px] lg:ml-[50px] text-white text-justify'>
+            Disclaimer: While the notes on this website are curated to assist in your studies, we advise students to 
+            first refer to their professor's notes and resources. This is particularly important for theory-intensive
+            subjects.
           </div>
         </div>
 
-      </footer>
-      {/* copy‑right strip */}
-      <div className="border-t w-full text-white bg-[#001128] border-white/10">
-        <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 px-6 py-4 text-xs md:text-sm">
-          <i className="bi bi-c-circle" /> 2025 by NoteGo
+        <div className='flex flex-col gap-[30px] w-full lg:w-[300px]'>
+          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Quick Links</h1>
+          <div className='flex flex-col gap-[20px]'>
+            <Link to = '/about' className='text-white text-base md:text-lg cursor-pointer'>About</Link>
+            <Link to = '/Contact' className='text-white text-base md:text-lg cursor-pointer'>Contact</Link>
+            {/* <h1 className='text-white text-base md:text-lg cursor-pointer'>Contact</h1> */}
+            <Link to = '/PrivacyPolicy' className='text-white text-base md:text-lg cursor-pointer'>Privacy Policy</Link>
+            <Link to = '/Tnc' className='text-white text-base md:text-lg cursor-pointer'>Terms And Conditions</Link>
+            <Link to = '/notes' className='text-white text-base md:text-lg cursor-pointer'>Notes</Link>
+            <Link to='/pyq' className='text-white text-base md:text-lg cursor-pointer'>1st Year PYQ</Link>
+            <Link to='/pyq2' className='text-white text-base md:text-lg cursor-pointer'>2nd Year PYQ</Link>
+            <Link to='/lab' className='text-white text-base md:text-lg cursor-pointer'>Lab</Link>
+        
+          </div>
+        </div>
+
+        <div className='flex flex-col gap-[30px] w-full lg:w-[200px]'>
+          <h1 className='text-[#20C030] text-xl md:text-2xl mt-[10px] lg:mt-[30px]'>Navigate To</h1>
+          <div className='flex flex-col gap-[20px]  '>
+            <Link to = '/CSCluster' className='text-white text-base md:text-lg cursor-pointer'>CS Cluster</Link>
+            <Link to = '/ECCluster'  className='text-white text-base md:text-lg cursor-pointer'>Electrical Cluster</Link>
+            <Link to = '/MECluster'  className='text-white text-base md:text-lg cursor-pointer'>Mechanical Cluster</Link>
+          </div>
+        </div>
+
+        <div className='flex flex-row gap-[5px] mt-[30px]'>
+          <i className="bi bi-c-circle text-white" style={{ fontSize: '20px' }}></i>
+          <h1 className='text-white text-sm md:text-lg'>2024 by NoteGo</h1>
         </div>
       </div>
 
-      {/* <div className='mb-[50px] '></div> */}
-    </div>
+      <div className='mb-[50px] '></div>
+</div>
 
   );
 }
